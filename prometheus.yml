@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'coordinator'
+    static_configs:
+      - targets: ['host.docker.internal:8000']  # For Windows/Mac
+      # For Linux, use your actual host IP
+      # - targets: ['192.168.x.x:8000']

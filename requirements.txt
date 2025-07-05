@@ -1,0 +1,70 @@
+# EOTS v2.5 - Canonical Requirements
+
+# --- Core Application & Web Framework ---
+aiohttp==3.10.11  # Async HTTP client/server for async operations
+blinker==1.8.2
+dash==2.17.0
+dash-ag-grid==31.3.1
+dash-bootstrap-components==1.6.0
+Flask==3.0.3
+Werkzeug==3.0.3
+
+# --- Core Data Science & Numerics ---
+numpy==2.0.0
+pandas==2.2.2
+pandera==0.19.2
+pyarrow==16.1.0
+scikit-learn==1.5.0
+scipy==1.13.1
+threadpoolctl==3.6.0
+
+# --- Data Validation & Modeling ---
+pydantic
+jsonschema==4.22.0
+
+# --- AI & Machine Learning ---
+pydantic-ai==0.0.13
+
+# Note: EOTS v2.5 uses 100% local HuiHui models - no external AI providers needed
+
+# --- System & Process Management ---
+psutil==5.9.8  # For process management and system monitoring
+filelock==3.18.0  # File locking for concurrent access control
+
+# --- Database ---
+# Using the modern psycopg3 with pre-compiled binary for ease of installation.
+psycopg[binary]==3.2.1  # Modern PostgreSQL database adapter for Python (version 3)
+
+# --- Data Provider, API & Retries ---
+# Note: convexlib is installed directly from git
+convex==0.7.0
+convexlib @ git+https://github.com/convexvalue/convexlib.git@fc31810401cc46619e74a2815a04f8589e08a1c5
+requests==2.32.3
+tenacity==9.1.2
+urllib3==2.2.1
+yfinance==0.2.28
+
+# --- Utilities & General Dependencies ---
+certifi==2024.6.2
+charset-normalizer==3.3.2
+click==8.1.7
+colorama==0.4.6
+idna==3.7
+importlib-metadata==7.1.0
+itsdangerous==2.2.0
+Jinja2==3.1.4
+joblib==1.4.2
+loguru==0.7.2
+MarkupSafe==2.1.5
+nest-asyncio==1.6.0
+packaging==24.1
+python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+pytz==2024.1
+rich==13.7.1
+six==1.16.0
+typing_extensions==4.12.2
+tzdata==2024.1
+zipp==3.19.2
+circuitbreaker==2.1.3
+gputil==1.4.0
