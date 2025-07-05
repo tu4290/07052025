@@ -1,0 +1,37 @@
+{
+  "taskmanager_config": {
+    "data_directory": "./mcp_data/taskmanager",
+    "tasks_file": "tasks.json",
+    "backup_directory": "./mcp_data/taskmanager/backups",
+    "max_concurrent_tasks": 10,
+    "task_timeout_minutes": 60,
+    "auto_save_interval_seconds": 30,
+    "safety_guardrails": {
+      "require_approval_for_critical_tasks": true,
+      "max_task_depth": 5,
+      "prevent_infinite_loops": true,
+      "validate_task_dependencies": true,
+      "sandbox_mode": true
+    },
+    "logging": {
+      "level": "INFO",
+      "file": "./mcp_data/taskmanager/taskmanager.log",
+      "max_file_size_mb": 10,
+      "backup_count": 5
+    },
+    "permissions": {
+      "allowed_operations": [
+        "create_task",
+        "list_tasks",
+        "update_task_status",
+        "delete_completed_tasks",
+        "request_planning"
+      ],
+      "restricted_operations": [
+        "system_shutdown",
+        "file_system_access_outside_project",
+        "network_access_without_approval"
+      ]
+    }
+  }
+}
