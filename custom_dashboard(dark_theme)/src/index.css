@@ -1,0 +1,239 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Trading Dashboard Design System */
+@layer base {
+  :root {
+    /* Core Background Palette - Layered depths for visual hierarchy */
+    --bg-primary: #0A0A0A;        /* Deepest canvas */
+    --bg-secondary: #121212;      /* Primary panels */
+    --bg-tertiary: #1A1A1A;       /* Elevated surfaces */
+    --bg-elevated: #1E1E1E;       /* Tooltips, modals */
+    --bg-hover: #242424;          /* Interactive hover states */
+    
+    /* Typography Hierarchy - Refined contrast without harshness */
+    --text-primary: #E8E8E8;      /* Primary headings, key data */
+    --text-secondary: #B8B8B8;    /* Secondary labels, descriptions */
+    --text-muted: #888888;        /* Subtle annotations, gridlines - REMOVED !important from definition */
+    --text-accent: #A0A0A0;       /* Emphasized but not primary */
+    
+    /* ... keep existing code (rest of :root variables) ... */
+    --accent-primary: #4A9EFF;    /* Soft blue - primary highlights */
+    --accent-primary-hover: #5BADFF;
+    --accent-primary-dim: #3A7ACC;
+    
+    --accent-secondary: #FFB84A;  /* Muted amber - secondary emphasis */
+    --accent-secondary-hover: #FFC866;
+    --accent-secondary-dim: #CC9238;
+    
+    --accent-tertiary: #8B5CF6;   /* Soft violet - rare special indicators */
+    --accent-tertiary-hover: #A78BFA;
+    --accent-tertiary-dim: #7C3AED;
+    
+    /* Financial Data Colors - Sophisticated, not garish */
+    --positive: #10B981;          /* Emerald - gains */
+    --positive-dim: #059669;
+    --negative: #EF4444;          /* Refined red - losses */
+    --negative-dim: #DC2626;
+    --neutral: #6B7280;           /* Gray - no change */
+    
+    /* Borders & Dividers - Extremely subtle definition */
+    --border-primary: #2A2A2A;
+    --border-secondary: #222222;
+    --border-accent: #333333;
+    
+    /* Shadows - Depth without drama */
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.4);
+    
+    /* Animation Easing - Luxury feel */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Spacing Scale - Generous, harmonious proportions */
+    --space-xs: 0.25rem;    /* 4px */
+    --space-sm: 0.5rem;     /* 8px */
+    --space-md: 1rem;       /* 16px */
+    --space-lg: 1.5rem;     /* 24px */
+    --space-xl: 2rem;       /* 32px */
+    --space-2xl: 3rem;      /* 48px */
+    
+    /* Typography Scale */
+    --text-xs: 0.75rem;     /* 12px - small annotations */
+    --text-sm: 0.875rem;    /* 14px - secondary text */
+    --text-base: 1rem;      /* 16px - primary text */
+    --text-lg: 1.25rem;     /* 20px - section headers */
+    --text-xl: 1.5rem;      /* 24px - page titles */
+    
+    /* Border Radius - Consistent, modern */
+    --radius-sm: 0.375rem;  /* 6px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 0.75rem;   /* 12px */
+  }
+
+  body {
+    /* ... keep existing code (body styles) ... */
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar styling */
+  /* ... keep existing code (scrollbar styles) ... */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-accent);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+
+  /* Ensure Recharts tick text uses the muted color */
+  .recharts-cartesian-axis-tick-value,
+  .recharts-cartesian-axis-tick text {
+    fill: var(--text-muted) !important; /* This rule remains to be safe and !important is applied here */
+  }
+}
+
+@layer components {
+  /* ... keep existing code (all component layer styles) ... */
+  .panel-base {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .panel-elevated {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  /* Interactive States - Luxurious micro-interactions */
+  .interactive-base {
+    transition: all 150ms var(--ease-out);
+    cursor: pointer;
+  }
+  
+  .interactive-base:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-1px);
+  }
+  
+  /* Typography Components */
+  .heading-primary {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+  }
+  
+  .heading-secondary {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+  }
+  
+  .text-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-feature-settings: 'zero', 'ss01';
+  }
+  
+  /* Status Indicators */
+  .status-positive {
+    color: var(--positive);
+  }
+  
+  .status-negative {
+    color: var(--negative);
+  }
+  
+  .status-neutral {
+    color: var(--neutral);
+  }
+  
+  /* Accent Highlights */
+  .accent-primary {
+    color: var(--accent-primary);
+  }
+  
+  .accent-secondary {
+    color: var(--accent-secondary);
+  }
+  
+  /* Grid System - Harmonious proportions */
+  .grid-dashboard {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-lg);
+    min-height: 100vh;
+  }
+  
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+  
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 300ms var(--ease-out);
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 400ms var(--ease-out);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Chart Container - Optimized for data visualization */
+  .chart-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    min-height: 300px;
+  }
+  
+  /* Metric Display - Financial data presentation */
+  .metric-large {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .metric-medium {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+}
