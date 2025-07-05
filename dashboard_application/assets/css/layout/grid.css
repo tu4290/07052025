@@ -1,0 +1,926 @@
+/* =============================================================================
+   ELITE OPTIONS TRADING SYSTEM - GRID LAYOUT SYSTEM
+   Responsive grid system for dashboard layouts and component organization
+============================================================================= */
+
+/* ==========================================================================
+   CONTAINER SYSTEM
+========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width, 1400px);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 var(--space-lg);
+}
+
+.container-narrow {
+  max-width: 800px;
+}
+
+.container-wide {
+  max-width: 1600px;
+}
+
+.container-full {
+  max-width: none;
+  padding: 0;
+}
+
+/* ==========================================================================
+   DASHBOARD GRID SYSTEM
+========================================================================== */
+
+.dashboard-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-areas:
+    "sidebar header header"
+    "sidebar main main"
+    "sidebar main main";
+  grid-template-columns: var(--sidebar-width, 280px) 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.dashboard-grid.sidebar-collapsed {
+  grid-template-columns: var(--sidebar-collapsed-width, 80px) 1fr 1fr;
+}
+
+.dashboard-grid.sidebar-hidden {
+  grid-template-areas:
+    "header header header"
+    "main main main"
+    "main main main";
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.dashboard-header {
+  grid-area: header;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+.dashboard-sidebar {
+  grid-area: sidebar;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-primary);
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.dashboard-main {
+  grid-area: main;
+  padding: var(--space-lg);
+  overflow-x: hidden;
+  min-width: 0; /* Prevent grid blowout */
+}
+
+/* ==========================================================================
+   CONTENT GRID LAYOUTS
+========================================================================== */
+
+/* Main content grid */
+.content-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.content-grid-dense {
+  grid-auto-flow: dense;
+}
+
+/* Two column layout */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+/* Three column layout */
+.grid-3-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Four column layout */
+.grid-4-col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Auto-fit columns */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.grid-auto-sm {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid-auto-lg {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+/* ==========================================================================
+   TRADING LAYOUT GRIDS
+========================================================================== */
+
+/* Trading dashboard layout */
+.trading-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-areas:
+    "metrics metrics metrics"
+    "chart chart orderbook"
+    "positions positions trades";
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: calc(100vh - var(--header-height, 80px));
+}
+
+.trading-metrics {
+  grid-area: metrics;
+}
+
+.trading-chart {
+  grid-area: chart;
+  min-height: 400px;
+}
+
+.trading-orderbook {
+  grid-area: orderbook;
+  min-height: 400px;
+}
+
+.trading-positions {
+  grid-area: positions;
+}
+
+.trading-trades {
+  grid-area: trades;
+}
+
+/* Portfolio layout */
+.portfolio-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-areas:
+    "overview overview performance"
+    "holdings holdings allocation"
+    "history history history";
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.portfolio-overview {
+  grid-area: overview;
+}
+
+.portfolio-performance {
+  grid-area: performance;
+}
+
+.portfolio-holdings {
+  grid-area: holdings;
+}
+
+.portfolio-allocation {
+  grid-area: allocation;
+}
+
+.portfolio-history {
+  grid-area: history;
+}
+
+/* Analytics layout */
+.analytics-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-areas:
+    "kpis kpis kpis"
+    "chart1 chart2 chart3"
+    "table table table";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.analytics-kpis {
+  grid-area: kpis;
+}
+
+.analytics-chart-1 {
+  grid-area: chart1;
+}
+
+.analytics-chart-2 {
+  grid-area: chart2;
+}
+
+.analytics-chart-3 {
+  grid-area: chart3;
+}
+
+.analytics-table {
+  grid-area: table;
+}
+
+/* ==========================================================================
+   GRID COLUMN SPANS
+========================================================================== */
+
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+.col-full { grid-column: 1 / -1; }
+
+/* Row spans */
+.row-1 { grid-row: span 1; }
+.row-2 { grid-row: span 2; }
+.row-3 { grid-row: span 3; }
+.row-4 { grid-row: span 4; }
+.row-5 { grid-row: span 5; }
+.row-6 { grid-row: span 6; }
+
+/* ==========================================================================
+   GRID POSITIONING
+========================================================================== */
+
+.col-start-1 { grid-column-start: 1; }
+.col-start-2 { grid-column-start: 2; }
+.col-start-3 { grid-column-start: 3; }
+.col-start-4 { grid-column-start: 4; }
+.col-start-5 { grid-column-start: 5; }
+.col-start-6 { grid-column-start: 6; }
+.col-start-7 { grid-column-start: 7; }
+.col-start-8 { grid-column-start: 8; }
+.col-start-9 { grid-column-start: 9; }
+.col-start-10 { grid-column-start: 10; }
+.col-start-11 { grid-column-start: 11; }
+.col-start-12 { grid-column-start: 12; }
+
+.col-end-1 { grid-column-end: 1; }
+.col-end-2 { grid-column-end: 2; }
+.col-end-3 { grid-column-end: 3; }
+.col-end-4 { grid-column-end: 4; }
+.col-end-5 { grid-column-end: 5; }
+.col-end-6 { grid-column-end: 6; }
+.col-end-7 { grid-column-end: 7; }
+.col-end-8 { grid-column-end: 8; }
+.col-end-9 { grid-column-end: 9; }
+.col-end-10 { grid-column-end: 10; }
+.col-end-11 { grid-column-end: 11; }
+.col-end-12 { grid-column-end: 12; }
+.col-end-13 { grid-column-end: 13; }
+
+.row-start-1 { grid-row-start: 1; }
+.row-start-2 { grid-row-start: 2; }
+.row-start-3 { grid-row-start: 3; }
+.row-start-4 { grid-row-start: 4; }
+.row-start-5 { grid-row-start: 5; }
+.row-start-6 { grid-row-start: 6; }
+
+.row-end-1 { grid-row-end: 1; }
+.row-end-2 { grid-row-end: 2; }
+.row-end-3 { grid-row-end: 3; }
+.row-end-4 { grid-row-end: 4; }
+.row-end-5 { grid-row-end: 5; }
+.row-end-6 { grid-row-end: 6; }
+.row-end-7 { grid-row-end: 7; }
+
+/* ==========================================================================
+   FLEXBOX LAYOUTS
+========================================================================== */
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.flex-no-shrink {
+  flex-shrink: 0;
+}
+
+/* Justify content */
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+/* Align items */
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+/* Align content */
+.content-start {
+  align-content: flex-start;
+}
+
+.content-end {
+  align-content: flex-end;
+}
+
+.content-center {
+  align-content: center;
+}
+
+.content-between {
+  align-content: space-between;
+}
+
+.content-around {
+  align-content: space-around;
+}
+
+.content-evenly {
+  align-content: space-evenly;
+}
+
+/* ==========================================================================
+   SPACING UTILITIES
+========================================================================== */
+
+.gap-0 { gap: 0; }
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+.gap-2xl { gap: var(--space-2xl); }
+.gap-3xl { gap: var(--space-3xl); }
+
+.gap-x-0 { column-gap: 0; }
+.gap-x-xs { column-gap: var(--space-xs); }
+.gap-x-sm { column-gap: var(--space-sm); }
+.gap-x-md { column-gap: var(--space-md); }
+.gap-x-lg { column-gap: var(--space-lg); }
+.gap-x-xl { column-gap: var(--space-xl); }
+.gap-x-2xl { column-gap: var(--space-2xl); }
+.gap-x-3xl { column-gap: var(--space-3xl); }
+
+.gap-y-0 { row-gap: 0; }
+.gap-y-xs { row-gap: var(--space-xs); }
+.gap-y-sm { row-gap: var(--space-sm); }
+.gap-y-md { row-gap: var(--space-md); }
+.gap-y-lg { row-gap: var(--space-lg); }
+.gap-y-xl { row-gap: var(--space-xl); }
+.gap-y-2xl { row-gap: var(--space-2xl); }
+.gap-y-3xl { row-gap: var(--space-3xl); }
+
+/* ==========================================================================
+   CARD GRIDS
+========================================================================== */
+
+.card-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.card-grid-sm {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+.card-grid-lg {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: var(--space-xl);
+}
+
+.card-grid-fixed {
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+}
+
+/* Masonry-style grid */
+.masonry-grid {
+  columns: 300px;
+  column-gap: var(--space-lg);
+  column-fill: balance;
+}
+
+.masonry-grid > * {
+  break-inside: avoid;
+  margin-bottom: var(--space-lg);
+}
+
+/* ==========================================================================
+   RESPONSIVE GRID SYSTEM
+========================================================================== */
+
+/* Large screens (1200px+) */
+@media (min-width: 1200px) {
+  .lg\:col-1 { grid-column: span 1; }
+  .lg\:col-2 { grid-column: span 2; }
+  .lg\:col-3 { grid-column: span 3; }
+  .lg\:col-4 { grid-column: span 4; }
+  .lg\:col-5 { grid-column: span 5; }
+  .lg\:col-6 { grid-column: span 6; }
+  .lg\:col-7 { grid-column: span 7; }
+  .lg\:col-8 { grid-column: span 8; }
+  .lg\:col-9 { grid-column: span 9; }
+  .lg\:col-10 { grid-column: span 10; }
+  .lg\:col-11 { grid-column: span 11; }
+  .lg\:col-12 { grid-column: span 12; }
+  
+  .lg\:grid-2-col { grid-template-columns: 1fr 1fr; }
+  .lg\:grid-3-col { grid-template-columns: repeat(3, 1fr); }
+  .lg\:grid-4-col { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Medium screens (768px - 1199px) */
+@media (max-width: 1199px) {
+  .dashboard-grid {
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "sidebar main";
+    grid-template-columns: var(--sidebar-width, 280px) 1fr;
+  }
+  
+  .trading-grid {
+    grid-template-areas:
+      "metrics metrics"
+      "chart orderbook"
+      "positions trades";
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .portfolio-grid {
+    grid-template-areas:
+      "overview performance"
+      "holdings allocation"
+      "history history";
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .analytics-grid {
+    grid-template-areas:
+      "kpis kpis"
+      "chart1 chart2"
+      "chart3 chart3"
+      "table table";
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 1199px) {
+  .md\:col-1 { grid-column: span 1; }
+  .md\:col-2 { grid-column: span 2; }
+  .md\:col-3 { grid-column: span 3; }
+  .md\:col-4 { grid-column: span 4; }
+  .md\:col-5 { grid-column: span 5; }
+  .md\:col-6 { grid-column: span 6; }
+  .md\:col-7 { grid-column: span 7; }
+  .md\:col-8 { grid-column: span 8; }
+  .md\:col-9 { grid-column: span 9; }
+  .md\:col-10 { grid-column: span 10; }
+  .md\:col-11 { grid-column: span 11; }
+  .md\:col-12 { grid-column: span 12; }
+  
+  .md\:grid-2-col { grid-template-columns: 1fr 1fr; }
+  .md\:grid-3-col { grid-template-columns: repeat(3, 1fr); }
+  .md\:grid-4-col { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tablet screens (768px - 1023px) */
+@media (max-width: 1023px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+  
+  .dashboard-main {
+    padding: var(--space-md);
+  }
+  
+  .content-grid {
+    gap: var(--space-md);
+  }
+  
+  .grid-3-col,
+  .grid-4-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+/* Mobile screens (max 767px) */
+@media (max-width: 767px) {
+  .dashboard-grid {
+    grid-template-areas:
+      "header"
+      "main"
+      "main";
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: var(--sidebar-width, 280px);
+    height: 100vh;
+    z-index: var(--z-sidebar);
+    transition: left var(--duration-normal) var(--ease-out);
+  }
+  
+  .dashboard-sidebar.open {
+    left: 0;
+  }
+  
+  .dashboard-main {
+    padding: var(--space-sm);
+  }
+  
+  .trading-grid {
+    grid-template-areas:
+      "metrics"
+      "chart"
+      "orderbook"
+      "positions"
+      "trades";
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .portfolio-grid {
+    grid-template-areas:
+      "overview"
+      "performance"
+      "holdings"
+      "allocation"
+      "history";
+    grid-template-columns: 1fr;
+  }
+  
+  .analytics-grid {
+    grid-template-areas:
+      "kpis"
+      "chart1"
+      "chart2"
+      "chart3"
+      "table";
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-2-col,
+  .grid-3-col,
+  .grid-4-col {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  
+  .masonry-grid {
+    columns: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .sm\:col-1 { grid-column: span 1; }
+  .sm\:col-2 { grid-column: span 2; }
+  .sm\:col-3 { grid-column: span 3; }
+  .sm\:col-4 { grid-column: span 4; }
+  .sm\:col-5 { grid-column: span 5; }
+  .sm\:col-6 { grid-column: span 6; }
+  .sm\:col-7 { grid-column: span 7; }
+  .sm\:col-8 { grid-column: span 8; }
+  .sm\:col-9 { grid-column: span 9; }
+  .sm\:col-10 { grid-column: span 10; }
+  .sm\:col-11 { grid-column: span 11; }
+  .sm\:col-12 { grid-column: span 12; }
+  
+  .sm\:grid-1-col { grid-template-columns: 1fr; }
+  .sm\:grid-2-col { grid-template-columns: 1fr 1fr; }
+}
+
+/* Extra small screens (max 480px) */
+@media (max-width: 480px) {
+  .container,
+  .container-fluid {
+    padding: 0 var(--space-sm);
+  }
+  
+  .dashboard-header {
+    padding: var(--space-sm);
+  }
+  
+  .content-grid {
+    gap: var(--space-sm);
+  }
+  
+  .trading-chart {
+    min-height: 300px;
+  }
+  
+  .trading-orderbook {
+    min-height: 300px;
+  }
+}
+
+/* ==========================================================================
+   GRID UTILITIES
+========================================================================== */
+
+.grid-dense {
+  grid-auto-flow: dense;
+}
+
+.grid-row {
+  grid-auto-flow: row;
+}
+
+.grid-col {
+  grid-auto-flow: column;
+}
+
+.place-center {
+  place-items: center;
+}
+
+.place-start {
+  place-items: start;
+}
+
+.place-end {
+  place-items: end;
+}
+
+.place-stretch {
+  place-items: stretch;
+}
+
+.justify-items-start {
+  justify-items: start;
+}
+
+.justify-items-end {
+  justify-items: end;
+}
+
+.justify-items-center {
+  justify-items: center;
+}
+
+.justify-items-stretch {
+  justify-items: stretch;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.align-items-end {
+  align-items: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-stretch {
+  align-items: stretch;
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.justify-self-stretch {
+  justify-self: stretch;
+}
+
+.align-self-start {
+  align-self: start;
+}
+
+.align-self-end {
+  align-self: end;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-stretch {
+  align-self: stretch;
+}
+
+/* ==========================================================================
+   OVERFLOW UTILITIES
+========================================================================== */
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+/* ==========================================================================
+   ASPECT RATIO UTILITIES
+========================================================================== */
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+.aspect-golden {
+  aspect-ratio: 1.618 / 1;
+}
+
+/* ==========================================================================
+   PRINT STYLES
+========================================================================== */
+
+@media print {
+  .dashboard-grid {
+    display: block;
+  }
+  
+  .dashboard-sidebar {
+    display: none;
+  }
+  
+  .dashboard-header {
+    position: static;
+    border-bottom: 2px solid #000;
+  }
+  
+  .dashboard-main {
+    padding: 0;
+  }
+  
+  .grid-2-col,
+  .grid-3-col,
+  .grid-4-col {
+    display: block;
+  }
+  
+  .card-grid {
+    display: block;
+  }
+  
+  .card-grid > * {
+    margin-bottom: 1rem;
+    break-inside: avoid;
+  }
+}

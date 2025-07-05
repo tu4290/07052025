@@ -1,0 +1,628 @@
+/* =============================================================================
+   ELITE OPTIONS TRADING SYSTEM - BUTTON COMPONENTS
+   Comprehensive button system based on custom dashboard analysis
+============================================================================= */
+
+/* ==========================================================================
+   BASE BUTTON SYSTEM
+========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-family: inherit;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  background: none;
+  outline: none;
+}
+
+.btn:focus {
+  box-shadow: var(--focus-ring);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   BUTTON VARIANTS - Primary Actions
+========================================================================== */
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: var(--accent-primary-dim);
+  border-color: var(--accent-primary-dim);
+  transform: translateY(0);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:focus {
+  box-shadow: var(--focus-ring), var(--shadow-elevated);
+}
+
+/* ==========================================================================
+   BUTTON VARIANTS - Secondary Actions
+========================================================================== */
+
+.btn-secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary:active {
+  background-color: var(--bg-active);
+  border-color: var(--accent-primary-dim);
+}
+
+/* ==========================================================================
+   BUTTON VARIANTS - Outline Style
+========================================================================== */
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-outline:active {
+  background-color: var(--accent-primary-dim);
+  border-color: var(--accent-primary-dim);
+}
+
+/* ==========================================================================
+   BUTTON VARIANTS - Ghost Style
+========================================================================== */
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+
+.btn-ghost:active {
+  background-color: var(--bg-active);
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   BUTTON VARIANTS - Financial States
+========================================================================== */
+
+.btn-success {
+  background-color: var(--positive);
+  color: white;
+  border-color: var(--positive);
+}
+
+.btn-success:hover {
+  background-color: var(--positive-light);
+  border-color: var(--positive-light);
+  box-shadow: var(--shadow-glow-positive);
+}
+
+.btn-success:active {
+  background-color: var(--positive-dim);
+  border-color: var(--positive-dim);
+}
+
+.btn-danger {
+  background-color: var(--negative);
+  color: white;
+  border-color: var(--negative);
+}
+
+.btn-danger:hover {
+  background-color: var(--negative-light);
+  border-color: var(--negative-light);
+  box-shadow: var(--shadow-glow-negative);
+}
+
+.btn-danger:active {
+  background-color: var(--negative-dim);
+  border-color: var(--negative-dim);
+}
+
+.btn-warning {
+  background-color: var(--warning);
+  color: white;
+  border-color: var(--warning);
+}
+
+.btn-warning:hover {
+  background-color: var(--warning-dim);
+  border-color: var(--warning-dim);
+}
+
+.btn-info {
+  background-color: var(--info);
+  color: white;
+  border-color: var(--info);
+}
+
+.btn-info:hover {
+  background-color: var(--info-dim);
+  border-color: var(--info-dim);
+}
+
+/* ==========================================================================
+   BUTTON SIZES
+========================================================================== */
+
+.btn-xs {
+  font-size: var(--text-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.btn-sm {
+  font-size: var(--text-sm);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
+}
+
+.btn-md {
+  font-size: var(--text-base);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+}
+
+.btn-lg {
+  font-size: var(--text-lg);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-lg);
+}
+
+.btn-xl {
+  font-size: var(--text-xl);
+  padding: var(--space-lg) var(--space-2xl);
+  border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   BUTTON SHAPES
+========================================================================== */
+
+.btn-square {
+  aspect-ratio: 1;
+  padding: var(--space-sm);
+}
+
+.btn-circle {
+  aspect-ratio: 1;
+  padding: var(--space-sm);
+  border-radius: var(--radius-full);
+}
+
+.btn-pill {
+  border-radius: var(--radius-full);
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+.btn-wide {
+  padding-left: var(--space-2xl);
+  padding-right: var(--space-2xl);
+}
+
+.btn-block {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   BUTTON STATES
+========================================================================== */
+
+.btn-loading {
+  pointer-events: none;
+  position: relative;
+}
+
+.btn-loading .btn-icon,
+.btn-loading .btn-text {
+  opacity: 0;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.btn-active {
+  background-color: var(--accent-primary-dim);
+  border-color: var(--accent-primary-dim);
+  color: white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-pressed {
+  transform: scale(0.98);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   SPECIAL BUTTON TYPES
+========================================================================== */
+
+/* Trading Action Buttons */
+.btn-buy {
+  background: linear-gradient(135deg, var(--positive), var(--positive-light));
+  color: white;
+  border: none;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.btn-buy:hover {
+  background: linear-gradient(135deg, var(--positive-light), var(--positive));
+  box-shadow: var(--shadow-glow-positive);
+  transform: translateY(-2px);
+}
+
+.btn-sell {
+  background: linear-gradient(135deg, var(--negative), var(--negative-light));
+  color: white;
+  border: none;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.btn-sell:hover {
+  background: linear-gradient(135deg, var(--negative-light), var(--negative));
+  box-shadow: var(--shadow-glow-negative);
+  transform: translateY(-2px);
+}
+
+/* Glass Effect Button */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: var(--backdrop-blur-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--duration-slow) var(--ease-out);
+}
+
+.btn-gradient:hover::before {
+  left: 100%;
+}
+
+/* Icon Only Buttons */
+.btn-icon-only {
+  padding: var(--space-sm);
+  aspect-ratio: 1;
+}
+
+.btn-icon-only .btn-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================================================================
+   BUTTON GROUPS
+========================================================================== */
+
+.btn-group {
+  display: inline-flex;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  border-right-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-group .btn:first-child {
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.btn-group .btn:last-child {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  border-right-width: 1px;
+}
+
+.btn-group .btn:hover,
+.btn-group .btn:focus,
+.btn-group .btn.btn-active {
+  z-index: 2;
+  border-right-width: 1px;
+}
+
+.btn-group .btn:hover + .btn,
+.btn-group .btn:focus + .btn,
+.btn-group .btn.btn-active + .btn {
+  border-left-width: 0;
+}
+
+/* Vertical Button Group */
+.btn-group-vertical {
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.btn-group-vertical .btn {
+  border-radius: 0;
+  border-bottom-width: 0;
+  width: 100%;
+}
+
+.btn-group-vertical .btn:first-child {
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+}
+
+.btn-group-vertical .btn:last-child {
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  border-bottom-width: 1px;
+}
+
+/* ==========================================================================
+   FLOATING ACTION BUTTONS
+========================================================================== */
+
+.btn-fab {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-strong);
+  z-index: var(--z-fixed);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.btn-fab:hover {
+  background-color: var(--accent-primary-hover);
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.1);
+}
+
+.btn-fab .btn-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ==========================================================================
+   RESPONSIVE BUTTONS
+========================================================================== */
+
+@media (max-width: 768px) {
+  .btn {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+  }
+  
+  .btn-lg {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--text-base);
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-group .btn {
+    width: 100%;
+    border-radius: 0;
+    border-right-width: 1px;
+    border-bottom-width: 0;
+  }
+  
+  .btn-group .btn:first-child {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  
+  .btn-group .btn:last-child {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    border-bottom-width: 1px;
+  }
+  
+  .btn-fab {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--text-xs);
+  }
+  
+  .btn-wide,
+  .btn-pill {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+}
+
+/* ==========================================================================
+   BUTTON ANIMATIONS
+========================================================================== */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.btn-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY ENHANCEMENTS
+========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  
+  .btn:hover {
+    transform: none;
+  }
+  
+  .btn-fab:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 2px;
+  }
+  
+  .btn-ghost {
+    border-color: currentColor;
+  }
+}
+
+/* ==========================================================================
+   BUTTON UTILITIES
+========================================================================== */
+
+.btn-no-animation {
+  transition: none;
+}
+
+.btn-no-animation:hover {
+  transform: none;
+}
+
+.btn-shadow-none {
+  box-shadow: none;
+}
+
+.btn-shadow-none:hover {
+  box-shadow: none;
+}
+
+.btn-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.btn-lowercase {
+  text-transform: lowercase;
+}
+
+.btn-capitalize {
+  text-transform: capitalize;
+}

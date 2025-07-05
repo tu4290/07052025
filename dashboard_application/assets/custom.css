@@ -1,0 +1,312 @@
+/* /home/ubuntu/dashboard_v2/assets/custom.css */
+
+/* --- Body and General Styles --- */
+body {
+    overflow-x: hidden; /* Prevent horizontal scrollbars if any component slightly overflows */
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom overrides and enhancements for Dash Bootstrap Components */
+
+/* Enhanced Button Styling */
+.btn-primary {
+    background: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    transition: all 200ms var(--ease-out);
+    box-shadow: var(--shadow-soft);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+    background: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    color: white;
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-glow);
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    transition: all 200ms var(--ease-out);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: var(--shadow-card);
+}
+
+.btn-outline-primary {
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    font-weight: 500;
+    transition: all 200ms var(--ease-out);
+}
+
+.btn-outline-primary:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
+}
+
+/* Enhanced Card Styling */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 200ms var(--ease-out);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(74, 158, 255, 0.3);
+}
+
+.card-header {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-primary);
+    padding: var(--space-lg);
+    font-weight: 600;
+    font-size: var(--text-base);
+}
+
+.card-body {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: var(--space-lg);
+}
+
+.card-title {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+}
+
+.card-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Enhanced Info Icon Styling */
+.info-icon {
+    color: var(--accent-primary);
+    cursor: pointer;
+    margin-left: var(--space-xs);
+    font-size: var(--text-sm);
+    transition: all 150ms var(--ease-out);
+    opacity: 0.8;
+}
+
+.info-icon:hover {
+    color: var(--accent-secondary);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.bi-info-circle-fill:hover {
+    color: #0dcaf0 !important; /* Example: Brighter blue on hover for info icon (adjust to theme) */
+    transform: scale(1.1);
+}
+
+/* Enhanced Loading Overlay */
+.dash-loading {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    border-radius: var(--radius-lg);
+}
+
+.dash-loading .dash-spinner {
+    border-color: var(--accent-primary);
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Style for dcc.Loading overlay to be less intrusive if needed */
+/* This targets the default Dash loading component's overlay */
+._dash-loading {
+    /* background-color: rgba(50, 50, 50, 0.3) !important; */
+}
+
+/* --- Plotly Chart Customizations (if needed beyond template) ---
+/* Example: Ensure tooltips within Plotly charts are styled for dark theme if default is not sufficient */
+/* This is often handled by Plotly's own templating or direct layout updates */
+
+/* Enhanced Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    border-radius: var(--radius-sm);
+    transition: background 150ms var(--ease-out);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-tertiary);
+}
+
+/* Enhanced Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-secondary) var(--bg-tertiary);
+}
+
+/* Enhanced Form Controls */
+.form-control {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-md);
+    transition: all 200ms var(--ease-out);
+}
+
+.form-control:focus {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Enhanced Select Styling */
+.form-select {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-md);
+    transition: all 200ms var(--ease-out);
+}
+
+.form-select:focus {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+    color: var(--text-primary);
+}
+
+/* Enhanced Label Styling */
+.form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Enhanced Input Group */
+.input-group-text {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+}
+
+/* Enhanced Alert Styling */
+.alert {
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    border-left: 4px solid;
+}
+
+.alert-primary {
+    background: rgba(74, 158, 255, 0.1);
+    color: var(--accent-primary);
+    border-left-color: var(--accent-primary);
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--positive);
+    border-left-color: var(--positive);
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border-left-color: #f59e0b;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--negative);
+    border-left-color: var(--negative);
+}
+
+/* General class for subtle text, if Bootstrap text-muted is not enough */
+.text-subtle {
+    color: #868e96 !important; /* Bootstrap muted color, can be customized */
+    font-size: 0.85em;
+}
+
+/* Styles for AG-Grid if used (example) */
+/* .ag-theme-alpine-dark .ag-header {
+    background-color: #343a40;
+    color: #f8f9fa;
+} */
+
+

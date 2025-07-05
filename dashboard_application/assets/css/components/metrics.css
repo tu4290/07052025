@@ -1,0 +1,774 @@
+/* =============================================================================
+   ELITE OPTIONS TRADING SYSTEM - METRICS COMPONENTS
+   Financial metrics, KPIs, statistics, and data visualization elements
+============================================================================= */
+
+/* ==========================================================================
+   BASE METRIC STYLES
+========================================================================== */
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+}
+
+.metric-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin: 0;
+}
+
+.metric-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.metric-value {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.metric-change {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  font-family: var(--font-mono);
+}
+
+.metric-change-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.metric-change.positive {
+  color: var(--positive);
+}
+
+.metric-change.negative {
+  color: var(--negative);
+}
+
+.metric-change.neutral {
+  color: var(--text-muted);
+}
+
+.metric-subtitle {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin: 0;
+  margin-top: var(--space-xs);
+}
+
+/* ==========================================================================
+   METRIC VARIANTS
+========================================================================== */
+
+/* Large metric */
+.metric-large {
+  padding: var(--space-xl);
+}
+
+.metric-large .metric-value {
+  font-size: var(--text-4xl);
+}
+
+.metric-large .metric-label {
+  font-size: var(--text-base);
+}
+
+.metric-large .metric-change {
+  font-size: var(--text-base);
+}
+
+/* Small metric */
+.metric-small {
+  padding: var(--space-md);
+}
+
+.metric-small .metric-value {
+  font-size: var(--text-xl);
+}
+
+.metric-small .metric-label {
+  font-size: var(--text-xs);
+}
+
+.metric-small .metric-change {
+  font-size: var(--text-xs);
+}
+
+/* Compact metric */
+.metric-compact {
+  flex-direction: row;
+  align-items: center;
+  padding: var(--space-md);
+  gap: var(--space-md);
+}
+
+.metric-compact .metric-content {
+  flex: 1;
+}
+
+.metric-compact .metric-value {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.metric-compact .metric-label {
+  margin-bottom: 0;
+}
+
+/* Horizontal metric */
+.metric-horizontal {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-horizontal .metric-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.metric-horizontal .metric-value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* ==========================================================================
+   METRIC STATES
+========================================================================== */
+
+.metric-positive {
+  border-color: var(--positive-alpha);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--positive-alpha) 100%);
+}
+
+.metric-positive .metric-value {
+  color: var(--positive);
+}
+
+.metric-negative {
+  border-color: var(--negative-alpha);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--negative-alpha) 100%);
+}
+
+.metric-negative .metric-value {
+  color: var(--negative);
+}
+
+.metric-warning {
+  border-color: var(--warning-alpha);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--warning-alpha) 100%);
+}
+
+.metric-warning .metric-value {
+  color: var(--warning);
+}
+
+.metric-info {
+  border-color: var(--accent-primary-alpha);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--accent-primary-alpha) 100%);
+}
+
+.metric-info .metric-value {
+  color: var(--accent-primary);
+}
+
+/* Loading state */
+.metric-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.metric-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--accent-primary-rgb), 0.1) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ==========================================================================
+   METRIC GROUPS
+========================================================================== */
+
+.metrics-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.metrics-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.metrics-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.metrics-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.metrics-row {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+
+.metrics-row .metric {
+  flex: 1;
+}
+
+.metrics-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ==========================================================================
+   FINANCIAL METRICS
+========================================================================== */
+
+.metric-price {
+  position: relative;
+}
+
+.metric-price .metric-value {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-black);
+}
+
+.metric-price .metric-currency {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  margin-right: var(--space-xs);
+}
+
+.metric-volume .metric-value {
+  color: var(--accent-secondary);
+}
+
+.metric-market-cap .metric-value {
+  color: var(--accent-primary);
+}
+
+.metric-pnl.positive {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--positive-alpha) 100%);
+}
+
+.metric-pnl.negative {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--negative-alpha) 100%);
+}
+
+.metric-percentage .metric-value::after {
+  content: '%';
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   TRADING METRICS
+========================================================================== */
+
+.trading-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.metric-win-rate {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-win-rate::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--positive) 0%, var(--positive) var(--win-rate, 0%), var(--negative) var(--win-rate, 0%), var(--negative) 100%);
+  width: 100%;
+  border-radius: var(--radius-full);
+}
+
+.metric-sharpe-ratio .metric-value {
+  color: var(--accent-primary);
+}
+
+.metric-max-drawdown .metric-value {
+  color: var(--negative);
+}
+
+.metric-total-return .metric-value {
+  color: var(--positive);
+}
+
+/* ==========================================================================
+   PROGRESS METRICS
+========================================================================== */
+
+.metric-progress {
+  position: relative;
+}
+
+.metric-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.metric-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--border-primary);
+  border-radius: var(--radius-full);
+}
+
+.metric-circular-progress {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-left: auto;
+}
+
+.metric-circular-progress svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.metric-circular-progress-track {
+  fill: none;
+  stroke: var(--border-primary);
+  stroke-width: 4;
+}
+
+.metric-circular-progress-bar {
+  fill: none;
+  stroke: var(--accent-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray var(--duration-normal) var(--ease-out);
+}
+
+/* ==========================================================================
+   SPARKLINE METRICS
+========================================================================== */
+
+.metric-sparkline {
+  position: relative;
+  height: 40px;
+  margin-top: var(--space-sm);
+}
+
+.metric-sparkline svg {
+  width: 100%;
+  height: 100%;
+}
+
+.metric-sparkline-line {
+  fill: none;
+  stroke: var(--accent-primary);
+  stroke-width: 2;
+  opacity: 0.8;
+}
+
+.metric-sparkline-area {
+  fill: url(#sparklineGradient);
+  opacity: 0.3;
+}
+
+.metric-sparkline-positive .metric-sparkline-line {
+  stroke: var(--positive);
+}
+
+.metric-sparkline-negative .metric-sparkline-line {
+  stroke: var(--negative);
+}
+
+/* ==========================================================================
+   COMPARISON METRICS
+========================================================================== */
+
+.metric-comparison {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+}
+
+.metric-comparison-item {
+  flex: 1;
+  text-align: center;
+}
+
+.metric-comparison-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-xs);
+}
+
+.metric-comparison-value {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.metric-comparison-divider {
+  width: 1px;
+  height: 40px;
+  background-color: var(--border-primary);
+  margin: 0 var(--space-md);
+}
+
+/* ==========================================================================
+   METRIC TOOLTIPS
+========================================================================== */
+
+.metric-tooltip {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  cursor: help;
+  opacity: 0.6;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.metric-tooltip:hover {
+  opacity: 1;
+}
+
+.metric-tooltip-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--bg-tooltip);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  white-space: nowrap;
+  z-index: var(--z-tooltip);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: all var(--duration-fast) var(--ease-out);
+  backdrop-filter: var(--backdrop-blur);
+}
+
+.metric-tooltip:hover .metric-tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   METRIC ALERTS
+========================================================================== */
+
+.metric-alert {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  animation: pulse 2s infinite;
+}
+
+.metric-alert-high {
+  background-color: var(--negative);
+}
+
+.metric-alert-medium {
+  background-color: var(--warning);
+}
+
+.metric-alert-low {
+  background-color: var(--positive);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE METRICS
+========================================================================== */
+
+@media (max-width: 1024px) {
+  .metrics-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .metrics-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-grid,
+  .metrics-grid-2,
+  .metrics-grid-3,
+  .metrics-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-row {
+    flex-direction: column;
+  }
+  
+  .metric-horizontal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .metric-horizontal .metric-value-container {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: var(--space-sm);
+  }
+  
+  .metric-comparison {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .metric-comparison-divider {
+    width: 100%;
+    height: 1px;
+    margin: var(--space-md) 0;
+  }
+  
+  .trading-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .metric {
+    padding: var(--space-md);
+  }
+  
+  .metric-large {
+    padding: var(--space-lg);
+  }
+  
+  .metric-value {
+    font-size: var(--text-xl);
+  }
+  
+  .metric-large .metric-value {
+    font-size: var(--text-2xl);
+  }
+  
+  .metric-price .metric-value {
+    font-size: var(--text-2xl);
+  }
+  
+  .metrics-grid {
+    gap: var(--space-md);
+  }
+  
+  .metrics-row {
+    gap: var(--space-md);
+  }
+}
+
+/* ==========================================================================
+   METRIC ANIMATIONS
+========================================================================== */
+
+.metric-animate-in {
+  animation: metricFadeIn var(--duration-normal) var(--ease-out);
+}
+
+@keyframes metricFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.metric-value-change {
+  animation: metricValuePulse var(--duration-fast) var(--ease-out);
+}
+
+@keyframes metricValuePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .metric,
+  .metric-progress-bar,
+  .metric-circular-progress-bar,
+  .metric-sparkline-line {
+    transition: none;
+  }
+  
+  .metric-loading::after,
+  .metric-alert,
+  .metric-animate-in,
+  .metric-value-change {
+    animation: none;
+  }
+}
+
+.metric:focus-within {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   METRIC UTILITIES
+========================================================================== */
+
+.metric-borderless {
+  border: none;
+  box-shadow: none;
+}
+
+.metric-elevated {
+  box-shadow: var(--shadow-lg);
+}
+
+.metric-flat {
+  background-color: transparent;
+  border: none;
+}
+
+.metric-glass {
+  background: rgba(var(--bg-secondary-rgb), 0.8);
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid rgba(var(--border-primary-rgb), 0.5);
+}
+
+.metric-gradient {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+}
+
+.metric-gradient .metric-label,
+.metric-gradient .metric-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.metric-gradient .metric-value {
+  color: white;
+}
+
+.metric-clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.metric-clickable:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.metric-full-width {
+  width: 100%;
+}
+
+.metric-center {
+  text-align: center;
+}
+
+.metric-right {
+  text-align: right;
+}

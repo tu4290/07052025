@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite MOE Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a1f2e;
+            --bg-tertiary: #252b3a;
+            --accent-blue: #4a90e2;
+            --accent-navy: #2c5aa0;
+            --accent-light: #6bb6ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5d1;
+            --text-muted: #8a9ba8;
+            --border: #2d3748;
+            --border-light: #4a5568;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --error: #f56565;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1f2e 100%);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .header-status {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        /* Main Layout */
+        .dashboard {
+            display: grid;
+            grid-template-areas: 
+                "analysis compass"
+                "regime flow intelligence"
+                "health health health";
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 400px 280px 160px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+        }
+
+        .card-header {
+            background: var(--bg-tertiary);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-badge {
+            background: var(--accent-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        /* Analysis Panel */
+        .analysis-panel {
+            grid-area: analysis;
+        }
+
+        .analysis-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .signal-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .signal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+        }
+
+        .signal-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .metric-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Compass */
+        .compass-panel {
+            grid-area: compass;
+        }
+
+        .compass-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .compass-svg {
+            width: 280px;
+            height: 280px;
+        }
+
+        /* Expert Panels */
+        .expert-panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .expert-panel.regime {
+            grid-area: regime;
+            border-left: 3px solid #9f7aea;
+        }
+
+        .expert-panel.flow {
+            grid-area: flow;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .expert-panel.intelligence {
+            grid-area: intelligence;
+            border-left: 3px solid var(--success);
+        }
+
+        .expert-header {
+            background: var(--bg-tertiary);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .expert-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .expert-avatar.regime {
+            background: #9f7aea;
+            color: white;
+        }
+
+        .expert-avatar.flow {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .expert-avatar.intelligence {
+            background: var(--success);
+            color: white;
+        }
+
+        .expert-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .expert-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .expert-content {
+            padding: 16px;
+        }
+
+        .expert-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .expert-metric {
+            text-align: center;
+        }
+
+        .expert-metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .expert-metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .expert-status {
+            text-align: center;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .expert-status-text {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .expert-confidence {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Health Panel */
+        .health-panel {
+            grid-area: health;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .health-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .health-item:hover {
+            border-color: var(--border-light);
+        }
+
+        .health-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .health-icon.healthy {
+            background: var(--success);
+            color: white;
+        }
+
+        .health-icon.warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .health-icon.stable {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .health-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .health-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard {
+                grid-template-areas: 
+                    "analysis analysis"
+                    "compass compass"
+                    "regime flow"
+                    "intelligence intelligence"
+                    "health health";
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 300px 350px 250px 250px 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-areas: 
+                    "analysis"
+                    "compass"
+                    "regime"
+                    "flow"
+                    "intelligence"
+                    "health";
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, auto);
+            }
+
+            .health-panel {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">Elite MOE Trading Intelligence</div>
+        <div class="header-status">
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>System Online</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>3/3 Experts Active</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>Bull Trending</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard">
+        <!-- Analysis Panel -->
+        <div class="card analysis-panel">
+            <div class="card-header">
+                <div class="card-title">ITS Orchestrator Analysis</div>
+                <div class="card-badge">94% Confidence</div>
+            </div>
+            <div class="card-content">
+                <div class="analysis-content">
+                    <div class="signal-box">
+                        <div class="signal-title">Momentum Explosion Imminent</div>
+                        <div class="signal-subtitle">Aggressive trend following recommended</div>
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <div class="metric-value">MSPI</div>
+                                <div class="metric-label">Focus Metric</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">3/3</div>
+                                <div class="metric-label">Expert Consensus</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">High</div>
+                                <div class="metric-label">Conviction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compass Panel -->
+        <div class="card compass-panel">
+            <div class="card-header">
+                <div class="card-title">Market Compass</div>
+                <div class="card-badge">Real-time</div>
+            </div>
+            <div class="card-content">
+                <div class="compass-container">
+                    <svg class="compass-svg" viewBox="0 0 280 280">
+                        <!-- Background circles -->
+                        <circle cx="140" cy="140" r="120" fill="none" stroke="#2d3748" stroke-width="1" opacity="0.3"/>
+                        <circle cx="140" cy="140" r="80" fill="none" stroke="#2d3748" stroke-width="1" opacity="0.2"/>
+                        <circle cx="140" cy="140" r="40" fill="none" stroke="#2d3748" stroke-width="1" opacity="0.1"/>
+                        
+                        <!-- Hexagon -->
+                        <polygon id="market-hex" 
+                            points="140,20 220,70 220,210 140,260 60,210 60,70" 
+                            fill="rgba(74, 144, 226, 0.1)" 
+                            stroke="#4a90e2" 
+                            stroke-width="2"/>
+                        
+                        <!-- Center point -->
+                        <circle cx="140" cy="140" r="3" fill="#4a90e2"/>
+                        
+                        <!-- Labels -->
+                        <text x="140" y="15" text-anchor="middle" fill="#b8c5d1" font-size="12" font-family="Inter">VAPI-FA</text>
+                        <text x="235" y="75" text-anchor="middle" fill="#b8c5d1" font-size="12" font-family="Inter">DWFD</text>
+                        <text x="235" y="215" text-anchor="middle" fill="#b8c5d1" font-size="12" font-family="Inter">VRI 2.0</text>
+                        <text x="140" y="275" text-anchor="middle" fill="#b8c5d1" font-size="12" font-family="Inter">GIB</text>
+                        <text x="45" y="215" text-anchor="middle" fill="#b8c5d1" font-size="12" font-family="Inter">MSPI</text>
+                        <text x="45" y="75" text-anchor="middle" fill="#b8c5d1" font-size="12" font-family="Inter">AOFM</text>
+                        
+                        <!-- Focus indicator -->
+                        <circle id="focus-indicator" cx="45" cy="215" r="6" fill="#6bb6ff" opacity="0.8">
+                            <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expert Panels -->
+        <div class="expert-panel regime">
+            <div class="expert-header">
+                <div class="expert-avatar regime">R</div>
+                <div class="expert-info">
+                    <h3>Market Regime Expert</h3>
+                    <p>Regime analysis & transitions</p>
+                </div>
+            </div>
+            <div class="expert-content">
+                <div class="expert-metrics">
+                    <div class="expert-metric">
+                        <div class="expert-metric-value" style="color: #9f7aea;">-2.53</div>
+                        <div class="expert-metric-label">VRI 2.0</div>
+                    </div>
+                    <div class="expert-metric">
+                        <div class="expert-metric-value" style="color: #9f7aea;">0.23</div>
+                        <div class="expert-metric-label">Transition Risk</div>
+                    </div>
+                </div>
+                <div class="expert-status">
+                    <div class="expert-status-text" style="color: #9f7aea;">Bull Trending</div>
+                    <div class="expert-confidence">89% Confidence</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="expert-panel flow">
+            <div class="expert-header">
+                <div class="expert-avatar flow">F</div>
+                <div class="expert-info">
+                    <h3>Options Flow Expert</h3>
+                    <p>Flow dynamics & pressure</p>
+                </div>
+            </div>
+            <div class="expert-content">
+                <div class="expert-metrics">
+                    <div class="expert-metric">
+                        <div class="expert-metric-value" style="color: #4a90e2;">1.84</div>
+                        <div class="expert-metric-label">VAPI-FA</div>
+                    </div>
+                    <div class="expert-metric">
+                        <div class="expert-metric-value" style="color: #4a90e2;">1.96</div>
+                        <div class="expert-metric-label">DWFD</div>
+                    </div>
+                </div>
+                <div class="expert-status">
+                    <div class="expert-status-text" style="color: #4a90e2;">Strong Bullish</div>
+                    <div class="expert-confidence">92% Confidence</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="expert-panel intelligence">
+            <div class="expert-header">
+                <div class="expert-avatar intelligence">I</div>
+                <div class="expert-info">
+                    <h3>Intelligence Expert</h3>
+                    <p>Sentiment & intelligence</p>
+                </div>
+            </div>
+            <div class="expert-content">
+                <div class="expert-metrics">
+                    <div class="expert-metric">
+                        <div class="expert-metric-value" style="color: #48bb78;">2.31</div>
+                        <div class="expert-metric-label">MSPI</div>
+                    </div>
+                    <div class="expert-metric">
+                        <div class="expert-metric-value" style="color: #48bb78;">1.67</div>
+                        <div class="expert-metric-label">AOFM</div>
+                    </div>
+                </div>
+                <div class="expert-status">
+                    <div class="expert-status-text" style="color: #48bb78;">High Conviction</div>
+                    <div class="expert-confidence">87% Confidence</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Panel -->
+        <div class="health-panel">
+            <div class="health-item">
+                <div class="health-icon healthy">✓</div>
+                <div class="health-label">Data Pipeline</div>
+                <div class="health-value">Healthy</div>
+            </div>
+            <div class="health-item">
+                <div class="health-icon healthy">●</div>
+                <div class="health-label">MOE Experts</div>
+                <div class="health-value">3/3 Active</div>
+            </div>
+            <div class="health-item">
+                <div class="health-icon warning">⚠</div>
+                <div class="health-label">Performance</div>
+                <div class="health-value">1.2s Avg</div>
+            </div>
+            <div class="health-item">
+                <div class="health-icon stable">◆</div>
+                <div class="health-label">Network</div>
+                <div class="health-value">Stable</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple compass animation
+        function updateCompass() {
+            const scenarios = [
+                {
+                    signal: 'Momentum Explosion Imminent',
+                    subtitle: 'Aggressive trend following recommended',
+                    focus: 'MSPI',
+                    color: '#4a90e2',
+                    points: '140,20 220,70 220,210 140,260 50,210 60,70'
+                },
+                {
+                    signal: 'Volatility Squeeze Detected',
+                    subtitle: 'Breakout preparation recommended',
+                    focus: 'VRI 2.0',
+                    color: '#ed8936',
+                    points: '140,20 220,70 230,210 140,270 60,210 60,70'
+                },
+                {
+                    signal: 'Flow Convergence Active',
+                    subtitle: 'High conviction opportunity',
+                    focus: 'VAPI-FA',
+                    color: '#9f7aea',
+                    points: '140,10 220,70 220,210 140,260 60,210 60,70'
+                }
+            ];
+
+            let currentIndex = 0;
+
+            function animate() {
+                const scenario = scenarios[currentIndex];
+                
+                // Update signal display
+                document.querySelector('.signal-title').textContent = scenario.signal;
+                document.querySelector('.signal-subtitle').textContent = scenario.subtitle;
+                
+                // Update compass
+                const hex = document.getElementById('market-hex');
+                const focus = document.getElementById('focus-indicator');
+                
+                hex.setAttribute('points', scenario.points);
+                hex.setAttribute('stroke', scenario.color);
+                hex.setAttribute('fill', scenario.color.replace('#', 'rgba(') + ', 0.1)');
+                
+                focus.setAttribute('fill', scenario.color);
+                
+                currentIndex = (currentIndex + 1) % scenarios.length;
+            }
+
+            animate();
+            setInterval(animate, 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCompass);
+    </script>
+</body>
+</html>
+

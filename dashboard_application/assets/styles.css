@@ -1,0 +1,220 @@
+/* dashboard_v2/assets/styles.css */
+
+/* General Blurb Styling */
+.metric-blurb {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    padding: var(--space-md) var(--space-lg);
+    text-align: left;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
+}
+
+.metric-blurb h3 {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    font-weight: 600;
+}
+
+.metric-blurb strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.metric-blurb ul {
+    padding-left: 20px; /* Standard indent for lists */
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.metric-blurb li {
+    margin-bottom: 4px; /* Space between list items */
+}
+
+/* Styling for config path references within blurbs */
+.config-ref {
+    font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    background-color: var(--bg-tertiary);
+    color: var(--accent-primary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    border: 1px solid var(--border-secondary);
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+/* Styling for dcc.Markdown content within the accordion item, if needed */
+.blurb-markdown-content p {
+    margin-bottom: 0.5rem; /* Adjust paragraph spacing if too much/little */
+}
+
+/* Enhanced Accordion Styling */
+.accordion-button {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-base);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  transition: all 200ms var(--ease-out);
+  font-weight: 500;
+}
+
+.accordion-button:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+.accordion-body {
+  padding: var(--space-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+/* Enhanced Chart Card Styling */
+.chart-card-wrapper {
+    height: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 200ms var(--ease-out);
+    overflow: hidden;
+}
+
+.chart-card-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(74, 158, 255, 0.3);
+}
+
+.chart-graph-obj {
+    background: transparent;
+    border-radius: var(--radius-md);
+}
+
+/* Enhanced Control Panel Styling */
+.control-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.control-slider {
+    margin: var(--space-md) 0;
+}
+
+.control-panel-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 200ms var(--ease-out);
+}
+
+.control-panel-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-elevated);
+}
+
+/* Enhanced Status Bar Styling */
+.status-bar-default-style {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+
+/* Enhanced Layout Container Styling */
+.chart-layout-container {
+    background: var(--bg-primary);
+    min-height: 100vh;
+    padding: var(--space-lg);
+}
+
+.main-app-container {
+    background: var(--bg-primary);
+    min-height: 100vh;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+}
+
+/* Global Chart Container Responsive Fixes */
+.chart-container, .plotly-chart-container, .dash-graph {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 400px;
+    max-height: 80vh;
+    overflow: visible !important;
+    resize: vertical;
+}
+
+/* Plotly specific fixes */
+.js-plotly-plot .plotly .svg-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Dashboard grid responsive fixes */
+.dashboard-grid, .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.grid-item, .dashboard-panel {
+    min-height: 400px;
+    height: auto !important;
+    overflow: visible;
+    resize: vertical;
+}
+
+/* Enhanced List Styling */
+.metric-blurb ul {
+    padding-left: var(--space-lg);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-md);
+}
+
+.metric-blurb li {
+    margin-bottom: var(--space-xs);
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.metric-blurb li::marker {
+    color: var(--accent-primary);
+}
+
+/* Enhanced Markdown Content */
+.blurb-markdown-content p {
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.blurb-markdown-content p:last-child {
+    margin-bottom: 0;
+}

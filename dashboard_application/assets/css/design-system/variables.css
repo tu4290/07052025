@@ -1,0 +1,312 @@
+/* =============================================================================
+   ELITE OPTIONS TRADING SYSTEM - DESIGN SYSTEM VARIABLES
+   Premium Trading Dashboard Dark Theme
+   Based on Custom Dashboard Analysis
+============================================================================= */
+
+:root {
+  /* ==========================================================================
+     CORE BACKGROUND PALETTE - Layered depths for visual hierarchy
+  ========================================================================== */
+  --bg-primary: #0A0A0A;        /* Deepest canvas - main background */
+  --bg-secondary: #121212;      /* Primary panels - cards, containers */
+  --bg-tertiary: #1A1A1A;       /* Elevated surfaces - modals, dropdowns */
+  --bg-elevated: #1E1E1E;       /* Tooltips, overlays */
+  --bg-hover: #242424;          /* Interactive hover states */
+  --bg-active: #2A2A2A;         /* Active/pressed states */
+  --bg-selected: #1F2937;       /* Selected items */
+  
+  /* ==========================================================================
+     TYPOGRAPHY HIERARCHY - Refined contrast without harshness
+  ========================================================================== */
+  --text-primary: #E8E8E8;      /* Primary headings, key data */
+  --text-secondary: #B8B8B8;    /* Secondary labels, descriptions */
+  --text-muted: #888888;        /* Subtle annotations, gridlines */
+  --text-accent: #A0A0A0;       /* Emphasized but not primary */
+  --text-disabled: #555555;     /* Disabled text */
+  --text-inverse: #1A1A1A;      /* Text on light backgrounds */
+  
+  /* ==========================================================================
+     ACCENT COLOR SYSTEM - Sophisticated, not garish
+  ========================================================================== */
+  --accent-primary: #4A9EFF;    /* Soft blue - primary highlights */
+  --accent-primary-hover: #5BADFF;
+  --accent-primary-dim: #3A7ACC;
+  --accent-primary-alpha: rgba(74, 158, 255, 0.1);
+  
+  --accent-secondary: #FFB84A;  /* Muted amber - secondary emphasis */
+  --accent-secondary-hover: #FFC866;
+  --accent-secondary-dim: #CC9238;
+  --accent-secondary-alpha: rgba(255, 184, 74, 0.1);
+  
+  --accent-tertiary: #8B5CF6;   /* Soft violet - rare special indicators */
+  --accent-tertiary-hover: #A78BFA;
+  --accent-tertiary-dim: #7C3AED;
+  --accent-tertiary-alpha: rgba(139, 92, 246, 0.1);
+  
+  /* ==========================================================================
+     FINANCIAL DATA COLORS - Professional trading interface
+  ========================================================================== */
+  --positive: #10B981;          /* Emerald - gains, bullish */
+  --positive-dim: #059669;
+  --positive-light: #34D399;
+  --positive-alpha: rgba(16, 185, 129, 0.1);
+  --positive-alpha-strong: rgba(16, 185, 129, 0.2);
+  
+  --negative: #EF4444;          /* Refined red - losses, bearish */
+  --negative-dim: #DC2626;
+  --negative-light: #F87171;
+  --negative-alpha: rgba(239, 68, 68, 0.1);
+  --negative-alpha-strong: rgba(239, 68, 68, 0.2);
+  
+  --neutral: #6B7280;           /* Gray - no change, neutral */
+  --neutral-dim: #4B5563;
+  --neutral-light: #9CA3AF;
+  --neutral-alpha: rgba(107, 114, 128, 0.1);
+  
+  /* ==========================================================================
+     STATUS COLORS - System states and alerts
+  ========================================================================== */
+  --success: #10B981;
+  --success-dim: #059669;
+  --success-alpha: rgba(16, 185, 129, 0.1);
+  
+  --warning: #F59E0B;
+  --warning-dim: #D97706;
+  --warning-alpha: rgba(245, 158, 11, 0.1);
+  
+  --danger: #EF4444;
+  --danger-dim: #DC2626;
+  --danger-alpha: rgba(239, 68, 68, 0.1);
+  
+  --info: #3B82F6;
+  --info-dim: #2563EB;
+  --info-alpha: rgba(59, 130, 246, 0.1);
+  
+  /* ==========================================================================
+     BORDERS & DIVIDERS - Extremely subtle definition
+  ========================================================================== */
+  --border-primary: #2A2A2A;
+  --border-secondary: #222222;
+  --border-accent: #333333;
+  --border-muted: #1A1A1A;
+  --border-focus: var(--accent-primary);
+  --border-error: var(--negative);
+  --border-success: var(--positive);
+  
+  /* ==========================================================================
+     SHADOWS - Depth without drama
+  ========================================================================== */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(74, 158, 255, 0.3);
+  --shadow-glow-positive: 0 0 20px rgba(16, 185, 129, 0.3);
+  --shadow-glow-negative: 0 0 20px rgba(239, 68, 68, 0.3);
+  
+  /* ==========================================================================
+     ANIMATION EASING - Luxury feel
+  ========================================================================== */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* ==========================================================================
+     TIMING - Animation durations
+  ========================================================================== */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+  
+  /* ==========================================================================
+     SPACING SCALE - Generous, harmonious proportions
+  ========================================================================== */
+  --space-xs: 0.25rem;    /* 4px */
+  --space-sm: 0.5rem;     /* 8px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  --space-4xl: 6rem;      /* 96px */
+  
+  /* ==========================================================================
+     TYPOGRAPHY SCALE - Harmonious type system
+  ========================================================================== */
+  --text-xs: 0.75rem;     /* 12px - small annotations */
+  --text-sm: 0.875rem;    /* 14px - secondary text */
+  --text-base: 1rem;      /* 16px - primary text */
+  --text-lg: 1.25rem;     /* 20px - section headers */
+  --text-xl: 1.5rem;      /* 24px - page titles */
+  --text-2xl: 2rem;       /* 32px - large headings */
+  --text-3xl: 2.5rem;     /* 40px - hero text */
+  
+  /* ==========================================================================
+     FONT WEIGHTS - Consistent weight scale
+  ========================================================================== */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  
+  /* ==========================================================================
+     LINE HEIGHTS - Optimal readability
+  ========================================================================== */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* ==========================================================================
+     LETTER SPACING - Typography refinement
+  ========================================================================== */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  
+  /* ==========================================================================
+     BORDER RADIUS - Consistent, modern
+  ========================================================================== */
+  --radius-xs: 0.125rem;  /* 2px */
+  --radius-sm: 0.375rem;  /* 6px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;  /* Fully rounded */
+  
+  /* ==========================================================================
+     Z-INDEX SCALE - Layering system
+  ========================================================================== */
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  
+  /* ==========================================================================
+     COMPONENT SPECIFIC VARIABLES
+  ========================================================================== */
+  
+  /* Sidebar */
+  --sidebar-width: 280px;
+  --sidebar-width-collapsed: 80px;
+  
+  /* Header */
+  --header-height: 80px;
+  
+  /* Control Panel */
+  --control-panel-height: 120px;
+  
+  /* Chart Heights */
+  --chart-height-sm: 200px;
+  --chart-height-md: 300px;
+  --chart-height-lg: 400px;
+  --chart-height-xl: 500px;
+  
+  /* ==========================================================================
+     RESPONSIVE BREAKPOINTS
+  ========================================================================== */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+  
+  /* ==========================================================================
+     BACKDROP FILTERS - Modern glass effects
+  ========================================================================== */
+  --backdrop-blur-sm: blur(4px);
+  --backdrop-blur-md: blur(8px);
+  --backdrop-blur-lg: blur(16px);
+  
+  /* ==========================================================================
+     GRADIENTS - Sophisticated color transitions
+  ========================================================================== */
+  --gradient-primary: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  --gradient-success: linear-gradient(135deg, var(--positive), var(--positive-light));
+  --gradient-danger: linear-gradient(135deg, var(--negative), var(--negative-light));
+  --gradient-dark: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  
+  /* ==========================================================================
+     CHART SPECIFIC COLORS - Plotly integration
+  ========================================================================== */
+  --chart-grid: var(--border-primary);
+  --chart-axis: var(--text-muted);
+  --chart-text: var(--text-secondary);
+  --chart-background: var(--bg-secondary);
+  --chart-paper: var(--bg-primary);
+  
+  /* Candlestick colors */
+  --candle-bullish: var(--positive);
+  --candle-bearish: var(--negative);
+  --candle-bullish-border: var(--positive-dim);
+  --candle-bearish-border: var(--negative-dim);
+  
+  /* Volume colors */
+  --volume-bullish: var(--positive-alpha);
+  --volume-bearish: var(--negative-alpha);
+  
+  /* ==========================================================================
+     ACCESSIBILITY - WCAG compliance
+  ========================================================================== */
+  --focus-ring: 0 0 0 3px var(--accent-primary-alpha);
+  --focus-ring-error: 0 0 0 3px var(--negative-alpha);
+  --focus-ring-success: 0 0 0 3px var(--positive-alpha);
+}
+
+/* =============================================================================
+   DARK THEME SPECIFIC OVERRIDES
+============================================================================= */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* =============================================================================
+   PRINT STYLES
+============================================================================= */
+
+@media print {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border-primary: #dee2e6;
+  }
+}
+
+/* =============================================================================
+   HIGH CONTRAST MODE
+============================================================================= */
+
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --border-primary: #444444;
+    --border-secondary: #333333;
+  }
+}
+
+/* =============================================================================
+   REDUCED MOTION
+============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+}
