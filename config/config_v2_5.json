@@ -1,0 +1,154 @@
+{
+  "system_settings": {
+    "project_root_override": null,
+    "logging_level": "DEBUG",
+    "log_to_file": true,
+    "log_file_path": "logs/eots_v2_5.log",
+    "max_log_file_size_bytes": 10485760,
+    "backup_log_count": 5,
+    "live_mode": true,
+    "fail_fast_on_errors": true,
+    "metrics_for_dynamic_threshold_distribution_tracking": [
+      "GIB_OI_based_Und", "VAPI_FA_Z_Score_Und", "DWFD_Z_Score_Und", 
+      "TW_LAF_Z_Score_Und", "elite_regime_score"
+    ],
+    "signal_activation": {"EnableAllSignals": true}
+  },
+  "data_fetcher_settings": {
+    "convexvalue_auth": { "use_env_variables": true, "auth_method": "email_password" },
+    "tradier_api_key": "${TRADIER_PRODUCTION_TOKEN}",
+    "tradier_account_id": "VA41982990",
+    "max_retries": 3,
+    "retry_delay_seconds": 5.0,
+    "timeout_seconds": 30.0
+  },
+  "data_management_settings": {
+    "data_cache_dir": "data_cache_v2_5",
+    "historical_data_store_dir": "data_cache_v2_5/historical_data_store",
+    "performance_data_store_dir": "data_cache_v2_5/performance_data_store"
+  },
+  "database_settings": {
+    "host": "${EOTS_DB_HOST}", "port": 5432, "database": "${EOTS_DB_NAME}",
+    "user": "${EOTS_DB_USER}", "password": "${EOTS_DB_PASSWORD}",
+    "min_connections": 1, "max_connections": 10
+  },
+  "data_processor_settings": {
+    "enabled": true,
+    "factors": { "volume_factor": 1.0, "price_factor": 1.0, "volatility_factor": 1.0 },
+    "iv_context": { "iv_threshold": 0.25, "iv_lookback_days": 30 }
+  },
+  "adaptive_metric_parameters": {
+    "adaptation_enabled": true,
+    "learning_rate": 0.01,
+    "a_dag_settings": {
+      "flow_alignment_factor": 0.2
+    },
+    "e_sdag_settings": {
+      "skew_adjustment_factor_otm": 1.1,
+      "skew_adjustment_factor_itm": 0.9
+    },
+    "d_tdpi_settings": {
+      "base_gaussian_width": 0.02,
+      "volatility_scaling_factor": 1.0
+    },
+    "vri_2_0_settings": {
+      "vanna_normalization_factor": 1000000,
+      "volatility_multiplier_base": 1.0
+    },
+    "enhanced_heatmap_settings": {
+      "ivsdh_weights": {
+        "vega": 0.3, "vanna": 0.3, "vomma": 0.2, "charm": 0.1, "iv_diff": 0.1
+      },
+      "ugch_weights": {
+        "gamma": 0.25, "delta": 0.20, "vega": 0.20, "theta": 0.15, "vanna": 0.15, "charm": 0.05
+      }
+    }
+  },
+  "enhanced_flow_metric_settings": {
+    "enabled": true,
+    "vapi_fa": {
+      "acceleration_lookback": 5
+    },
+    "dwfd": {
+      "delta_weight_power": 0.5
+    },
+    "tw_laf": {
+      "time_weights": {"5m": 0.5, "15m": 0.3, "30m": 0.2},
+      "liquidity_norm_factor": 1000000
+    }
+  },
+  "adaptive_trade_idea_framework_settings": {
+    "enabled": true,
+    "min_conviction_to_initiate_trade": 2.5,
+    "signal_integration_params": {
+        "default_signal_weight": 1.0,
+        "performance_weight_factor": 0.5
+    },
+    "regime_context_weight_multipliers": {
+      "bullish_multiplier": 1.2, "bearish_multiplier": 0.8, "neutral_multiplier": 1.0
+    },
+    "conviction_mapping_params": {
+        "mapping_function": "linear",
+        "conviction_thresholds": {"low": 1.0, "medium": 2.5, "high": 4.0}
+    },
+    "strategy_specificity_rules": [],
+    "intelligent_recommendation_management_rules": {
+        "exit_rules": {}, "position_sizing_rules": {}, "risk_management_rules": {}
+    },
+    "learning_params": {
+      "performance_tracker_query_lookback": 90,
+      "learning_rate_for_signal_weights": 0.05,
+      "learning_rate_for_target_adjustments": 0.02,
+      "min_trades_for_statistical_significance": 20
+    }
+  },
+  "trade_parameter_optimizer_settings": {
+    "enabled": true,
+    "optimization_interval_seconds": 300,
+    "contract_selection_filters": {
+        "min_volume": 100,
+        "min_open_interest": 50,
+        "max_bid_ask_spread": 0.05,
+        "dte_range": [7, 45]
+    },
+    "entry_price_logic": "MID_PRICE",
+    "stop_loss_calculation_rules": {
+        "default_atr_multiplier": 1.5
+    },
+    "profit_target_calculation_rules": {
+        "default_rr_ratio": 2.0
+    }
+  },
+  "market_regime_engine_settings": {
+    "default_regime": "regime_unclear_or_transitioning",
+    "regime_evaluation_order": [
+      "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH",
+      "REGIME_SPY_PRE_FOMC_VOL_COMPRESSION_WITH_DWFD_ACCUMULATION",
+      "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL",
+      "REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL"
+    ],
+    "regime_rules": {
+      "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL": {
+        "VAPI_FA_Und_gt": "dynamic_threshold:vapi_strong_positive_thresh_default",
+        "TW_LAF_Und_gt": "dynamic_threshold:twlaf_confirming_positive_thresh_default"
+      }
+    }
+  },
+  "visualization_settings": {
+    "dashboard_refresh_interval_seconds": 30,
+    "max_table_rows_signals_insights": 100,
+    "dashboard": {
+      "host": "localhost", "port": 8050, "debug": false,
+      "modes_detail_config": {
+        "main": {
+          "label": "Main Dashboard",
+          "module_name": "main_dashboard_display_v2_5"
+        }
+      }
+    }
+  },
+  "symbol_specific_overrides": {
+    "SPY": { "risk_adjustment": 1.0 },
+    "SPX": { "risk_adjustment": 1.0 }
+  }
+}

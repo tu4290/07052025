@@ -1,0 +1,19 @@
+{
+  "wall_clock_timeouts": {
+    "market_regime": 90,
+    "options_flow": 90,
+    "sentiment": 60,
+    "orchestrator": 120
+  },
+  "max_retries": 1,
+  "gpu_memory_threshold": 0.8,
+  "cpu_threshold": 0.9,
+  "context_budget": {
+    "market_regime": 4000,
+    "options_flow": 4000,
+    "sentiment": 3000,
+    "orchestrator": 6000
+  },
+  "enable_health_monitoring": true,
+  "health_check_interval": 60
+}

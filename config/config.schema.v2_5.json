@@ -1,0 +1,3939 @@
+{
+  "$defs": {
+    "AdaptiveLearningConfigV2_5": {
+      "additionalProperties": true,
+      "description": "Configuration for the Adaptive Learning Integration module.",
+      "properties": {
+        "auto_adaptation": {
+          "default": true,
+          "description": "Enable/disable automatic application of adaptations.",
+          "title": "Auto Adaptation",
+          "type": "boolean"
+        },
+        "confidence_threshold": {
+          "default": 0.7,
+          "description": "Minimum confidence score for an insight to trigger adaptation.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence Threshold",
+          "type": "number"
+        },
+        "pattern_discovery_threshold": {
+          "default": 0.6,
+          "description": "Minimum confidence score for an insight to be considered a valid pattern discovery.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Pattern Discovery Threshold",
+          "type": "number"
+        },
+        "adaptation_frequency_minutes": {
+          "default": 60,
+          "description": "How often (in minutes) the system checks for new adaptations.",
+          "minimum": 1,
+          "title": "Adaptation Frequency Minutes",
+          "type": "integer"
+        },
+        "analytics_engine": {
+          "$ref": "#/$defs/AnalyticsEngineConfigV2_5",
+          "description": "Nested configuration for the analytics engine within adaptive learning."
+        },
+        "enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": true,
+          "description": "Enable adaptive learning",
+          "title": "Enabled"
+        },
+        "learning_rate": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.01,
+          "description": "Learning rate for adaptation",
+          "title": "Learning Rate"
+        },
+        "adaptation_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.1,
+          "description": "Adaptation threshold",
+          "title": "Adaptation Threshold"
+        }
+      },
+      "title": "AdaptiveLearningConfigV2_5",
+      "type": "object"
+    },
+    "AdaptiveMetricParameters": {
+      "additionalProperties": true,
+      "description": "Parameters for adaptive metric calculations.",
+      "properties": {
+        "adaptation_enabled": {
+          "default": true,
+          "description": "Enable adaptive parameter adjustment.",
+          "title": "Adaptation Enabled",
+          "type": "boolean"
+        },
+        "learning_rate": {
+          "default": 0.01,
+          "description": "Learning rate for parameter adaptation.",
+          "maximum": 0.1,
+          "minimum": 0.001,
+          "title": "Learning Rate",
+          "type": "number"
+        },
+        "adaptation_window_days": {
+          "default": 30,
+          "description": "Window for adaptation calculations.",
+          "minimum": 7,
+          "title": "Adaptation Window Days",
+          "type": "integer"
+        },
+        "ticker_specific": {
+          "additionalProperties": {
+            "$ref": "#/$defs/TickerSpecificParameters"
+          },
+          "description": "Ticker-specific parameters.",
+          "title": "Ticker Specific",
+          "type": "object"
+        },
+        "a_dag_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "A-DAG settings",
+          "title": "A Dag Settings"
+        },
+        "e_sdag_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "E-SDAG settings",
+          "title": "E Sdag Settings"
+        },
+        "d_tdpi_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "D-TDPI settings",
+          "title": "D Tdpi Settings"
+        },
+        "vri_2_0_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "VRI 2.0 settings",
+          "title": "Vri 2 0 Settings"
+        },
+        "enhanced_heatmap_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Enhanced heatmap settings",
+          "title": "Enhanced Heatmap Settings"
+        }
+      },
+      "title": "AdaptiveMetricParameters",
+      "type": "object"
+    },
+    "AdaptiveTradeIdeaFrameworkSettings": {
+      "additionalProperties": true,
+      "description": "Settings for the Adaptive Trade Idea Framework (ATIF).",
+      "properties": {
+        "min_conviction_to_initiate_trade": {
+          "default": 2.5,
+          "description": "Minimum conviction score to initiate trade",
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Min Conviction To Initiate Trade",
+          "type": "number"
+        },
+        "signal_integration_params": {
+          "$ref": "#/$defs/SignalIntegrationParameters",
+          "description": "Signal integration parameters"
+        },
+        "regime_context_weight_multipliers": {
+          "$ref": "#/$defs/RegimeContextWeightMultipliers",
+          "description": "Regime context weight multipliers"
+        },
+        "conviction_mapping_params": {
+          "$ref": "#/$defs/ConvictionMappingParameters",
+          "description": "Conviction mapping parameters"
+        },
+        "strategy_specificity_rules": {
+          "description": "Strategy-specific rules",
+          "items": {
+            "$ref": "#/$defs/StrategySpecificRule"
+          },
+          "title": "Strategy Specificity Rules",
+          "type": "array"
+        },
+        "intelligent_recommendation_management_rules": {
+          "$ref": "#/$defs/IntelligentRecommendationManagementRules",
+          "description": "Intelligent recommendation management rules"
+        },
+        "learning_params": {
+          "$ref": "#/$defs/LearningParams",
+          "description": "Learning parameters"
+        },
+        "enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": true,
+          "description": "Enable ATIF framework",
+          "title": "Enabled"
+        },
+        "min_conviction_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 2.5,
+          "description": "Minimum conviction threshold (alternative field name)",
+          "title": "Min Conviction Threshold"
+        },
+        "signal_integration_parameters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Signal integration parameters (alternative field name)",
+          "title": "Signal Integration Parameters"
+        },
+        "conviction_mapping_parameters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Conviction mapping parameters (alternative field name)",
+          "title": "Conviction Mapping Parameters"
+        }
+      },
+      "title": "AdaptiveTradeIdeaFrameworkSettings",
+      "type": "object"
+    },
+    "AnalyticsEngineConfigV2_5": {
+      "additionalProperties": false,
+      "description": "Configuration for the core analytics engine components.",
+      "properties": {
+        "metrics_calculation_enabled": {
+          "default": true,
+          "description": "Enable/disable all metric calculations.",
+          "title": "Metrics Calculation Enabled",
+          "type": "boolean"
+        },
+        "market_regime_analysis_enabled": {
+          "default": true,
+          "description": "Enable/disable market regime analysis.",
+          "title": "Market Regime Analysis Enabled",
+          "type": "boolean"
+        },
+        "signal_generation_enabled": {
+          "default": true,
+          "description": "Enable/disable signal generation.",
+          "title": "Signal Generation Enabled",
+          "type": "boolean"
+        },
+        "key_level_identification_enabled": {
+          "default": true,
+          "description": "Enable/disable key level identification.",
+          "title": "Key Level Identification Enabled",
+          "type": "boolean"
+        }
+      },
+      "title": "AnalyticsEngineConfigV2_5",
+      "type": "object"
+    },
+    "ApiKeyConfig": {
+      "description": "Configuration for API keys.",
+      "properties": {
+        "openai_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "OpenAI API key",
+          "title": "Openai Key"
+        },
+        "anthropic_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Anthropic API key",
+          "title": "Anthropic Key"
+        },
+        "azure_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Azure OpenAI API key",
+          "title": "Azure Key"
+        },
+        "huggingface_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "HuggingFace API key",
+          "title": "Huggingface Key"
+        },
+        "custom_keys": {
+          "$ref": "#/$defs/CustomApiKeys",
+          "description": "Custom API keys"
+        }
+      },
+      "title": "ApiKeyConfig",
+      "type": "object"
+    },
+    "ApiKeysSettings": {
+      "additionalProperties": false,
+      "description": "Configuration for API keys.",
+      "properties": {
+        "keys": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "API keys",
+          "title": "Keys",
+          "type": "object"
+        }
+      },
+      "title": "ApiKeysSettings",
+      "type": "object"
+    },
+    "ConfidenceCalibration": {
+      "description": "Placeholder for confidence calibration.",
+      "properties": {
+        "calibration_factor": {
+          "default": 1.0,
+          "description": "Calibration factor",
+          "title": "Calibration Factor",
+          "type": "number"
+        }
+      },
+      "title": "ConfidenceCalibration",
+      "type": "object"
+    },
+    "ContractSelectionFilters": {
+      "additionalProperties": false,
+      "description": "Filters for contract selection.",
+      "properties": {
+        "min_volume": {
+          "default": 100,
+          "description": "Minimum volume requirement",
+          "title": "Min Volume",
+          "type": "integer"
+        },
+        "min_open_interest": {
+          "default": 50,
+          "description": "Minimum open interest requirement",
+          "title": "Min Open Interest",
+          "type": "integer"
+        },
+        "max_bid_ask_spread": {
+          "default": 0.05,
+          "description": "Maximum bid-ask spread",
+          "title": "Max Bid Ask Spread",
+          "type": "number"
+        },
+        "dte_range": {
+          "default": [
+            7,
+            45
+          ],
+          "description": "Days to expiration range",
+          "items": {},
+          "title": "Dte Range",
+          "type": "array"
+        }
+      },
+      "title": "ContractSelectionFilters",
+      "type": "object"
+    },
+    "ConvexValueAuthSettings": {
+      "additionalProperties": false,
+      "description": "Authentication settings for ConvexValue API.",
+      "properties": {
+        "use_env_variables": {
+          "default": true,
+          "description": "If true, attempts to load credentials from environment variables first.",
+          "title": "Use Env Variables",
+          "type": "boolean"
+        },
+        "auth_method": {
+          "default": "email_password",
+          "description": "Authentication method for ConvexValue API (e.g., 'email_password', 'api_key').",
+          "title": "Auth Method",
+          "type": "string"
+        }
+      },
+      "title": "ConvexValueAuthSettings",
+      "type": "object"
+    },
+    "ConvictionMappingParameters": {
+      "additionalProperties": true,
+      "description": "Parameters for conviction mapping.",
+      "properties": {
+        "conviction_thresholds": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Conviction thresholds",
+          "title": "Conviction Thresholds",
+          "type": "object"
+        },
+        "mapping_function": {
+          "default": "linear",
+          "description": "Conviction mapping function",
+          "title": "Mapping Function",
+          "type": "string"
+        }
+      },
+      "title": "ConvictionMappingParameters",
+      "type": "object"
+    },
+    "CustomAgentSettings": {
+      "description": "Placeholder for custom agent settings.",
+      "properties": {
+        "agent_params": {
+          "additionalProperties": true,
+          "description": "Custom agent parameters",
+          "title": "Agent Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomAgentSettings",
+      "type": "object"
+    },
+    "CustomApiKeys": {
+      "description": "Placeholder for custom API keys.",
+      "properties": {
+        "custom_keys": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Custom API keys",
+          "title": "Custom Keys",
+          "type": "object"
+        }
+      },
+      "title": "CustomApiKeys",
+      "type": "object"
+    },
+    "CustomEndpoints": {
+      "description": "Placeholder for custom endpoints.",
+      "properties": {
+        "endpoints": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Custom endpoints",
+          "title": "Endpoints",
+          "type": "object"
+        }
+      },
+      "title": "CustomEndpoints",
+      "type": "object"
+    },
+    "CustomInsightSettings": {
+      "description": "Placeholder for custom insight settings.",
+      "properties": {
+        "insight_params": {
+          "additionalProperties": true,
+          "description": "Custom insight parameters",
+          "title": "Insight Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomInsightSettings",
+      "type": "object"
+    },
+    "CustomIntegrationSettings": {
+      "description": "Placeholder for custom integration settings.",
+      "properties": {
+        "integration_params": {
+          "additionalProperties": true,
+          "description": "Custom integration parameters",
+          "title": "Integration Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomIntegrationSettings",
+      "type": "object"
+    },
+    "CustomLearningSettings": {
+      "description": "Placeholder for custom learning settings.",
+      "properties": {
+        "learning_params": {
+          "additionalProperties": true,
+          "description": "Custom learning parameters",
+          "title": "Learning Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomLearningSettings",
+      "type": "object"
+    },
+    "CustomPerformanceSettings": {
+      "description": "Placeholder for custom performance settings.",
+      "properties": {
+        "performance_params": {
+          "additionalProperties": true,
+          "description": "Custom performance parameters",
+          "title": "Performance Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomPerformanceSettings",
+      "type": "object"
+    },
+    "CustomRateLimits": {
+      "description": "Placeholder for custom rate limits.",
+      "properties": {
+        "limits": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Custom rate limits",
+          "title": "Limits",
+          "type": "object"
+        }
+      },
+      "title": "CustomRateLimits",
+      "type": "object"
+    },
+    "CustomSafetySettings": {
+      "description": "Placeholder for custom safety settings.",
+      "properties": {
+        "safety_params": {
+          "additionalProperties": true,
+          "description": "Custom safety parameters",
+          "title": "Safety Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomSafetySettings",
+      "type": "object"
+    },
+    "CustomSecuritySettings": {
+      "description": "Placeholder for custom security settings.",
+      "properties": {
+        "security_params": {
+          "additionalProperties": true,
+          "description": "Custom security parameters",
+          "title": "Security Params",
+          "type": "object"
+        }
+      },
+      "title": "CustomSecuritySettings",
+      "type": "object"
+    },
+    "CustomThresholdSettings": {
+      "description": "Placeholder for custom threshold settings.",
+      "properties": {
+        "thresholds": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Custom thresholds",
+          "title": "Thresholds",
+          "type": "object"
+        }
+      },
+      "title": "CustomThresholdSettings",
+      "type": "object"
+    },
+    "DWFDParameters": {
+      "additionalProperties": true,
+      "description": "Parameters specific to DWFD calculation.",
+      "properties": {
+        "flow_interval": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Flow interval for DWFD",
+          "title": "Flow Interval"
+        },
+        "fvd_weight_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "FVD weight factor",
+          "title": "Fvd Weight Factor"
+        },
+        "divergence_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Divergence threshold",
+          "title": "Divergence Threshold"
+        },
+        "smoothing_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Smoothing factor",
+          "title": "Smoothing Factor"
+        },
+        "flow_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.5,
+          "description": "Flow threshold for DWFD",
+          "title": "Flow Threshold"
+        },
+        "flow_window": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 10,
+          "description": "Flow window for calculations",
+          "title": "Flow Window"
+        },
+        "delta_weight_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 1.2,
+          "description": "Delta weight factor",
+          "title": "Delta Weight Factor"
+        },
+        "divergence_sensitivity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 1.5,
+          "description": "Divergence sensitivity",
+          "title": "Divergence Sensitivity"
+        }
+      },
+      "title": "DWFDParameters",
+      "type": "object"
+    },
+    "DashboardDefaults": {
+      "additionalProperties": true,
+      "description": "Default settings for dashboard components.",
+      "properties": {
+        "symbol": {
+          "default": "SPX",
+          "description": "Default symbol",
+          "title": "Symbol",
+          "type": "string"
+        },
+        "refresh_interval_seconds": {
+          "default": 30,
+          "description": "Default refresh interval in seconds",
+          "title": "Refresh Interval Seconds",
+          "type": "integer"
+        },
+        "dte_min": {
+          "default": 0,
+          "description": "Default minimum DTE",
+          "title": "Dte Min",
+          "type": "integer"
+        },
+        "dte_max": {
+          "default": 5,
+          "description": "Default maximum DTE",
+          "title": "Dte Max",
+          "type": "integer"
+        },
+        "price_range_percent": {
+          "default": 5.0,
+          "description": "Default price range percentage",
+          "title": "Price Range Percent",
+          "type": "number"
+        }
+      },
+      "title": "DashboardDefaults",
+      "type": "object"
+    },
+    "DashboardModeCollection": {
+      "additionalProperties": true,
+      "description": "Defines the collection of all available dashboard modes.",
+      "properties": {
+        "main": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        },
+        "flow": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        },
+        "structure": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        },
+        "timedecay": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        },
+        "advanced": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        },
+        "volatility": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        },
+        "ai": {
+          "$ref": "#/$defs/DashboardModeSettings"
+        }
+      },
+      "title": "DashboardModeCollection",
+      "type": "object"
+    },
+    "DashboardModeSettings": {
+      "additionalProperties": false,
+      "description": "Defines settings for a single dashboard mode.",
+      "properties": {
+        "label": {
+          "description": "Display label for the mode in UI selectors.",
+          "title": "Label",
+          "type": "string"
+        },
+        "module_name": {
+          "description": "Python module name to import for this mode's layout and callbacks.",
+          "title": "Module Name",
+          "type": "string"
+        },
+        "charts": {
+          "description": "List of chart/component identifier names expected to be displayed in this mode.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Charts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "label",
+        "module_name"
+      ],
+      "title": "DashboardModeSettings",
+      "type": "object"
+    },
+    "DashboardServerConfig": {
+      "additionalProperties": true,
+      "description": "Configuration for dashboard server.",
+      "properties": {
+        "host": {
+          "default": "localhost",
+          "description": "Dashboard host",
+          "title": "Host",
+          "type": "string"
+        },
+        "port": {
+          "default": 8050,
+          "description": "Dashboard port",
+          "title": "Port",
+          "type": "integer"
+        },
+        "debug": {
+          "default": false,
+          "description": "Enable debug mode",
+          "title": "Debug",
+          "type": "boolean"
+        },
+        "auto_refresh_seconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 30,
+          "description": "Auto refresh interval in seconds",
+          "title": "Auto Refresh Seconds"
+        },
+        "timestamp_format": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "%Y-%m-%d %H:%M:%S %Z",
+          "description": "Timestamp format",
+          "title": "Timestamp Format"
+        },
+        "defaults": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DashboardDefaults"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Default dashboard settings"
+        },
+        "modes_detail_config": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Dashboard modes configuration",
+          "title": "Modes Detail Config"
+        },
+        "flow_mode_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Flow mode settings",
+          "title": "Flow Mode Settings"
+        },
+        "volatility_mode_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Volatility mode settings",
+          "title": "Volatility Mode Settings"
+        },
+        "main_dashboard_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Main dashboard settings",
+          "title": "Main Dashboard Settings"
+        }
+      },
+      "title": "DashboardServerConfig",
+      "type": "object"
+    },
+    "DataFetcherSettings": {
+      "additionalProperties": true,
+      "description": "Settings for data fetching components.",
+      "properties": {
+        "convexvalue_auth": {
+          "$ref": "#/$defs/ConvexValueAuthSettings",
+          "description": "Authentication settings for ConvexValue."
+        },
+        "tradier_api_key": {
+          "description": "API Key for Tradier (sensitive, ideally from env var).",
+          "title": "Tradier Api Key",
+          "type": "string"
+        },
+        "tradier_account_id": {
+          "description": "Account ID for Tradier (sensitive, ideally from env var).",
+          "title": "Tradier Account Id",
+          "type": "string"
+        },
+        "max_retries": {
+          "default": 3,
+          "description": "Maximum number of retry attempts for a failing API call.",
+          "minimum": 0,
+          "title": "Max Retries",
+          "type": "integer"
+        },
+        "retry_delay_seconds": {
+          "default": 5.0,
+          "description": "Base delay in seconds between API call retries.",
+          "minimum": 0,
+          "title": "Retry Delay Seconds",
+          "type": "number"
+        },
+        "timeout_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 30.0,
+          "description": "Timeout in seconds for API requests.",
+          "title": "Timeout Seconds"
+        },
+        "api_keys": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ApiKeysSettings"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional API keys configuration if not using direct fields."
+        },
+        "retry_attempts": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 3,
+          "description": "Number of retry attempts for API calls.",
+          "title": "Retry Attempts"
+        },
+        "retry_delay": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 5.0,
+          "description": "Delay in seconds between retries.",
+          "title": "Retry Delay"
+        },
+        "timeout": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 30.0,
+          "description": "Timeout in seconds for API requests.",
+          "title": "Timeout"
+        }
+      },
+      "required": [
+        "tradier_api_key",
+        "tradier_account_id"
+      ],
+      "title": "DataFetcherSettings",
+      "type": "object"
+    },
+    "DataManagementSettings": {
+      "additionalProperties": false,
+      "description": "Settings related to data caching and storage.",
+      "properties": {
+        "data_cache_dir": {
+          "default": "data_cache_v2_5",
+          "description": "Root directory for caching temporary data.",
+          "title": "Data Cache Dir",
+          "type": "string"
+        },
+        "historical_data_store_dir": {
+          "default": "data_cache_v2_5/historical_data_store",
+          "description": "Directory for persistent historical market and metric data.",
+          "title": "Historical Data Store Dir",
+          "type": "string"
+        },
+        "performance_data_store_dir": {
+          "default": "data_cache_v2_5/performance_data_store",
+          "description": "Directory for storing trade recommendation performance data.",
+          "title": "Performance Data Store Dir",
+          "type": "string"
+        },
+        "cache_directory": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "data_cache_v2_5",
+          "description": "Cache directory path.",
+          "title": "Cache Directory"
+        },
+        "data_store_directory": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "data_cache_v2_5/data_store",
+          "description": "Data store directory path.",
+          "title": "Data Store Directory"
+        },
+        "cache_expiry_hours": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 24.0,
+          "description": "Cache expiry in hours.",
+          "title": "Cache Expiry Hours"
+        }
+      },
+      "title": "DataManagementSettings",
+      "type": "object"
+    },
+    "DataProcessorFactors": {
+      "additionalProperties": true,
+      "description": "Various numerical factors used in metric calculations.",
+      "properties": {
+        "tdpi_gaussian_width": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Gaussian width for TDPI calculations",
+          "title": "Tdpi Gaussian Width"
+        },
+        "flow_smoothing_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Factor for smoothing flow calculations",
+          "title": "Flow Smoothing Factor"
+        },
+        "volatility_adjustment_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Factor for volatility adjustments",
+          "title": "Volatility Adjustment Factor"
+        },
+        "momentum_decay_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Decay factor for momentum calculations",
+          "title": "Momentum Decay Factor"
+        },
+        "regime_transition_sensitivity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Sensitivity for regime transitions",
+          "title": "Regime Transition Sensitivity"
+        },
+        "volume_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 1.0,
+          "description": "Volume factor for calculations",
+          "title": "Volume Factor"
+        },
+        "price_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 1.0,
+          "description": "Price factor for calculations",
+          "title": "Price Factor"
+        },
+        "volatility_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 1.0,
+          "description": "Volatility factor for calculations",
+          "title": "Volatility Factor"
+        }
+      },
+      "title": "DataProcessorFactors",
+      "type": "object"
+    },
+    "DataProcessorSettings": {
+      "additionalProperties": true,
+      "description": "Settings for the Data Processor module.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable data processing.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "factors": {
+          "$ref": "#/$defs/DataProcessorFactors",
+          "description": "Numerical factors for calculations."
+        },
+        "iv_context": {
+          "$ref": "#/$defs/IVContextParameters",
+          "description": "IV contextualization parameters."
+        },
+        "iv_context_parameters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/IVContextParameters"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "IV contextualization parameters (alternative field name)."
+        },
+        "max_data_age_seconds": {
+          "default": 300,
+          "description": "Maximum age of data to process (in seconds).",
+          "minimum": 10,
+          "title": "Max Data Age Seconds",
+          "type": "integer"
+        },
+        "batch_size": {
+          "default": 100,
+          "description": "Batch size for processing operations.",
+          "minimum": 1,
+          "title": "Batch Size",
+          "type": "integer"
+        },
+        "parallel_processing": {
+          "default": true,
+          "description": "Enable parallel processing where applicable.",
+          "title": "Parallel Processing",
+          "type": "boolean"
+        }
+      },
+      "title": "DataProcessorSettings",
+      "type": "object"
+    },
+    "DatabaseSettings": {
+      "additionalProperties": false,
+      "description": "Database connection settings (if a central DB is used).",
+      "properties": {
+        "host": {
+          "description": "Database host address.",
+          "title": "Host",
+          "type": "string"
+        },
+        "port": {
+          "default": 5432,
+          "description": "Database port number.",
+          "title": "Port",
+          "type": "integer"
+        },
+        "database": {
+          "description": "Database name.",
+          "title": "Database",
+          "type": "string"
+        },
+        "user": {
+          "description": "Database username.",
+          "title": "User",
+          "type": "string"
+        },
+        "password": {
+          "description": "Database password (sensitive).",
+          "title": "Password",
+          "type": "string"
+        },
+        "min_connections": {
+          "default": 1,
+          "description": "Minimum number of connections in pool.",
+          "minimum": 0,
+          "title": "Min Connections",
+          "type": "integer"
+        },
+        "max_connections": {
+          "default": 10,
+          "description": "Maximum number of connections in pool.",
+          "minimum": 1,
+          "title": "Max Connections",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "host",
+        "database",
+        "user",
+        "password"
+      ],
+      "title": "DatabaseSettings",
+      "type": "object"
+    },
+    "EliteConfig": {
+      "additionalProperties": true,
+      "description": "Consolidated elite impact calculation configuration",
+      "properties": {
+        "regime_detection_enabled": {
+          "default": true,
+          "description": "Enable dynamic regime adaptation",
+          "title": "Regime Detection Enabled",
+          "type": "boolean"
+        },
+        "flow_classification_enabled": {
+          "default": true,
+          "description": "Enable institutional flow intelligence",
+          "title": "Flow Classification Enabled",
+          "type": "boolean"
+        },
+        "volatility_surface_enabled": {
+          "default": true,
+          "description": "Enable volatility surface integration",
+          "title": "Volatility Surface Enabled",
+          "type": "boolean"
+        },
+        "momentum_detection_enabled": {
+          "default": true,
+          "description": "Enable momentum-acceleration detection",
+          "title": "Momentum Detection Enabled",
+          "type": "boolean"
+        },
+        "regime_lookback_periods": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Lookback periods for regime detection",
+          "title": "Regime Lookback Periods",
+          "type": "object"
+        },
+        "institutional_threshold_percentile": {
+          "default": 95.0,
+          "description": "Percentile for institutional flow threshold",
+          "title": "Institutional Threshold Percentile",
+          "type": "number"
+        },
+        "flow_momentum_periods": {
+          "description": "Periods for flow momentum analysis",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Flow Momentum Periods",
+          "type": "array"
+        },
+        "skew_adjustment_alpha": {
+          "default": 1.0,
+          "description": "Alpha for skew adjustment",
+          "title": "Skew Adjustment Alpha",
+          "type": "number"
+        },
+        "surface_stability_threshold": {
+          "default": 0.15,
+          "description": "Threshold for volatility surface stability",
+          "title": "Surface Stability Threshold",
+          "type": "number"
+        },
+        "acceleration_threshold_multiplier": {
+          "default": 2.0,
+          "description": "Multiplier for acceleration threshold",
+          "title": "Acceleration Threshold Multiplier",
+          "type": "number"
+        },
+        "momentum_persistence_threshold": {
+          "default": 0.7,
+          "description": "Threshold for momentum persistence",
+          "title": "Momentum Persistence Threshold",
+          "type": "number"
+        },
+        "enable_caching": {
+          "default": true,
+          "description": "Enable caching for performance optimization",
+          "title": "Enable Caching",
+          "type": "boolean"
+        },
+        "enable_parallel_processing": {
+          "default": false,
+          "description": "Enable parallel processing (simplified)",
+          "title": "Enable Parallel Processing",
+          "type": "boolean"
+        },
+        "max_workers": {
+          "default": 2,
+          "description": "Maximum number of parallel workers",
+          "title": "Max Workers",
+          "type": "integer"
+        },
+        "enable_sdag_calculation": {
+          "default": true,
+          "description": "Enable SDAG calculation",
+          "title": "Enable Sdag Calculation",
+          "type": "boolean"
+        },
+        "enable_dag_calculation": {
+          "default": true,
+          "description": "Enable DAG calculation",
+          "title": "Enable Dag Calculation",
+          "type": "boolean"
+        },
+        "enable_advanced_greeks": {
+          "default": true,
+          "description": "Enable advanced Greeks calculation",
+          "title": "Enable Advanced Greeks",
+          "type": "boolean"
+        },
+        "enable_flow_clustering": {
+          "default": false,
+          "description": "Enable flow clustering (simplified)",
+          "title": "Enable Flow Clustering",
+          "type": "boolean"
+        },
+        "enable_elite_regime_detection": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": true,
+          "description": "Enable elite regime detection (alternative field name)",
+          "title": "Enable Elite Regime Detection"
+        },
+        "elite_regime_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.7,
+          "description": "Elite regime threshold",
+          "title": "Elite Regime Threshold"
+        }
+      },
+      "title": "EliteConfig",
+      "type": "object"
+    },
+    "EndpointConfig": {
+      "description": "Configuration for API endpoints.",
+      "properties": {
+        "base_url": {
+          "description": "Base URL for the API",
+          "title": "Base Url",
+          "type": "string"
+        },
+        "api_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "API version",
+          "title": "Api Version"
+        },
+        "custom_endpoints": {
+          "$ref": "#/$defs/CustomEndpoints",
+          "description": "Custom endpoints"
+        }
+      },
+      "required": [
+        "base_url"
+      ],
+      "title": "EndpointConfig",
+      "type": "object"
+    },
+    "EnhancedFlowMetricSettings": {
+      "additionalProperties": true,
+      "description": "Settings for Enhanced Flow Metrics module.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable enhanced flow metrics.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "vapi_fa": {
+          "$ref": "#/$defs/VAPIFAParameters",
+          "description": "VAPI-FA specific parameters."
+        },
+        "dwfd": {
+          "$ref": "#/$defs/DWFDParameters",
+          "description": "DWFD specific parameters."
+        },
+        "tw_laf": {
+          "$ref": "#/$defs/TWLAFParameters",
+          "description": "TW-LAF specific parameters."
+        },
+        "calculation_interval_seconds": {
+          "default": 30,
+          "description": "Interval for flow metric calculations.",
+          "minimum": 5,
+          "title": "Calculation Interval Seconds",
+          "type": "integer"
+        },
+        "historical_lookback_periods": {
+          "default": 20,
+          "description": "Number of periods to look back for calculations.",
+          "minimum": 1,
+          "title": "Historical Lookback Periods",
+          "type": "integer"
+        }
+      },
+      "title": "EnhancedFlowMetricSettings",
+      "type": "object"
+    },
+    "ExpertSystemConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for individual expert systems.",
+      "properties": {
+        "expert_type": {
+          "$ref": "#/$defs/ExpertType",
+          "description": "Type of expert"
+        },
+        "enabled": {
+          "default": true,
+          "description": "Whether this expert is enabled",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "api_keys": {
+          "$ref": "#/$defs/ApiKeyConfig",
+          "description": "API keys for this expert"
+        },
+        "endpoints": {
+          "$ref": "#/$defs/EndpointConfig",
+          "description": "Endpoint configuration"
+        },
+        "rate_limits": {
+          "$ref": "#/$defs/RateLimitConfig",
+          "description": "Rate limiting configuration"
+        },
+        "security_level": {
+          "$ref": "#/$defs/SecurityLevel",
+          "default": "medium",
+          "description": "Security level"
+        },
+        "custom_security": {
+          "$ref": "#/$defs/CustomSecuritySettings",
+          "description": "Custom security settings"
+        },
+        "custom_performance": {
+          "$ref": "#/$defs/CustomPerformanceSettings",
+          "description": "Custom performance settings"
+        },
+        "custom_integration": {
+          "$ref": "#/$defs/CustomIntegrationSettings",
+          "description": "Custom integration settings"
+        },
+        "custom_agent": {
+          "$ref": "#/$defs/CustomAgentSettings",
+          "description": "Custom agent settings"
+        },
+        "custom_learning": {
+          "$ref": "#/$defs/CustomLearningSettings",
+          "description": "Custom learning settings"
+        },
+        "custom_safety": {
+          "$ref": "#/$defs/CustomSafetySettings",
+          "description": "Custom safety settings"
+        },
+        "custom_insights": {
+          "$ref": "#/$defs/CustomInsightSettings",
+          "description": "Custom insight settings"
+        },
+        "custom_thresholds": {
+          "$ref": "#/$defs/CustomThresholdSettings",
+          "description": "Custom threshold settings"
+        }
+      },
+      "required": [
+        "expert_type",
+        "endpoints"
+      ],
+      "title": "ExpertSystemConfig",
+      "type": "object"
+    },
+    "ExpertType": {
+      "description": "Types of experts in the system.",
+      "enum": [
+        "market_regime",
+        "options_flow",
+        "sentiment",
+        "volatility",
+        "risk",
+        "execution"
+      ],
+      "title": "ExpertType",
+      "type": "string"
+    },
+    "FlowGaugeConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for flow gauge display.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable flow gauge",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "gauge_type": {
+          "default": "radial",
+          "description": "Type of gauge display",
+          "title": "Gauge Type",
+          "type": "string"
+        }
+      },
+      "title": "FlowGaugeConfig",
+      "type": "object"
+    },
+    "GibGaugeConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for GIB gauge display.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable GIB gauge",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "threshold_levels": {
+          "description": "Threshold levels for gauge",
+          "items": {
+            "type": "number"
+          },
+          "title": "Threshold Levels",
+          "type": "array"
+        }
+      },
+      "title": "GibGaugeConfig",
+      "type": "object"
+    },
+    "HuiHuiSystemConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for the HuiHui AI system.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable HuiHui AI system.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "model_provider": {
+          "default": "openai",
+          "description": "AI model provider for HuiHui.",
+          "title": "Model Provider",
+          "type": "string"
+        },
+        "model_name": {
+          "default": "gpt-4",
+          "description": "AI model name for HuiHui.",
+          "title": "Model Name",
+          "type": "string"
+        },
+        "temperature": {
+          "default": 0.1,
+          "description": "Model temperature for responses.",
+          "maximum": 2.0,
+          "minimum": 0.0,
+          "title": "Temperature",
+          "type": "number"
+        },
+        "max_tokens": {
+          "default": 4000,
+          "description": "Maximum tokens for responses.",
+          "minimum": 100,
+          "title": "Max Tokens",
+          "type": "integer"
+        },
+        "timeout_seconds": {
+          "default": 30,
+          "description": "Timeout for AI requests.",
+          "minimum": 5,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        },
+        "retry_attempts": {
+          "default": 3,
+          "description": "Number of retry attempts for failed requests.",
+          "minimum": 1,
+          "title": "Retry Attempts",
+          "type": "integer"
+        },
+        "confidence_threshold": {
+          "default": 0.7,
+          "description": "Minimum confidence threshold for responses.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence Threshold",
+          "type": "number"
+        }
+      },
+      "title": "HuiHuiSystemConfig",
+      "type": "object"
+    },
+    "IVContextParameters": {
+      "additionalProperties": true,
+      "description": "Parameters for IV contextualization.",
+      "properties": {
+        "vol_trend_avg_days": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Days for volatility trend averaging",
+          "title": "Vol Trend Avg Days"
+        },
+        "iv_rank_lookback_days": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Lookback days for IV rank calculation",
+          "title": "Iv Rank Lookback Days"
+        },
+        "iv_percentile_window": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Window for IV percentile calculation",
+          "title": "Iv Percentile Window"
+        },
+        "term_structure_analysis_enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Enable term structure analysis",
+          "title": "Term Structure Analysis Enabled"
+        },
+        "skew_analysis_enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Enable skew analysis",
+          "title": "Skew Analysis Enabled"
+        },
+        "iv_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.25,
+          "description": "IV threshold for analysis",
+          "title": "Iv Threshold"
+        },
+        "iv_lookback_days": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 30,
+          "description": "Lookback days for IV analysis",
+          "title": "Iv Lookback Days"
+        }
+      },
+      "title": "IVContextParameters",
+      "type": "object"
+    },
+    "IntelligenceFrameworkConfig": {
+      "additionalProperties": true,
+      "description": "Configuration for the overall intelligence framework.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable intelligence framework.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "learning_system": {
+          "$ref": "#/$defs/LearningSystemConfig",
+          "description": "Learning system configuration."
+        },
+        "huihui_system": {
+          "$ref": "#/$defs/HuiHuiSystemConfig",
+          "description": "HuiHui AI system configuration."
+        },
+        "intelligence_update_interval_seconds": {
+          "default": 300,
+          "description": "Interval for intelligence updates.",
+          "minimum": 60,
+          "title": "Intelligence Update Interval Seconds",
+          "type": "integer"
+        },
+        "cross_system_learning": {
+          "default": true,
+          "description": "Enable learning across different systems.",
+          "title": "Cross System Learning",
+          "type": "boolean"
+        },
+        "knowledge_persistence": {
+          "default": true,
+          "description": "Enable persistence of learned knowledge.",
+          "title": "Knowledge Persistence",
+          "type": "boolean"
+        },
+        "learning_params": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Learning parameters configuration",
+          "title": "Learning Params"
+        }
+      },
+      "title": "IntelligenceFrameworkConfig",
+      "type": "object"
+    },
+    "IntelligentRecommendationManagementRules": {
+      "additionalProperties": false,
+      "description": "Rules for intelligent recommendation management.",
+      "properties": {
+        "exit_rules": {
+          "additionalProperties": true,
+          "description": "Exit rules",
+          "title": "Exit Rules",
+          "type": "object"
+        },
+        "position_sizing_rules": {
+          "additionalProperties": true,
+          "description": "Position sizing rules",
+          "title": "Position Sizing Rules",
+          "type": "object"
+        },
+        "risk_management_rules": {
+          "additionalProperties": true,
+          "description": "Risk management rules",
+          "title": "Risk Management Rules",
+          "type": "object"
+        }
+      },
+      "title": "IntelligentRecommendationManagementRules",
+      "type": "object"
+    },
+    "IntradayCollectorSettings": {
+      "additionalProperties": true,
+      "description": "Settings for an intraday metrics collector service (if separate).",
+      "properties": {
+        "watched_tickers": {
+          "description": "List of tickers for intraday metric collection.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Watched Tickers",
+          "type": "array"
+        },
+        "metrics": {
+          "description": "List of metrics for the intraday collector.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "cache_dir": {
+          "default": "cache/intraday_metrics",
+          "description": "Directory for intraday collector cache.",
+          "title": "Cache Dir",
+          "type": "string"
+        },
+        "collection_interval_seconds": {
+          "default": 5,
+          "description": "Interval in seconds between metric collections.",
+          "minimum": 5,
+          "title": "Collection Interval Seconds",
+          "type": "integer"
+        },
+        "market_open_time": {
+          "default": "09:30:00",
+          "description": "Market open time (HH:MM:SS) for collector activity.",
+          "title": "Market Open Time",
+          "type": "string"
+        },
+        "market_close_time": {
+          "default": "16:00:00",
+          "description": "Market close time (HH:MM:SS) for collector activity.",
+          "title": "Market Close Time",
+          "type": "string"
+        },
+        "reset_at_eod": {
+          "default": true,
+          "description": "Whether to reset cache at EOD for intraday collector.",
+          "title": "Reset At Eod",
+          "type": "boolean"
+        },
+        "metrics_to_collect": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Alternative field name for metrics (deprecated)",
+          "title": "Metrics To Collect"
+        },
+        "reset_cache_at_eod": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Alternative field name for reset_at_eod (deprecated)",
+          "title": "Reset Cache At Eod"
+        },
+        "symbol": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "SPY",
+          "description": "Primary symbol for intraday collection",
+          "title": "Symbol"
+        },
+        "dte_min": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0,
+          "description": "Minimum days to expiration",
+          "title": "Dte Min"
+        },
+        "dte_max": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 5,
+          "description": "Maximum days to expiration",
+          "title": "Dte Max"
+        },
+        "fetch_interval_seconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 30,
+          "description": "Fetch interval in seconds",
+          "title": "Fetch Interval Seconds"
+        }
+      },
+      "title": "IntradayCollectorSettings",
+      "type": "object"
+    },
+    "LearningParams": {
+      "additionalProperties": false,
+      "description": "Parameters for learning systems.",
+      "properties": {
+        "performance_tracker_query_lookback": {
+          "default": 90,
+          "description": "Lookback days for performance tracking",
+          "minimum": 1,
+          "title": "Performance Tracker Query Lookback",
+          "type": "integer"
+        },
+        "learning_rate_for_signal_weights": {
+          "default": 0.05,
+          "description": "Learning rate for signal weights",
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Learning Rate For Signal Weights",
+          "type": "number"
+        },
+        "learning_rate_for_target_adjustments": {
+          "default": 0.02,
+          "description": "Learning rate for target adjustments",
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Learning Rate For Target Adjustments",
+          "type": "number"
+        },
+        "min_trades_for_statistical_significance": {
+          "default": 20,
+          "description": "Minimum trades for statistical significance",
+          "minimum": 1,
+          "title": "Min Trades For Statistical Significance",
+          "type": "integer"
+        }
+      },
+      "title": "LearningParams",
+      "type": "object"
+    },
+    "LearningSystemConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for the learning system.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable learning system.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "learning_rate": {
+          "default": 0.01,
+          "description": "Learning rate for adaptations.",
+          "maximum": 0.1,
+          "minimum": 0.001,
+          "title": "Learning Rate",
+          "type": "number"
+        },
+        "adaptation_threshold": {
+          "default": 0.7,
+          "description": "Threshold for applying adaptations.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Adaptation Threshold",
+          "type": "number"
+        },
+        "validation_window_days": {
+          "default": 30,
+          "description": "Window for validating learning insights.",
+          "minimum": 7,
+          "title": "Validation Window Days",
+          "type": "integer"
+        },
+        "max_adaptations_per_cycle": {
+          "default": 5,
+          "description": "Maximum adaptations per learning cycle.",
+          "minimum": 1,
+          "title": "Max Adaptations Per Cycle",
+          "type": "integer"
+        },
+        "rollback_threshold": {
+          "default": 0.5,
+          "description": "Threshold for rolling back adaptations.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Rollback Threshold",
+          "type": "number"
+        }
+      },
+      "title": "LearningSystemConfig",
+      "type": "object"
+    },
+    "MOEConsensusStrategy": {
+      "description": "Consensus strategies for MOE system.",
+      "enum": [
+        "majority_vote",
+        "weighted_average",
+        "confidence_weighted",
+        "expert_ranking",
+        "unanimous"
+      ],
+      "title": "MOEConsensusStrategy",
+      "type": "string"
+    },
+    "MOEExpertConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for individual experts in MOE system.",
+      "properties": {
+        "expert_id": {
+          "description": "Unique expert identifier",
+          "title": "Expert Id",
+          "type": "string"
+        },
+        "expert_type": {
+          "$ref": "#/$defs/ExpertType",
+          "description": "Type of expert"
+        },
+        "weight": {
+          "default": 1.0,
+          "description": "Expert weight in ensemble",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Weight",
+          "type": "number"
+        },
+        "enabled": {
+          "default": true,
+          "description": "Whether expert is enabled",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "performance_threshold": {
+          "default": 0.7,
+          "description": "Minimum performance threshold",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Performance Threshold",
+          "type": "number"
+        }
+      },
+      "required": [
+        "expert_id",
+        "expert_type"
+      ],
+      "title": "MOEExpertConfig",
+      "type": "object"
+    },
+    "MOERoutingStrategy": {
+      "description": "Routing strategies for MOE system.",
+      "enum": [
+        "round_robin",
+        "weighted",
+        "performance_based",
+        "load_balanced",
+        "capability_matched"
+      ],
+      "title": "MOERoutingStrategy",
+      "type": "string"
+    },
+    "MOESystemConfig": {
+      "additionalProperties": true,
+      "description": "Configuration for the MOE (Mixture of Experts) system.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable MOE system",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "routing_strategy": {
+          "$ref": "#/$defs/MOERoutingStrategy",
+          "default": "performance_based",
+          "description": "Strategy for routing requests to experts"
+        },
+        "consensus_strategy": {
+          "$ref": "#/$defs/MOEConsensusStrategy",
+          "default": "confidence_weighted",
+          "description": "Strategy for reaching consensus among experts"
+        },
+        "min_experts": {
+          "default": 2,
+          "description": "Minimum number of experts to consult",
+          "minimum": 1,
+          "title": "Min Experts",
+          "type": "integer"
+        },
+        "max_experts": {
+          "default": 5,
+          "description": "Maximum number of experts to consult",
+          "minimum": 1,
+          "title": "Max Experts",
+          "type": "integer"
+        },
+        "confidence_threshold": {
+          "default": 0.7,
+          "description": "Minimum confidence threshold for decisions",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence Threshold",
+          "type": "number"
+        },
+        "timeout_seconds": {
+          "default": 30,
+          "description": "Timeout for expert responses",
+          "minimum": 1,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        },
+        "experts": {
+          "description": "List of expert configurations",
+          "items": {
+            "$ref": "#/$defs/MOEExpertConfig"
+          },
+          "title": "Experts",
+          "type": "array"
+        }
+      },
+      "title": "MOESystemConfig",
+      "type": "object"
+    },
+    "MainDashboardDisplaySettings": {
+      "additionalProperties": false,
+      "description": "Settings specific to components on the main dashboard display.",
+      "properties": {
+        "regime_indicator": {
+          "$ref": "#/$defs/RegimeIndicatorConfig",
+          "description": "Configuration for the Market Regime indicator display."
+        },
+        "flow_gauge": {
+          "$ref": "#/$defs/FlowGaugeConfig",
+          "description": "Configuration for flow gauge visualizations."
+        },
+        "gib_gauge": {
+          "$ref": "#/$defs/GibGaugeConfig",
+          "description": "Configuration for GIB gauge visualizations."
+        },
+        "mini_heatmap": {
+          "$ref": "#/$defs/MiniHeatmapConfig",
+          "description": "Default settings for mini-heatmap components."
+        },
+        "recommendations_table": {
+          "$ref": "#/$defs/RecommendationsTableConfig",
+          "description": "Configuration for the ATIF recommendations table."
+        },
+        "ticker_context": {
+          "$ref": "#/$defs/TickerContextConfig",
+          "description": "Settings for ticker context display area."
+        }
+      },
+      "title": "MainDashboardDisplaySettings",
+      "type": "object"
+    },
+    "MarketRegimeEngineSettings": {
+      "additionalProperties": true,
+      "description": "Settings for the Market Regime Engine module.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable market regime analysis.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "regime_rules": {
+          "$ref": "#/$defs/RegimeRules",
+          "description": "Rules defining market regimes."
+        },
+        "regime_update_interval_seconds": {
+          "default": 60,
+          "description": "How often to update regime analysis (in seconds).",
+          "minimum": 10,
+          "title": "Regime Update Interval Seconds",
+          "type": "integer"
+        },
+        "confidence_threshold": {
+          "default": 0.6,
+          "description": "Minimum confidence for regime classification.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence Threshold",
+          "type": "number"
+        },
+        "regime_transition_smoothing": {
+          "default": true,
+          "description": "Enable smoothing for regime transitions.",
+          "title": "Regime Transition Smoothing",
+          "type": "boolean"
+        }
+      },
+      "title": "MarketRegimeEngineSettings",
+      "type": "object"
+    },
+    "MiniHeatmapConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for mini heatmap display.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable mini heatmap",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "grid_size": {
+          "default": [
+            10,
+            10
+          ],
+          "description": "Grid size for heatmap",
+          "items": {},
+          "title": "Grid Size",
+          "type": "array"
+        }
+      },
+      "title": "MiniHeatmapConfig",
+      "type": "object"
+    },
+    "PerformanceMetadata": {
+      "additionalProperties": false,
+      "description": "Metadata for performance tracking.",
+      "properties": {
+        "tracking_start_date": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Start date for performance tracking",
+          "title": "Tracking Start Date"
+        },
+        "benchmark_symbol": {
+          "default": "SPY",
+          "description": "Benchmark symbol for comparison",
+          "title": "Benchmark Symbol",
+          "type": "string"
+        },
+        "performance_attribution": {
+          "default": true,
+          "description": "Enable performance attribution",
+          "title": "Performance Attribution",
+          "type": "boolean"
+        }
+      },
+      "title": "PerformanceMetadata",
+      "type": "object"
+    },
+    "PerformanceTrackerSettingsV2_5": {
+      "additionalProperties": true,
+      "description": "Settings for the Performance Tracker module.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable performance tracking.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "track_paper_trades": {
+          "default": true,
+          "description": "Track paper/simulated trades.",
+          "title": "Track Paper Trades",
+          "type": "boolean"
+        },
+        "track_live_trades": {
+          "default": false,
+          "description": "Track live trades (requires broker integration).",
+          "title": "Track Live Trades",
+          "type": "boolean"
+        },
+        "performance_calculation_interval_seconds": {
+          "default": 300,
+          "description": "Interval for performance calculations.",
+          "minimum": 60,
+          "title": "Performance Calculation Interval Seconds",
+          "type": "integer"
+        },
+        "metadata": {
+          "$ref": "#/$defs/PerformanceMetadata",
+          "description": "Performance tracking metadata."
+        },
+        "strategy_params": {
+          "description": "Strategy parameters for tracking.",
+          "items": {
+            "$ref": "#/$defs/StrategyParameters"
+          },
+          "title": "Strategy Params",
+          "type": "array"
+        },
+        "tracking_interval_seconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 60,
+          "description": "Tracking interval in seconds",
+          "title": "Tracking Interval Seconds"
+        },
+        "performance_metadata": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Performance metadata configuration",
+          "title": "Performance Metadata"
+        },
+        "performance_data_directory": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "data_cache_v2_5/performance_data_store",
+          "description": "Performance data directory",
+          "title": "Performance Data Directory"
+        },
+        "historical_window_days": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 365,
+          "description": "Historical window in days",
+          "title": "Historical Window Days"
+        },
+        "weight_smoothing_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.1,
+          "description": "Weight smoothing factor",
+          "title": "Weight Smoothing Factor"
+        },
+        "min_sample_size": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 10,
+          "description": "Minimum sample size",
+          "title": "Min Sample Size"
+        },
+        "confidence_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.75,
+          "description": "Confidence threshold",
+          "title": "Confidence Threshold"
+        },
+        "update_interval_seconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 3600,
+          "description": "Update interval in seconds",
+          "title": "Update Interval Seconds"
+        }
+      },
+      "title": "PerformanceTrackerSettingsV2_5",
+      "type": "object"
+    },
+    "PredictionConfigV2_5": {
+      "additionalProperties": true,
+      "description": "Configuration for the AI Predictions Manager module.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable/disable AI predictions.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "model_name": {
+          "default": "default_prediction_model",
+          "description": "Name of the primary prediction model to use.",
+          "title": "Model Name",
+          "type": "string"
+        },
+        "prediction_interval_seconds": {
+          "default": 300,
+          "description": "How often (in seconds) to generate new predictions.",
+          "minimum": 60,
+          "title": "Prediction Interval Seconds",
+          "type": "integer"
+        },
+        "max_data_age_seconds": {
+          "default": 120,
+          "description": "Maximum age of market data (in seconds) to be considered fresh for predictions.",
+          "minimum": 10,
+          "title": "Max Data Age Seconds",
+          "type": "integer"
+        },
+        "confidence_calibration": {
+          "$ref": "#/$defs/ConfidenceCalibration",
+          "description": "Parameters for calibrating confidence scores based on signal strength."
+        },
+        "success_threshold": {
+          "default": 0.7,
+          "description": "Minimum performance score for a prediction to be considered successful.",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Success Threshold",
+          "type": "number"
+        },
+        "min_confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.6,
+          "description": "Minimum confidence threshold",
+          "title": "Min Confidence"
+        }
+      },
+      "title": "PredictionConfigV2_5",
+      "type": "object"
+    },
+    "ProfitTargetCalculationRules": {
+      "additionalProperties": false,
+      "description": "Rules for profit target calculation.",
+      "properties": {
+        "default_target_pct": {
+          "default": 0.2,
+          "description": "Default profit target percentage",
+          "title": "Default Target Pct",
+          "type": "number"
+        },
+        "risk_reward_ratio": {
+          "default": 2.0,
+          "description": "Risk-reward ratio",
+          "title": "Risk Reward Ratio",
+          "type": "number"
+        },
+        "dynamic_targets": {
+          "default": true,
+          "description": "Use dynamic profit targets",
+          "title": "Dynamic Targets",
+          "type": "boolean"
+        }
+      },
+      "title": "ProfitTargetCalculationRules",
+      "type": "object"
+    },
+    "RateLimitConfig": {
+      "description": "Configuration for rate limiting.",
+      "properties": {
+        "requests_per_minute": {
+          "default": 60,
+          "description": "Requests per minute limit",
+          "minimum": 1,
+          "title": "Requests Per Minute",
+          "type": "integer"
+        },
+        "requests_per_hour": {
+          "default": 3600,
+          "description": "Requests per hour limit",
+          "minimum": 1,
+          "title": "Requests Per Hour",
+          "type": "integer"
+        },
+        "burst_limit": {
+          "default": 10,
+          "description": "Burst request limit",
+          "minimum": 1,
+          "title": "Burst Limit",
+          "type": "integer"
+        },
+        "custom_limits": {
+          "$ref": "#/$defs/CustomRateLimits",
+          "description": "Custom rate limits"
+        }
+      },
+      "title": "RateLimitConfig",
+      "type": "object"
+    },
+    "RecommendationsTableConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for recommendations table display.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable recommendations table",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "max_rows": {
+          "default": 10,
+          "description": "Maximum rows to display",
+          "title": "Max Rows",
+          "type": "integer"
+        }
+      },
+      "title": "RecommendationsTableConfig",
+      "type": "object"
+    },
+    "RegimeContextWeightMultipliers": {
+      "additionalProperties": true,
+      "description": "Multipliers for regime context weighting.",
+      "properties": {
+        "bullish_multiplier": {
+          "default": 1.2,
+          "description": "Bullish regime multiplier",
+          "title": "Bullish Multiplier",
+          "type": "number"
+        },
+        "bearish_multiplier": {
+          "default": 0.8,
+          "description": "Bearish regime multiplier",
+          "title": "Bearish Multiplier",
+          "type": "number"
+        },
+        "neutral_multiplier": {
+          "default": 1.0,
+          "description": "Neutral regime multiplier",
+          "title": "Neutral Multiplier",
+          "type": "number"
+        }
+      },
+      "title": "RegimeContextWeightMultipliers",
+      "type": "object"
+    },
+    "RegimeIndicatorConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for regime indicator display.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable regime indicator",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "update_interval": {
+          "default": 30,
+          "description": "Update interval in seconds",
+          "title": "Update Interval",
+          "type": "integer"
+        }
+      },
+      "title": "RegimeIndicatorConfig",
+      "type": "object"
+    },
+    "RegimeRuleConditions": {
+      "additionalProperties": true,
+      "description": "Conditions for a specific market regime rule.",
+      "properties": {
+        "vix_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "VIX threshold for regime",
+          "title": "Vix Threshold"
+        },
+        "flow_alignment_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Flow alignment threshold",
+          "title": "Flow Alignment Threshold"
+        },
+        "volatility_regime": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Volatility regime condition",
+          "title": "Volatility Regime"
+        },
+        "momentum_condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Momentum condition",
+          "title": "Momentum Condition"
+        },
+        "structure_condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Structure condition",
+          "title": "Structure Condition"
+        },
+        "confidence_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Confidence threshold",
+          "title": "Confidence Threshold"
+        }
+      },
+      "title": "RegimeRuleConditions",
+      "type": "object"
+    },
+    "RegimeRules": {
+      "additionalProperties": true,
+      "description": "Dictionary of rules defining conditions for each market regime.",
+      "properties": {
+        "BULLISH_MOMENTUM": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for bullish momentum regime"
+        },
+        "BEARISH_MOMENTUM": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for bearish momentum regime"
+        },
+        "CONSOLIDATION": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for consolidation regime"
+        },
+        "HIGH_VOLATILITY": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for high volatility regime"
+        },
+        "LOW_VOLATILITY": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for low volatility regime"
+        },
+        "REGIME_UNCLEAR_OR_TRANSITIONING": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for unclear/transitioning regime"
+        },
+        "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for SPX 0DTE Friday EOD Vanna cascade bullish regime"
+        },
+        "REGIME_SPY_PRE_FOMC_VOL_COMPRESSION_WITH_DWFD_ACCUMULATION": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for SPY pre-FOMC vol compression with DWFD accumulation regime"
+        },
+        "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for high VAPI-FA bullish momentum universal regime"
+        },
+        "REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for adaptive structure breakdown with DWFD confirmation bearish universal regime"
+        },
+        "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for vol expansion imminent VRI 0DTE bullish regime"
+        },
+        "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for vol expansion imminent VRI 0DTE bearish regime"
+        },
+        "REGIME_NVP_STRONG_BUY_IMBALANCE_AT_KEY_STRIKE": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for NVP strong buy imbalance at key strike regime"
+        },
+        "REGIME_EOD_HEDGING_PRESSURE_BUY": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for EOD hedging pressure buy regime"
+        },
+        "REGIME_EOD_HEDGING_PRESSURE_SELL": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for EOD hedging pressure sell regime"
+        },
+        "REGIME_SIDEWAYS_MARKET": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegimeRuleConditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rules for sideways market regime"
+        },
+        "bullish_conditions": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Bullish regime conditions",
+          "title": "Bullish Conditions"
+        },
+        "bearish_conditions": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Bearish regime conditions",
+          "title": "Bearish Conditions"
+        },
+        "neutral_conditions": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Neutral regime conditions",
+          "title": "Neutral Conditions"
+        }
+      },
+      "title": "RegimeRules",
+      "type": "object"
+    },
+    "SecurityLevel": {
+      "description": "Security levels for API access.",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "enterprise"
+      ],
+      "title": "SecurityLevel",
+      "type": "string"
+    },
+    "SignalActivationSettings": {
+      "additionalProperties": true,
+      "description": "Configuration for signal activation.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable signal activation",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "auto_refresh": {
+          "default": true,
+          "description": "Auto refresh signals",
+          "title": "Auto Refresh",
+          "type": "boolean"
+        },
+        "EnableAllSignals": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": true,
+          "description": "Enable all signals",
+          "title": "Enableallsignals"
+        }
+      },
+      "title": "SignalActivationSettings",
+      "type": "object"
+    },
+    "SignalIntegrationParameters": {
+      "additionalProperties": false,
+      "description": "Parameters for signal integration.",
+      "properties": {
+        "base_signal_weights": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Base signal weights",
+          "title": "Base Signal Weights",
+          "type": "object"
+        },
+        "confidence_threshold": {
+          "default": 0.7,
+          "description": "Confidence threshold for signals",
+          "title": "Confidence Threshold",
+          "type": "number"
+        }
+      },
+      "title": "SignalIntegrationParameters",
+      "type": "object"
+    },
+    "StopLossCalculationRules": {
+      "additionalProperties": false,
+      "description": "Rules for stop loss calculation.",
+      "properties": {
+        "default_stop_pct": {
+          "default": 0.1,
+          "description": "Default stop loss percentage",
+          "title": "Default Stop Pct",
+          "type": "number"
+        },
+        "volatility_adjusted": {
+          "default": true,
+          "description": "Use volatility-adjusted stops",
+          "title": "Volatility Adjusted",
+          "type": "boolean"
+        },
+        "max_stop_pct": {
+          "default": 0.25,
+          "description": "Maximum stop loss percentage",
+          "title": "Max Stop Pct",
+          "type": "number"
+        }
+      },
+      "title": "StopLossCalculationRules",
+      "type": "object"
+    },
+    "StrategyParameters": {
+      "additionalProperties": false,
+      "description": "Parameters for trading strategies.",
+      "properties": {
+        "strategy_name": {
+          "description": "Name of the strategy",
+          "title": "Strategy Name",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": true,
+          "description": "Strategy parameters",
+          "title": "Parameters",
+          "type": "object"
+        },
+        "risk_limits": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Risk limits",
+          "title": "Risk Limits",
+          "type": "object"
+        }
+      },
+      "required": [
+        "strategy_name"
+      ],
+      "title": "StrategyParameters",
+      "type": "object"
+    },
+    "StrategySpecificRule": {
+      "additionalProperties": false,
+      "description": "Strategy-specific trading rule.",
+      "properties": {
+        "rule_name": {
+          "description": "Name of the rule",
+          "title": "Rule Name",
+          "type": "string"
+        },
+        "rule_type": {
+          "description": "Type of rule (entry, exit, risk)",
+          "title": "Rule Type",
+          "type": "string"
+        },
+        "conditions": {
+          "additionalProperties": true,
+          "description": "Rule conditions",
+          "title": "Conditions",
+          "type": "object"
+        },
+        "parameters": {
+          "additionalProperties": true,
+          "description": "Rule parameters",
+          "title": "Parameters",
+          "type": "object"
+        },
+        "enabled": {
+          "default": true,
+          "description": "Whether rule is enabled",
+          "title": "Enabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "rule_name",
+        "rule_type"
+      ],
+      "title": "StrategySpecificRule",
+      "type": "object"
+    },
+    "SystemSettings": {
+      "additionalProperties": false,
+      "description": "General system-level settings for EOTS v2.5.",
+      "properties": {
+        "project_root_override": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Absolute path to override auto-detected project root. Use null for auto-detection.",
+          "title": "Project Root Override"
+        },
+        "logging_level": {
+          "default": "INFO",
+          "description": "Minimum logging level (e.g., DEBUG, INFO, WARNING, ERROR).",
+          "title": "Logging Level",
+          "type": "string"
+        },
+        "log_to_file": {
+          "default": true,
+          "description": "If true, logs will be written to the file specified in log_file_path.",
+          "title": "Log To File",
+          "type": "boolean"
+        },
+        "log_file_path": {
+          "default": "logs/eots_v2_5.log",
+          "description": "Relative path from project root for the log file.",
+          "title": "Log File Path",
+          "type": "string"
+        },
+        "max_log_file_size_bytes": {
+          "default": 10485760,
+          "description": "Maximum size of a single log file in bytes before rotation.",
+          "minimum": 1024,
+          "title": "Max Log File Size Bytes",
+          "type": "integer"
+        },
+        "backup_log_count": {
+          "default": 5,
+          "description": "Number of old log files to keep after rotation.",
+          "minimum": 0,
+          "title": "Backup Log Count",
+          "type": "integer"
+        },
+        "live_mode": {
+          "default": true,
+          "description": "If true, system attempts to use live data sources; affects error handling.",
+          "title": "Live Mode",
+          "type": "boolean"
+        },
+        "fail_fast_on_errors": {
+          "default": true,
+          "description": "If true, system may halt on critical data quality or API errors.",
+          "title": "Fail Fast On Errors",
+          "type": "boolean"
+        },
+        "metrics_for_dynamic_threshold_distribution_tracking": {
+          "description": "List of underlying aggregate metric names to track historically for dynamic threshold calculations.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Metrics For Dynamic Threshold Distribution Tracking",
+          "type": "array"
+        },
+        "signal_activation": {
+          "$ref": "#/$defs/SignalActivationSettings",
+          "description": "Master toggles for enabling or disabling specific signal generation routines or categories."
+        }
+      },
+      "title": "SystemSettings",
+      "type": "object"
+    },
+    "TWLAFParameters": {
+      "additionalProperties": true,
+      "description": "Parameters specific to TW-LAF calculation.",
+      "properties": {
+        "time_weights_for_intervals": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Time weights for intervals",
+          "title": "Time Weights For Intervals"
+        },
+        "spread_calculation_params": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Spread calculation parameters",
+          "title": "Spread Calculation Params"
+        },
+        "liquidity_adjustment_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Liquidity adjustment factor",
+          "title": "Liquidity Adjustment Factor"
+        },
+        "flow_normalization_method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Flow normalization method",
+          "title": "Flow Normalization Method"
+        },
+        "flow_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.5,
+          "description": "Flow threshold for TW-LAF",
+          "title": "Flow Threshold"
+        },
+        "flow_window": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 10,
+          "description": "Flow window for calculations",
+          "title": "Flow Window"
+        },
+        "smoothing_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.3,
+          "description": "Smoothing factor for TW-LAF",
+          "title": "Smoothing Factor"
+        },
+        "time_weight_decay": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.95,
+          "description": "Time weight decay factor",
+          "title": "Time Weight Decay"
+        },
+        "liquidity_adjustment": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.8,
+          "description": "Liquidity adjustment factor",
+          "title": "Liquidity Adjustment"
+        }
+      },
+      "title": "TWLAFParameters",
+      "type": "object"
+    },
+    "TickerContextConfig": {
+      "additionalProperties": false,
+      "description": "Configuration for ticker context display.",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable ticker context",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "show_details": {
+          "default": true,
+          "description": "Show detailed context information",
+          "title": "Show Details",
+          "type": "boolean"
+        }
+      },
+      "title": "TickerContextConfig",
+      "type": "object"
+    },
+    "TickerSpecificParameters": {
+      "additionalProperties": false,
+      "description": "Ticker-specific parameters for metrics.",
+      "properties": {
+        "volatility_adjustment": {
+          "default": 1.0,
+          "description": "Volatility adjustment factor",
+          "title": "Volatility Adjustment",
+          "type": "number"
+        },
+        "liquidity_adjustment": {
+          "default": 1.0,
+          "description": "Liquidity adjustment factor",
+          "title": "Liquidity Adjustment",
+          "type": "number"
+        },
+        "sector_adjustment": {
+          "default": 1.0,
+          "description": "Sector-specific adjustment",
+          "title": "Sector Adjustment",
+          "type": "number"
+        }
+      },
+      "title": "TickerSpecificParameters",
+      "type": "object"
+    },
+    "TradeParameterOptimizerSettings": {
+      "additionalProperties": true,
+      "description": "Settings for the Trade Parameter Optimizer.",
+      "properties": {
+        "contract_selection_filters": {
+          "$ref": "#/$defs/ContractSelectionFilters",
+          "description": "Contract selection filters"
+        },
+        "entry_price_logic": {
+          "default": "MID_PRICE",
+          "description": "Entry price logic",
+          "title": "Entry Price Logic",
+          "type": "string"
+        },
+        "stop_loss_calculation_rules": {
+          "$ref": "#/$defs/StopLossCalculationRules",
+          "description": "Stop loss calculation rules"
+        },
+        "profit_target_calculation_rules": {
+          "$ref": "#/$defs/ProfitTargetCalculationRules",
+          "description": "Profit target calculation rules"
+        },
+        "enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": true,
+          "description": "Enable trade parameter optimizer",
+          "title": "Enabled"
+        },
+        "optimization_interval_seconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 300,
+          "description": "Optimization interval in seconds",
+          "title": "Optimization Interval Seconds"
+        }
+      },
+      "title": "TradeParameterOptimizerSettings",
+      "type": "object"
+    },
+    "VAPIFAParameters": {
+      "additionalProperties": true,
+      "description": "Parameters specific to VAPI-FA calculation.",
+      "properties": {
+        "primary_flow_interval": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Primary flow interval for VAPI-FA",
+          "title": "Primary Flow Interval"
+        },
+        "iv_source_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "IV source key for calculations",
+          "title": "Iv Source Key"
+        },
+        "flow_acceleration_window": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Window for flow acceleration",
+          "title": "Flow Acceleration Window"
+        },
+        "volatility_adjustment_enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Enable volatility adjustment",
+          "title": "Volatility Adjustment Enabled"
+        },
+        "flow_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.5,
+          "description": "Flow threshold for VAPI-FA",
+          "title": "Flow Threshold"
+        },
+        "flow_window": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 10,
+          "description": "Flow window for calculations",
+          "title": "Flow Window"
+        },
+        "smoothing_factor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.3,
+          "description": "Smoothing factor for VAPI-FA",
+          "title": "Smoothing Factor"
+        },
+        "volume_weight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.4,
+          "description": "Volume weight in calculations",
+          "title": "Volume Weight"
+        },
+        "premium_weight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0.6,
+          "description": "Premium weight in calculations",
+          "title": "Premium Weight"
+        },
+        "acceleration_lookback": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 5,
+          "description": "Acceleration lookback period",
+          "title": "Acceleration Lookback"
+        }
+      },
+      "title": "VAPIFAParameters",
+      "type": "object"
+    },
+    "VisualizationSettings": {
+      "additionalProperties": true,
+      "description": "Overall visualization and dashboard settings.",
+      "properties": {
+        "dashboard_refresh_interval_seconds": {
+          "default": 60,
+          "description": "Interval in seconds between automatic dashboard data refreshes.",
+          "minimum": 10,
+          "title": "Dashboard Refresh Interval Seconds",
+          "type": "integer"
+        },
+        "max_table_rows_signals_insights": {
+          "default": 10,
+          "description": "Maximum number of rows to display in signals and insights tables on the dashboard.",
+          "minimum": 1,
+          "title": "Max Table Rows Signals Insights",
+          "type": "integer"
+        },
+        "dashboard": {
+          "$ref": "#/$defs/DashboardServerConfig",
+          "description": "Core Dash server and display settings."
+        },
+        "modes_detail_config": {
+          "$ref": "#/$defs/DashboardModeCollection"
+        },
+        "main_dashboard_settings": {
+          "$ref": "#/$defs/MainDashboardDisplaySettings"
+        },
+        "dashboard_mode_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Dashboard mode configuration settings.",
+          "title": "Dashboard Mode Settings"
+        },
+        "main_dashboard_display_settings": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Main dashboard display configuration.",
+          "title": "Main Dashboard Display Settings"
+        }
+      },
+      "title": "VisualizationSettings",
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Comprehensive schema for validating the EOTS v2.5 application configuration file, generated from Pydantic models.",
+  "properties": {
+    "system_settings": {
+      "$ref": "#/$defs/SystemSettings"
+    },
+    "data_fetcher_settings": {
+      "$ref": "#/$defs/DataFetcherSettings"
+    },
+    "data_management_settings": {
+      "$ref": "#/$defs/DataManagementSettings"
+    },
+    "database_settings": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DatabaseSettings"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional database settings"
+    },
+    "visualization_settings": {
+      "$ref": "#/$defs/VisualizationSettings"
+    },
+    "data_processor_settings": {
+      "$ref": "#/$defs/DataProcessorSettings"
+    },
+    "market_regime_engine_settings": {
+      "$ref": "#/$defs/MarketRegimeEngineSettings"
+    },
+    "enhanced_flow_metric_settings": {
+      "$ref": "#/$defs/EnhancedFlowMetricSettings"
+    },
+    "adaptive_metric_parameters": {
+      "$ref": "#/$defs/AdaptiveMetricParameters"
+    },
+    "adaptive_trade_idea_framework_settings": {
+      "$ref": "#/$defs/AdaptiveTradeIdeaFrameworkSettings"
+    },
+    "trade_parameter_optimizer_settings": {
+      "$ref": "#/$defs/TradeParameterOptimizerSettings"
+    },
+    "performance_tracker_settings": {
+      "$ref": "#/$defs/PerformanceTrackerSettingsV2_5"
+    },
+    "expert_system_config": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertSystemConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Expert system configuration"
+    },
+    "moe_system_config": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MOESystemConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "MOE system configuration"
+    },
+    "adaptive_learning_config": {
+      "$ref": "#/$defs/AdaptiveLearningConfigV2_5"
+    },
+    "prediction_config": {
+      "$ref": "#/$defs/PredictionConfigV2_5"
+    },
+    "intelligence_framework_config": {
+      "$ref": "#/$defs/IntelligenceFrameworkConfig"
+    },
+    "intraday_collector_settings": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/IntradayCollectorSettings"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Intraday collector settings"
+    },
+    "strategy_settings": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Strategy settings",
+      "title": "Strategy Settings"
+    },
+    "ticker_context_analyzer_settings": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Ticker context analyzer settings",
+      "title": "Ticker Context Analyzer Settings"
+    },
+    "key_level_identifier_settings": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Key level identifier settings",
+      "title": "Key Level Identifier Settings"
+    },
+    "heatmap_generation_settings": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Heatmap generation settings",
+      "title": "Heatmap Generation Settings"
+    },
+    "symbol_specific_overrides": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Symbol-specific overrides",
+      "title": "Symbol Specific Overrides"
+    },
+    "performance_tracker_settings_v2_5": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PerformanceTrackerSettingsV2_5"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Performance tracker settings v2.5"
+    },
+    "elite_config": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EliteConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Elite configuration"
+    },
+    "time_of_day_definitions": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Time of day definitions",
+      "title": "Time Of Day Definitions"
+    }
+  },
+  "required": [
+    "data_fetcher_settings"
+  ],
+  "title": "EOTS v2.5 Configuration Schema",
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

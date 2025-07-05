@@ -1,0 +1,1405 @@
+{
+  "system_settings": {
+    "project_root_override": null,
+    "logging_level": "INFO",
+    "log_to_file": true,
+    "log_file_path": "logs/eots_v2_5.log",
+    "max_log_file_size_bytes": 10485760,
+    "backup_log_count": 5,
+    "live_mode": true,
+    "fail_fast_on_errors": true,
+    "enable_ai_intelligence": true,
+    "enable_unified_orchestrator": true,
+    "enable_multi_database": true,
+    "metrics_for_dynamic_threshold_distribution_tracking": [
+      "GIB_OI_based_Und",
+      "VAPI_FA_Z_Score_Und",
+      "DWFD_Z_Score_Und",
+      "TW_LAF_Z_Score_Und"
+    ],
+    "signal_activation": {
+      "EnableAllSignals": true
+    }
+  },
+  "HARDWIRED_UNIVERSAL_FILTERING": {
+    "_CRITICAL_WARNING": "🚨🚨🚨 DO NOT MODIFY THESE SETTINGS - CONTROL PANEL COMPLIANCE DEPENDS ON THEM 🚨🚨🚨",
+    "_DEVELOPER_WARNING": "⚠️⚠️⚠️ CHANGING THESE VALUES WILL BREAK CONTROL PANEL COMPLIANCE ACROSS THE ENTIRE SYSTEM ⚠️⚠️⚠️",
+    "_SYSTEM_REQUIREMENT": "🔒 THESE SETTINGS ENSURE ALL DASHBOARD MODES RESPECT USER CONTROL PANEL SETTINGS",
+    "_VIOLATION_CONSEQUENCE": "❌ MODIFYING THESE SETTINGS WILL CAUSE DASHBOARD MODES TO IGNORE USER FILTERS",
+    "_ENFORCEMENT_NOTICE": "🎯 THIS IS THE MASTER CONFIGURATION FOR CONTROL PANEL COMPLIANCE ENFORCEMENT",
+    "ENFORCEMENT_LEVEL": "MANDATORY",
+    "DESCRIPTION": "🔒 HARDWIRED UNIVERSAL FILTERING - CANNOT BE DISABLED - ABSOLUTELY MANDATORY FOR CONTROL PANEL COMPLIANCE",
+    "ENABLED": true,
+    "BYPASS_ALLOWED": false,
+    "OVERRIDE_PROTECTION": true,
+    "COMPLIANCE_ENFORCEMENT": {
+      "REQUIRE_CONTROL_PANEL_COMPLIANCE": true,
+      "REJECT_NON_COMPLIANT_MODES": true,
+      "FORCE_FILTERED_DATA_USAGE": true,
+      "AUTOMATIC_FILTER_APPLICATION": true,
+      "VALIDATE_ALL_DASHBOARD_COMPONENTS": true
+    },
+    "FILTER_PARAMETERS": {
+      "DTE_FILTERING_MANDATORY": true,
+      "PRICE_RANGE_FILTERING_MANDATORY": true,
+      "SYMBOL_FILTERING_MANDATORY": true,
+      "REFRESH_INTERVAL_COMPLIANCE_MANDATORY": true
+    },
+    "ARCHITECTURAL_ENFORCEMENT": {
+      "CALLBACK_LEVEL_FILTERING": true,
+      "MODE_LEVEL_VALIDATION": true,
+      "COMPONENT_LEVEL_CHECKS": true,
+      "DATA_BUNDLE_LEVEL_FILTERING": true
+    },
+    "VIOLATION_HANDLING": {
+      "LOG_VIOLATIONS": true,
+      "REJECT_NON_COMPLIANT_DATA": true,
+      "FORCE_COMPLIANCE_CORRECTION": true,
+      "ALERT_ON_BYPASS_ATTEMPTS": true
+    }
+  },
+  "data_management": {
+    "convexvalue_auth": {
+      "use_env_variables": true,
+      "auth_method": "email_password"
+    },
+    "tradier_api_key": "REQUIRED_FROM_ENV",
+    "tradier_account_id": "REQUIRED_FROM_ENV",
+    "alpha_vantage_api_key": "",
+    "retry_attempts": 3,
+    "retry_delay": 5.0,
+    "timeout": 30.0,
+    "cache_directory": "data_cache_v2_5",
+    "data_store_directory": "data_cache_v2_5/data_store",
+    "cache_expiry_hours": 24.0
+  },
+  "database_settings": {
+    "host": "${EOTS_DB_HOST}",
+    "port": 5432,
+    "database": "${EOTS_DB_NAME}",
+    "user": "${EOTS_DB_USER}",
+    "password": "${EOTS_DB_PASSWORD}",
+    "min_connections": 1,
+    "max_connections": 10
+  },
+  "data_processor_settings": {
+    "factors": {
+      "volume_factor": 1.0,
+      "price_factor": 1.0,
+      "volatility_factor": 1.0,
+      "vri_0dte_gamma_align_reinforcing": 1.3,
+      "vri_0dte_gamma_align_contradicting": 0.7,
+      "vri_0dte_gamma_align_neutral": 1.0
+    },
+    "coefficients": {
+      "dag_alpha": {
+        "aligned": 1.35,
+        "opposed": 0.65,
+        "neutral": 1.0
+      },
+      "tdpi_beta": {
+        "aligned": 1.3,
+        "opposed": 0.7,
+        "neutral": 1.0
+      },
+      "vri_gamma": {
+        "aligned": 1.3,
+        "opposed": 0.7,
+        "neutral": 1.0
+      }
+    },
+    "iv_context_parameters": {
+      "iv_threshold": 0.25,
+      "iv_lookback_days": 30,
+      "vol_trend_avg_days_vri0dte": 5
+    },
+    "vci_0dte_parameters": {
+      "high_concentration_threshold": 0.6,
+      "extreme_concentration_threshold": 0.8,
+      "min_vanna_oi_threshold": 1000.0,
+      "top_strikes_percentile": 0.8
+    }
+  },
+  "strategy_settings": {
+    "strike_col_name": "strike",
+    "underlying_price_col_name": "underlying_price",
+    "expiration_col_name": "expiration_date",
+    "dte_col_name": "dte",
+    "option_type_col_name": "opt_kind",
+    "targets": {
+      "profit_target_percentage": 50.0,
+      "stop_loss_percentage": 25.0
+    },
+    "risk_management": {
+      "max_position_size": 10000.0,
+      "max_daily_loss": 2000.0
+    },
+    "multipliers": {
+      "bullish_multiplier": 1.2,
+      "bearish_multiplier": 0.8
+    }
+  },
+  "adaptive_metric_parameters": {
+    "a_mspi_settings": {
+      "component_weights": {
+        "a_dag_weight": 0.35,
+        "d_tdpi_weight": 0.25,
+        "vri_2_0_weight": 0.25,
+        "e_sdag_mult_weight": 0.1,
+        "e_sdag_dir_weight": 0.05
+      },
+      "normalization_method": "z_score",
+      "support_resistance_threshold": 0.1
+    },
+    "a_dag_settings": {
+      "base_dag_alpha_coeffs": {
+        "aligned": 1.35,
+        "opposed": 0.65,
+        "neutral": 1.0
+      },
+      "regime_alpha_multipliers": {
+        "REGIME_STRONG_TRENDING_FLOW": {
+          "aligned_mult": 1.3,
+          "opposed_mult": 0.8
+        },
+        "REGIME_DELTA_DOMINANT_TREND": {
+          "aligned_mult": 1.4,
+          "opposed_mult": 0.7
+        },
+        "REGIME_GAMMA_DOMINANT_CHOP": {
+          "aligned_mult": 1.1,
+          "opposed_mult": 0.9
+        },
+        "REGIME_NEUTRAL": {
+          "aligned_mult": 1.0,
+          "opposed_mult": 1.0
+        }
+      },
+      "volatility_context_alpha_multipliers": {
+        "HIGH_VOLATILITY": {
+          "aligned_mult": 1.2,
+          "opposed_mult": 0.8
+        },
+        "NORMAL_VOLATILITY": {
+          "aligned_mult": 1.0,
+          "opposed_mult": 1.0
+        },
+        "LOW_VOLATILITY": {
+          "aligned_mult": 0.9,
+          "opposed_mult": 1.1
+        }
+      },
+      "dte_gamma_flow_impact_scaling": {
+        "0_2_DTE": 1.5,
+        "3_7_DTE": 1.2,
+        "8_21_DTE": 1.0,
+        "22_45_DTE": 0.8,
+        "45_PLUS_DTE": 0.6
+      },
+      "flow_sensitivity_by_regime": {
+        "REGIME_STRONG_TRENDING_FLOW": 1.3,
+        "REGIME_DELTA_DOMINANT_TREND": 1.4,
+        "REGIME_GAMMA_DOMINANT_CHOP": 0.9,
+        "REGIME_NEUTRAL": 1.0
+      }
+    },
+    "e_sdag_settings": {
+      "use_enhanced_skew_calculation_for_sgexoi": true,
+      "sgexoi_calculation_params": {
+        "skew_sensitivity": 0.3,
+        "term_structure_weight": 0.2,
+        "vri_integration_factor": 0.15
+      },
+      "base_delta_weight_factors": {
+        "e_sdag_mult": 0.5,
+        "e_sdag_dir": 0.6,
+        "e_sdag_w": 0.4,
+        "e_sdag_vf": 0.7
+      },
+      "regime_delta_weight_multipliers": {
+        "REGIME_DELTA_DOMINANT_TREND": {
+          "e_sdag_mult": 1.3,
+          "e_sdag_dir": 1.4,
+          "e_sdag_w": 1.2,
+          "e_sdag_vf": 1.5
+        },
+        "REGIME_GAMMA_DOMINANT_CHOP": {
+          "e_sdag_mult": 0.8,
+          "e_sdag_dir": 0.7,
+          "e_sdag_w": 0.9,
+          "e_sdag_vf": 0.7
+        },
+        "REGIME_STRONG_TRENDING_FLOW": {
+          "e_sdag_mult": 1.2,
+          "e_sdag_dir": 1.3,
+          "e_sdag_w": 1.1,
+          "e_sdag_vf": 1.2
+        },
+        "REGIME_NEUTRAL": {
+          "e_sdag_mult": 1.0,
+          "e_sdag_dir": 1.0,
+          "e_sdag_w": 1.0,
+          "e_sdag_vf": 1.0
+        }
+      },
+      "volatility_delta_weight_multipliers": {
+        "HIGH_VOLATILITY": {
+          "e_sdag_mult": 1.1,
+          "e_sdag_dir": 1.2,
+          "e_sdag_w": 1.0,
+          "e_sdag_vf": 1.3
+        },
+        "NORMAL_VOLATILITY": {
+          "e_sdag_mult": 1.0,
+          "e_sdag_dir": 1.0,
+          "e_sdag_w": 1.0,
+          "e_sdag_vf": 1.0
+        },
+        "LOW_VOLATILITY": {
+          "e_sdag_mult": 0.9,
+          "e_sdag_dir": 0.8,
+          "e_sdag_w": 1.0,
+          "e_sdag_vf": 0.8
+        }
+      }
+    },
+    "d_tdpi_settings": {
+      "base_tdpi_beta_coeffs": {
+        "aligned": 1.3,
+        "opposed": 0.7,
+        "neutral": 1.0
+      },
+      "base_tdpi_gaussian_width": 0.05,
+      "regime_time_weight_profiles": {
+        "REGIME_FINAL_HOUR_PINNING_HIGH_VCI": 1.5,
+        "REGIME_CASCADE_RISK_CHARM": 1.3,
+        "REGIME_NEUTRAL": 1.0
+      },
+      "volatility_gaussian_width_scalers": {
+        "HIGH_VOLATILITY": 1.2,
+        "NORMAL_VOLATILITY": 1.0,
+        "LOW_VOLATILITY": 0.8
+      },
+      "dte_beta_multipliers": {
+        "0_2_DTE": 1.4,
+        "3_7_DTE": 1.2,
+        "8_21_DTE": 1.0,
+        "22_45_DTE": 0.8,
+        "45_PLUS_DTE": 0.6
+      }
+    },
+    "vri_2_0_settings": {
+      "base_vri_gamma_coeffs": {
+        "aligned": 1.3,
+        "opposed": 0.7,
+        "neutral": 1.0
+      },
+      "term_structure_integration_params": {
+        "front_month_dte_threshold": 30,
+        "term_structure_sensitivity": 0.3,
+        "slope_calculation_dtes": [7, 30, 60]
+      },
+      "volatility_surface_dynamics_params": {
+        "skew_sensitivity": 0.25,
+        "surface_curvature_weight": 0.2,
+        "iv_rank_integration_factor": 0.15
+      },
+      "regime_vri_gamma_multipliers": {
+        "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH": 1.2,
+        "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH": 1.2,
+        "REGIME_HIGH_VOLATILITY": 1.1,
+        "REGIME_NEUTRAL": 1.0
+      },
+      "dte_vri_gamma_multipliers": {
+        "0_2_DTE": 1.3,
+        "3_7_DTE": 1.1,
+        "8_21_DTE": 1.0,
+        "22_45_DTE": 0.9,
+        "45_PLUS_DTE": 0.8
+      }
+    },
+    "enhanced_heatmap_settings": {
+      "sgdhp_heatmap": {
+        "enabled": true,
+        "height": 500,
+        "colorscale": "RdYlGn_r",
+        "distance_decay_factor": 2.0,
+        "normalization_enabled": true
+      },
+      "ivsdh_heatmap": {
+        "enabled": true,
+        "height": 500,
+        "colorscale": "RdYlBu",
+        "time_decay_enabled": true
+      },
+      "ugch_heatmap": {
+        "enabled": true,
+        "height": 500,
+        "colorscale": "Viridis",
+        "intensity_bands": [
+          "Low",
+          "Medium",
+          "High"
+        ]
+      }
+    }
+  },
+  "enhanced_flow_metric_settings": {
+    "vapi_fa_params": {
+      "flow_threshold": 0.5,
+      "flow_window": 10,
+      "smoothing_factor": 0.3,
+      "volume_weight": 0.4,
+      "premium_weight": 0.6,
+      "acceleration_lookback": 5
+    },
+    "acceleration_calculation_intervals": [
+      "5",
+      "10",
+      "15"
+    ],
+    "dwfd_params": {
+      "flow_threshold": 0.5,
+      "flow_window": 10,
+      "smoothing_factor": 0.3,
+      "delta_weight_factor": 1.2,
+      "divergence_sensitivity": 1.5
+    },
+    "tw_laf_params": {
+      "flow_threshold": 0.5,
+      "flow_window": 10,
+      "smoothing_factor": 0.3,
+      "time_weight_decay": 0.95,
+      "liquidity_adjustment": 0.8
+    },
+    "z_score_window": 20,
+    "time_intervals": [
+      5,
+      15,
+      30
+    ],
+    "liquidity_weight": 0.3,
+    "divergence_threshold": 1.5,
+    "lookback_periods": [
+      5,
+      10,
+      20
+    ]
+  },
+  "adaptive_trade_idea_framework_settings": {
+    "min_conviction_to_initiate_trade": 0.3,
+    "signal_integration_params": {},
+    "regime_context_weight_multipliers": {
+      "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH": 1.3,
+      "REGIME_SPY_PRE_FOMC_VOL_COMPRESSION_WITH_DWFD_ACCUMULATION": 1.2,
+      "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL": 1.15,
+      "REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL": 1.25,
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH": 1.1,
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH": 1.1,
+      "REGIME_NVP_STRONG_BUY_IMBALANCE_AT_KEY_STRIKE": 1.05,
+      "REGIME_EOD_HEDGING_PRESSURE_BUY": 1.1,
+      "REGIME_EOD_HEDGING_PRESSURE_SELL": 1.1,
+      "REGIME_SIDEWAYS_MARKET": 0.9,
+      "REGIME_HIGH_VOLATILITY": 1.2
+    },
+    "conviction_mapping_params": {
+      "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH": {
+        "bias_boost": {
+          "Bullish": 0.5,
+          "Bearish": -0.2
+        }
+      },
+      "REGIME_SPY_PRE_FOMC_VOL_COMPRESSION_WITH_DWFD_ACCUMULATION": {
+        "bias_boost": {
+          "Bullish": 0.3,
+          "Bearish": -0.1
+        }
+      },
+      "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL": {
+        "bias_boost": {
+          "Bullish": 0.4,
+          "Bearish": -0.2
+        }
+      },
+      "REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL": {
+        "bias_boost": {
+          "Bullish": -0.3,
+          "Bearish": 0.5
+        }
+      },
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH": {
+        "bias_boost": {
+          "Bullish": 0.2,
+          "Bearish": -0.1
+        }
+      },
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH": {
+        "bias_boost": {
+          "Bullish": -0.1,
+          "Bearish": 0.3
+        }
+      },
+      "REGIME_NVP_STRONG_BUY_IMBALANCE_AT_KEY_STRIKE": {
+        "bias_boost": {
+          "Bullish": 0.15,
+          "Bearish": -0.05
+        }
+      },
+      "REGIME_EOD_HEDGING_PRESSURE_BUY": {
+        "bias_boost": {
+          "Bullish": 0.2,
+          "Bearish": -0.1
+        }
+      },
+      "REGIME_EOD_HEDGING_PRESSURE_SELL": {
+        "bias_boost": {
+          "Bullish": -0.1,
+          "Bearish": 0.2
+        }
+      },
+      "REGIME_SIDEWAYS_MARKET": {
+        "bias_boost": {
+          "Bullish": 0.0,
+          "Bearish": 0.0
+        }
+      },
+      "REGIME_HIGH_VOLATILITY": {
+        "bias_boost": {
+          "Bullish": 0.1,
+          "Bearish": 0.1
+        }
+      }
+    },
+    "strategy_specificity_rules": [
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.7,
+          "regime": ["REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL", "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH"],
+          "iv_rank_max": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Long Call",
+          "target_dte": [1, 7],
+          "delta_range_long": [0.4, 0.7],
+          "rationale": "High conviction bullish momentum with manageable IV"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.6,
+          "regime": ["REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL"],
+          "iv_rank_min": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Bull Call Spread",
+          "target_dte": [7, 21],
+          "delta_range_long": [0.6, 0.8],
+          "delta_range_short": [0.3, 0.5],
+          "rationale": "Bullish momentum with high IV - use spreads to reduce cost"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bearish",
+          "conviction_min": 0.7,
+          "regime": ["REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL"],
+          "iv_rank_max": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Long Put",
+          "target_dte": [1, 7],
+          "delta_range_long": [-0.7, -0.4],
+          "rationale": "High conviction bearish breakdown with manageable IV"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bearish",
+          "conviction_min": 0.6,
+          "regime": ["REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL"],
+          "iv_rank_min": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Bear Put Spread",
+          "target_dte": [7, 21],
+          "delta_range_long": [-0.8, -0.6],
+          "delta_range_short": [-0.5, -0.3],
+          "rationale": "Bearish breakdown with high IV - use spreads to reduce cost"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.8,
+          "regime": ["REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH"],
+          "iv_rank_max": 80
+        },
+        "strategy_output": {
+          "strategy_type": "0DTE Call",
+          "target_dte": [0, 1],
+          "delta_range_long": [0.3, 0.6],
+          "rationale": "Vanna cascade - ride the momentum with 0DTE calls"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.6,
+          "regime": ["REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH"],
+          "iv_rank_max": 60
+        },
+        "strategy_output": {
+          "strategy_type": "Long Straddle",
+          "target_dte": [1, 7],
+          "delta_range_long": [0.45, 0.55],
+          "rationale": "Volatility expansion expected - profit from large moves"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bearish",
+          "conviction_min": 0.6,
+          "regime": ["REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH"],
+          "iv_rank_max": 60
+        },
+        "strategy_output": {
+          "strategy_type": "Long Straddle",
+          "target_dte": [1, 7],
+          "delta_range_long": [0.45, 0.55],
+          "rationale": "Volatility expansion expected - profit from large moves"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Neutral",
+          "conviction_min": 0.5,
+          "regime": ["REGIME_SIDEWAYS_MARKET"],
+          "iv_rank_min": 60
+        },
+        "strategy_output": {
+          "strategy_type": "Iron Condor",
+          "target_dte": [7, 21],
+          "delta_range_long": [0.15, 0.25],
+          "delta_range_short": [0.3, 0.4],
+          "rationale": "Sideways market with high IV - collect premium"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 3.0,
+          "regime": ["REGIME_SIDEWAYS_MARKET"],
+          "iv_rank_max": 60
+        },
+        "strategy_output": {
+          "strategy_type": "Bull Call Spread",
+          "target_dte": [7, 21],
+          "delta_range_long": [0.6, 0.75],
+          "delta_range_short": [0.25, 0.4],
+          "rationale": "High bullish conviction in sideways market - defined risk directional play"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 1.5,
+          "regime": ["REGIME_SIDEWAYS_MARKET"],
+          "iv_rank_max": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Bull Put Spread",
+          "target_dte": [14, 30],
+          "delta_range_short": [-0.3, -0.15],
+          "rationale": "Moderate bullish conviction in sideways market - collect premium below support"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bearish",
+          "conviction_min": 3.0,
+          "regime": ["REGIME_SIDEWAYS_MARKET"],
+          "iv_rank_max": 60
+        },
+        "strategy_output": {
+          "strategy_type": "Bear Put Spread",
+          "target_dte": [7, 21],
+          "delta_range_long": [-0.75, -0.6],
+          "delta_range_short": [-0.4, -0.25],
+          "rationale": "High bearish conviction in sideways market - defined risk directional play"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.5,
+          "regime": ["REGIME_NVP_STRONG_BUY_IMBALANCE_AT_KEY_STRIKE"],
+          "iv_rank_max": 80
+        },
+        "strategy_output": {
+          "strategy_type": "Bull Call Spread",
+          "target_dte": [3, 14],
+          "delta_range_long": [0.5, 0.7],
+          "delta_range_short": [0.2, 0.4],
+          "rationale": "Strong buy imbalance at key level - defined risk bullish play"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.4,
+          "regime": ["REGIME_EOD_HEDGING_PRESSURE_BUY"],
+          "iv_rank_max": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Long Call",
+          "target_dte": [1, 3],
+          "delta_range_long": [0.4, 0.6],
+          "rationale": "EOD buying pressure - short-term bullish momentum"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bearish",
+          "conviction_min": 0.4,
+          "regime": ["REGIME_EOD_HEDGING_PRESSURE_SELL"],
+          "iv_rank_max": 70
+        },
+        "strategy_output": {
+          "strategy_type": "Long Put",
+          "target_dte": [1, 3],
+          "delta_range_long": [-0.6, -0.4],
+          "rationale": "EOD selling pressure - short-term bearish momentum"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Neutral",
+          "conviction_min": 0.3,
+          "regime": ["REGIME_HIGH_VOLATILITY"],
+          "iv_rank_min": 80
+        },
+        "strategy_output": {
+          "strategy_type": "Short Straddle",
+          "target_dte": [7, 21],
+          "delta_range_short": [0.45, 0.55],
+          "rationale": "High volatility regime - sell premium expecting mean reversion"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.5,
+          "regime": ["REGIME_SIDEWAYS_MARKET"],
+          "iv_rank_min": 30
+        },
+        "strategy_output": {
+          "strategy_type": "Long Call",
+          "target_dte": [3, 14],
+          "delta_range_long": [0.5, 0.7],
+          "rationale": "Bullish bias in sideways market - directional play with time for breakout"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bullish",
+          "conviction_min": 0.5,
+          "regime": ["DEFAULT", "REGIME_UNCLEAR_OR_TRANSITIONING"],
+          "iv_rank_max": 50
+        },
+        "strategy_output": {
+          "strategy_type": "Bull Call Spread",
+          "target_dte": [7, 21],
+          "delta_range_long": [0.6, 0.8],
+          "delta_range_short": [0.3, 0.5],
+          "rationale": "Default bullish strategy with defined risk"
+        }
+      },
+      {
+        "conditions": {
+          "bias": "Bearish",
+          "conviction_min": 0.5,
+          "regime": ["DEFAULT", "REGIME_UNCLEAR_OR_TRANSITIONING"],
+          "iv_rank_max": 50
+        },
+        "strategy_output": {
+          "strategy_type": "Bear Put Spread",
+          "target_dte": [7, 21],
+          "delta_range_long": [-0.8, -0.6],
+          "delta_range_short": [-0.5, -0.3],
+          "rationale": "Default bearish strategy with defined risk"
+        }
+      }
+    ],
+    "intelligent_recommendation_management_rules": {},
+    "learning_params": {
+      "performance_tracker_query_lookback": 90,
+      "learning_rate_for_signal_weights": 0.05,
+      "learning_rate_for_target_adjustments": 0.02,
+      "min_trades_for_statistical_significance": 20
+    }
+  },
+  "ticker_context_analyzer_settings": {
+    "lookback_days": 252,
+    "correlation_window": 60,
+    "volatility_windows": [
+      1,
+      5,
+      20
+    ],
+    "volume_threshold": 1000000,
+    "use_yahoo_finance": false,
+    "yahoo_finance_rate_limit_seconds": 2.0,
+    "SPY": {},
+    "DEFAULT_TICKER_PROFILE": {},
+    "advanced_options_metrics": {
+      "enabled": true,
+      "min_contracts_for_calculation": 5,
+      "min_bid_ask_size": 1.0,
+      "max_spread_percentage": 50.0,
+      "default_implied_volatility": 0.20,
+      "lwpai_settings": {
+        "weight_threshold": 0.1,
+        "outlier_filter_enabled": true,
+        "outlier_threshold_std": 2.0
+      },
+      "vabai_settings": {
+        "volatility_floor": 0.05,
+        "volatility_ceiling": 2.0,
+        "imbalance_threshold": 0.1
+      },
+      "aofm_settings": {
+        "momentum_window": 5,
+        "smoothing_factor": 0.3,
+        "significant_change_threshold": 1000.0
+      },
+      "lidb_settings": {
+        "neutral_zone": 0.05,
+        "strong_bias_threshold": 0.3,
+        "extreme_bias_threshold": 0.45
+      },
+      "confidence_scoring": {
+        "min_valid_contracts": 10,
+        "data_quality_weight": 0.4,
+        "spread_quality_weight": 0.3,
+        "volume_quality_weight": 0.3
+      }
+    }
+  },
+  "key_level_identifier_settings": {
+    "lookback_periods": 20,
+    "min_touches": 2,
+    "level_tolerance": 0.005,
+    "volume_threshold": 1.5,
+    "oi_threshold": 1000,
+    "gamma_threshold": 0.1,
+    "nvp_support_quantile": 0.95,
+    "nvp_resistance_quantile": 0.95
+  },
+  "heatmap_generation_settings": {
+    "ugch_params": {
+      "gamma_exposure_threshold": 1000000,
+      "delta_exposure_threshold": 500000,
+      "vanna_exposure_threshold": 100000,
+      "charm_exposure_threshold": 50000,
+      "greek_weights": {
+        "norm_DXOI": 1.5,
+        "norm_GXOI": 2.0,
+        "norm_VXOI": 1.2,
+        "norm_TXOI": 0.8,
+        "norm_CHARM": 0.6,
+        "norm_VANNA": 1.0
+      }
+    },
+    "sgdhp_params": {
+      "proximity_sensitivity_param": 0.05
+    },
+    "flow_normalization_window": 100
+  },
+  "market_regime_engine_settings": {
+    "default_regime": "REGIME_UNCLEAR_OR_TRANSITIONING",
+    "regime_evaluation_order": [
+      "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH",
+      "REGIME_SPY_PRE_FOMC_VOL_COMPRESSION_WITH_DWFD_ACCUMULATION",
+      "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL",
+      "REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL",
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH",
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH",
+      "REGIME_NVP_STRONG_BUY_IMBALANCE_AT_KEY_STRIKE",
+      "REGIME_EOD_HEDGING_PRESSURE_BUY",
+      "REGIME_EOD_HEDGING_PRESSURE_SELL",
+      "REGIME_SIDEWAYS_MARKET",
+      "REGIME_HIGH_VOLATILITY"
+    ],
+    "regime_rules": {
+      "REGIME_SPX_0DTE_FRIDAY_EOD_VANNA_CASCADE_POTENTIAL_BULLISH": [
+        {
+          "metric": "is_SPX_0DTE_Friday_EOD",
+          "operator": "_eq",
+          "value": true
+        },
+        {
+          "metric": "vvr_0dte_und_avg",
+          "operator": "_gt",
+          "value": "dynamic_threshold:vvr_strong_thresh_spx"
+        }
+      ],
+      "REGIME_SPY_PRE_FOMC_VOL_COMPRESSION_WITH_DWFD_ACCUMULATION": [
+        {
+          "metric": "is_fomc_announcement_imminent",
+          "operator": "_eq",
+          "value": true
+        },
+        {
+          "metric": "dwfd_z_score_und",
+          "operator": "_gt",
+          "value": "dynamic_threshold:dwfd_positive_thresh_spy"
+        }
+      ],
+      "REGIME_HIGH_VAPI_FA_BULLISH_MOMENTUM_UNIVERSAL": [
+        {
+          "metric": "vapi_fa_z_score_und",
+          "operator": "_gt",
+          "value": "dynamic_threshold:vapi_fa_bullish_thresh"
+        }
+      ],
+      "REGIME_ADAPTIVE_STRUCTURE_BREAKDOWN_WITH_DWFD_CONFIRMATION_BEARISH_UNIVERSAL": [
+        {
+          "metric": "a_mspi_und_summary_score",
+          "operator": "_lt",
+          "value": "dynamic_threshold:negative_thresh_default"
+        }
+      ],
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BULLISH": [
+        {
+          "metric": "vri_0dte_und_sum",
+          "operator": "_gt",
+          "value": "dynamic_threshold:vri_bullish_thresh"
+        },
+        {
+          "metric": "vfi_0dte_und_avg",
+          "operator": "_gt",
+          "value": 0.1
+        },
+        {
+          "metric": "price_change_pct",
+          "operator": "_gt",
+          "value": -0.005
+        }
+      ],
+      "REGIME_VOL_EXPANSION_IMMINENT_VRI0DTE_BEARISH": [
+        {
+          "metric": "vri_0dte_und_sum",
+          "operator": "_lt",
+          "value": "dynamic_threshold:vri_bearish_thresh"
+        },
+        {
+          "metric": "vfi_0dte_und_avg",
+          "operator": "_gt",
+          "value": 0.1
+        },
+        {
+          "metric": "price_change_pct",
+          "operator": "_lt",
+          "value": 0.005
+        }
+      ],
+      "REGIME_NVP_STRONG_BUY_IMBALANCE_AT_KEY_STRIKE": [
+        {
+          "metric": "nvp_by_strike",
+          "operator": "_gt",
+          "value": "dynamic_threshold:mid_high_nvp_thresh_pos",
+          "selector": "@ATM"
+        }
+      ],
+      "REGIME_EOD_HEDGING_PRESSURE_BUY": [
+        {
+          "metric": "hp_eod_und",
+          "operator": "_gt",
+          "value": "dynamic_threshold:significant_pos_thresh"
+        }
+      ],
+      "REGIME_EOD_HEDGING_PRESSURE_SELL": [
+        {
+          "metric": "hp_eod_und",
+          "operator": "_lt",
+          "value": "dynamic_threshold:significant_neg_thresh"
+        }
+      ],
+      "REGIME_SIDEWAYS_MARKET": [
+        {
+          "metric": "trend_threshold",
+          "operator": "_lt",
+          "value": 0.12
+        }
+      ],
+      "REGIME_HIGH_VOLATILITY": [
+        {
+          "metric": "u_volatility",
+          "operator": "_gt",
+          "value": 0.3
+        }
+      ]
+    }
+  },
+  "visualization_settings": {
+    "dashboard_refresh_interval_seconds": 30,
+    "max_table_rows_signals_insights": 100,
+    "dashboard": {
+      "host": "localhost",
+      "port": 8050,
+      "debug": false,
+      "auto_refresh_seconds": 30,
+      "timestamp_format": "%Y-%m-%d %H:%M:%S %Z",
+      "defaults": {
+        "symbol": "SPX",
+        "refresh_interval_seconds": 30,
+        "dte_min": 0,
+        "dte_max": 5,
+        "price_range_percent": 5
+      },
+      "modes_detail_config": {
+        "main": {
+          "label": "Main Dashboard",
+          "module_name": "main_dashboard_display_v2_5",
+          "charts": [
+            "regime_display",
+            "flow_gauges",
+            "gib_gauges",
+            "recommendations_table"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        },
+        "flow": {
+          "label": "Flow Analysis",
+          "module_name": "flow_mode_display_v2_5",
+          "charts": [
+            "net_value_heatmap_viz",
+            "sgdhp_heatmap_viz",
+            "ivsdh_heatmap_viz",
+            "ugch_heatmap_viz",
+            "net_cust_delta_flow_viz",
+            "net_cust_gamma_flow_viz",
+            "net_cust_vega_flow_viz"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        },
+        "structure": {
+          "label": "Structure & Positioning",
+          "module_name": "structure_mode_display_v2_5",
+          "charts": [
+            "mspi_components_viz"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        },
+        "timedecay": {
+          "label": "Time Decay & Pinning",
+          "module_name": "time_decay_mode_display_v2_5",
+          "charts": [
+            "tdpi_displays",
+            "vci_strike_charts"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        },
+        "advanced": {
+          "label": "Advanced Flow",
+          "module_name": "advanced_flow_mode_v2_5",
+          "charts": [
+            "vapi_gauge",
+            "dwfd_gauge",
+            "tw_laf_gauge"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        },
+        "volatility": {
+          "label": "Volatility Deep Dive",
+          "module_name": "volatility_mode_display_v2_5",
+          "charts": [
+            "vri_2_0_strike_profile",
+            "volatility_gauges",
+            "volatility_surface_heatmap"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        },
+        "ai": {
+          "label": "AI Intelligence Hub",
+          "module_name": "ai_dashboard.ai_dashboard_display_v2_5",
+          "charts": [
+            "ai_market_analysis",
+            "ai_recommendations",
+            "ai_insights",
+            "ai_regime_context",
+            "ai_performance_tracker"
+          ],
+          "FILTERING_COMPLIANCE_REQUIRED": true
+        }
+      },
+      "flow_mode_settings": {
+        "net_value_heatmap": {
+          "height": 600,
+          "colorscale": "RdYlGn",
+          "autosize": false,
+          "responsive": false
+        },
+        "sgdhp_heatmap": {
+          "height": 500,
+          "colorscale": "RdYlGn_r",
+          "autosize": true,
+          "responsive": true
+        },
+        "ivsdh_heatmap": {
+          "height": 500,
+          "colorscale": "RdYlBu",
+          "autosize": true,
+          "responsive": true
+        },
+        "ugch_heatmap": {
+          "height": 500,
+          "colorscale": "Viridis",
+          "autosize": true,
+          "responsive": true
+        }
+      },
+      "volatility_mode_settings": {
+        "vri_chart_height": 500,
+        "gauge_height": 300,
+        "vri_2_0_chart": {
+          "height": 500,
+          "colorscale": "RdYlGn",
+          "autosize": true,
+          "responsive": true
+        },
+        "volatility_gauges": {
+          "height": 300,
+          "indicator_font_size": 16,
+          "number_font_size": 24,
+          "margin": {
+            "t": 60,
+            "b": 40,
+            "l": 20,
+            "r": 20
+          }
+        }
+      },
+      "main_dashboard_settings": {
+        "regime_indicator": {
+          "title": "Market Regime",
+          "regime_colors": {
+            "BULLISH": "success",
+            "BEARISH": "danger",
+            "NEUTRAL": "secondary",
+            "VOLATILE": "warning",
+            "default": "secondary"
+          }
+        },
+        "flow_gauge": {
+          "height": 200,
+          "indicator_font_size": 16,
+          "number_font_size": 24,
+          "axis_range": [
+            -3,
+            3
+          ],
+          "steps": [
+            {
+              "range": [
+                -3,
+                -2
+              ],
+              "color": "#d62728"
+            },
+            {
+              "range": [
+                -2,
+                -0.5
+              ],
+              "color": "#ff9896"
+            },
+            {
+              "range": [
+                -0.5,
+                0.5
+              ],
+              "color": "#aec7e8"
+            },
+            {
+              "range": [
+                0.5,
+                2
+              ],
+              "color": "#98df8a"
+            },
+            {
+              "range": [
+                2,
+                3
+              ],
+              "color": "#2ca02c"
+            }
+          ],
+          "threshold_line_color": "white",
+          "margin": {
+            "t": 60,
+            "b": 40,
+            "l": 20,
+            "r": 20
+          }
+        },
+        "gib_gauge": {
+          "height": 180,
+          "indicator_font_size": 14,
+          "number_font_size": 20,
+          "axis_range": [
+            -50000,
+            50000
+          ],
+          "dollar_axis_range": [
+            -100000,
+            100000
+          ],
+          "steps": [
+            {
+              "range": [
+                -50000,
+                -25000
+              ],
+              "color": "#d62728"
+            },
+            {
+              "range": [
+                -25000,
+                -5000
+              ],
+              "color": "#ff9896"
+            },
+            {
+              "range": [
+                -5000,
+                5000
+              ],
+              "color": "#aec7e8"
+            },
+            {
+              "range": [
+                5000,
+                25000
+              ],
+              "color": "#98df8a"
+            },
+            {
+              "range": [
+                25000,
+                50000
+              ],
+              "color": "#2ca02c"
+            }
+          ],
+          "dollar_steps": [
+            {
+              "range": [
+                -100000,
+                -50000
+              ],
+              "color": "#d62728"
+            },
+            {
+              "range": [
+                -50000,
+                -10000
+              ],
+              "color": "#ff9896"
+            },
+            {
+              "range": [
+                -10000,
+                10000
+              ],
+              "color": "#aec7e8"
+            },
+            {
+              "range": [
+                10000,
+                50000
+              ],
+              "color": "#98df8a"
+            },
+            {
+              "range": [
+                50000,
+                100000
+              ],
+              "color": "#2ca02c"
+            }
+          ],
+          "threshold_line_color": "white",
+          "margin": {
+            "t": 50,
+            "b": 30,
+            "l": 15,
+            "r": 15
+          }
+        },
+        "mini_heatmap": {
+          "height": 150,
+          "colorscale": "RdYlGn",
+          "margin": {
+            "t": 50,
+            "b": 30,
+            "l": 40,
+            "r": 40
+          }
+        },
+        "ticker_context": {
+          "title": "Ticker Context"
+        },
+        "recommendations_table": {
+          "title": "ATIF Recommendations",
+          "max_rationale_length": 50,
+          "page_size": 5,
+          "style_cell": {
+            "textAlign": "left",
+            "padding": "5px",
+            "minWidth": "80px",
+            "width": "auto",
+            "maxWidth": "200px"
+          },
+          "style_header": {
+            "backgroundColor": "rgb(30, 30, 30)",
+            "fontWeight": "bold",
+            "color": "white"
+          },
+          "style_data": {
+            "backgroundColor": "rgb(50, 50, 50)",
+            "color": "white"
+          }
+        }
+      },
+      "ai_dashboard_settings": {
+        "ai_analysis_panel": {
+          "title": "\u00f0\u0178\u00a7\u00a0 AI Market Intelligence",
+          "height": 400,
+          "refresh_interval": 30,
+          "max_insights": 5
+        },
+        "ai_recommendations": {
+          "title": "\u00f0\u0178\u017d\u00af AI-Powered Recommendations",
+          "height": 350,
+          "confidence_threshold": 0.7,
+          "max_recommendations": 3
+        },
+        "ai_regime_context": {
+          "title": "\u00f0\u0178\u0152\u0160 AI Regime Analysis",
+          "height": 300,
+          "show_confidence": true,
+          "show_reasoning": true
+        },
+        "ai_performance": {
+          "title": "\u00f0\u0178\u201c\u0160 AI Performance Tracker",
+          "height": 250,
+          "lookback_days": 30,
+          "show_learning_curve": true
+        },
+        "ai_insights": {
+          "title": "\u00f0\u0178\u2019\u00a1 Real-time AI Insights",
+          "height": 300,
+          "update_frequency": 15,
+          "max_insight_length": 200
+        }
+      },
+      "UNIVERSAL_FILTERING_CONFIG": {
+        "HARDWIRED_ENABLED": true,
+        "FILTER_AT_CALLBACK_LEVEL": true,
+        "VALIDATE_ALL_MODES": true,
+        "REJECT_UNFILTERED_DATA": true,
+        "COMPLIANCE_TRACKING_ENABLED": true
+      }
+    }
+  },
+  "intraday_collector_settings": {
+    "watched_tickers": [
+      "SPY",
+      "SPX",
+      "QQQ",
+      "IWM",
+      "VIX",
+      "TSLA",
+      "AMZN",
+      "LLY",
+      "GLD",
+      "PLTR",
+      "GOOG",
+      "GOOGL",
+      "AAPL",
+      "META",
+      "MSFT",
+      "NVDA",
+      "/ES:XCME"
+    ],
+    "metrics": [
+      "vapi_fa",
+      "dwfd",
+      "tw_laf",
+      "vapifa_zscore_history",
+      "dwfd_zscore_history",
+      "twlaf_zscore_history",
+      "rolling_flows",
+      "nvp_by_strike",
+      "nvp_vol_by_strike",
+      "strikes",
+      "greek_flows",
+      "flow_ratios"
+    ],
+    "cache_dir": "cache/intraday_metrics",
+    "collection_interval_seconds": 5,
+    "market_open_time": "09:30:00",
+    "market_close_time": "16:00:00",
+    "reset_at_eod": true
+  },
+  "symbol_specific_overrides": {
+    "SPY": {
+      "strategy_multiplier": 1.0,
+      "risk_adjustment": 1.0,
+      "custom_thresholds": {
+        "target_atr_stop_loss_multiplier": 1.5
+      }
+    }
+  },
+  "performance_tracker_settings_v2_5": {
+    "performance_data_directory": "data_cache_v2_5/performance_data_store",
+    "historical_window_days": 365,
+    "weight_smoothing_factor": 0.1,
+    "min_sample_size": 10,
+    "confidence_threshold": 0.75,
+    "update_interval_seconds": 3600
+  },
+  "time_of_day_definitions": {
+    "market_open": "09:30:00",
+    "market_close": "16:00:00",
+    "pre_market_start": "04:00:00",
+    "after_hours_end": "20:00:00",
+    "eod_pressure_calc_time": "15:00:00"
+  },
+  "ai_predictions_settings": {
+    "enabled": true,
+    "auto_create_predictions": true,
+    "default_time_horizon": "4H",
+    "min_confidence_threshold": 0.5,
+    "max_predictions_per_symbol": 10,
+    "evaluation_frequency_minutes": 60,
+    "auto_evaluation_enabled": true,
+    "performance_tracking_days": 30,
+    "prediction_types": [
+      "eots_direction",
+      "price_target",
+      "volatility_forecast",
+      "regime_transition"
+    ],
+    "confidence_calibration": {
+      "strong_signal_threshold": 3.0,
+      "moderate_signal_threshold": 1.5,
+      "max_confidence": 0.85,
+      "min_confidence": 0.5
+    }
+  }
+}

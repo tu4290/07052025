@@ -1,0 +1,607 @@
+{
+  "llm_api": {
+    "enabled": true,
+    "ollama_host": "http://localhost:11434",
+    "api_version": "v1",
+    "api_keys": {
+      "master_key": "eots-local-master-2025-elite-options",
+      "huihui_moe_key": "huihui-moe-specialist-expert-system",
+      "deepseek_v2_key": "deepseek-v2-coding-assistant-elite",
+      "development_key": "dev-local-llm-testing-key",
+      "production_key": "prod-eots-ai-liberation-key"
+    },
+    "models": {
+      "huihui_moe": {
+        "model_name": "huihui_ai/huihui-moe-abliterated:5b-a1.7b",
+        "display_name": "HuiHui-MoE Abliterated 5B",
+        "api_key": "huihui-moe-specialist-expert-system",
+        "purpose": "EOTS AI Specialist System",
+        "capabilities": [
+          "Market Regime Analysis",
+          "Options Flow Intelligence",
+          "Sentiment Analysis",
+          "Strategic Orchestration"
+        ],
+        "max_tokens": 4096,
+        "temperature_range": [0.1, 0.3],
+        "recommended_temperature": 0.1,
+        "context_window": 32768,
+        "specialist_modes": {
+          "market_regime": {
+            "temperature": 0.1,
+            "max_tokens": 2000,
+            "system_prompt_key": "market_regime_expert"
+          },
+          "options_flow": {
+            "temperature": 0.1,
+            "max_tokens": 2000,
+            "system_prompt_key": "options_flow_expert"
+          },
+          "sentiment_intelligence": {
+            "temperature": 0.1,
+            "max_tokens": 2000,
+            "system_prompt_key": "sentiment_expert"
+          },
+          "meta_orchestrator": {
+            "temperature": 0.2,
+            "max_tokens": 3000,
+            "system_prompt_key": "meta_orchestrator"
+          }
+        }
+      },
+      "deepseek_v2": {
+        "model_name": "deepseek-coder-v2:16b",
+        "display_name": "DeepSeek Coder V2 16B",
+        "api_key": "deepseek-v2-coding-assistant-elite",
+        "purpose": "Elite Coding Assistant",
+        "capabilities": [
+          "Python Development",
+          "Trading System Architecture",
+          "Code Review & Optimization",
+          "API Integration",
+          "Data Analysis",
+          "System Debugging"
+        ],
+        "max_tokens": 8192,
+        "temperature_range": [0.0, 0.2],
+        "recommended_temperature": 0.1,
+        "context_window": 16384,
+        "coding_modes": {
+          "development": {
+            "temperature": 0.1,
+            "max_tokens": 4000,
+            "system_prompt_key": "coding_assistant"
+          },
+          "debugging": {
+            "temperature": 0.05,
+            "max_tokens": 3000,
+            "system_prompt_key": "debugging_expert"
+          },
+          "architecture": {
+            "temperature": 0.15,
+            "max_tokens": 5000,
+            "system_prompt_key": "system_architect"
+          }
+        }
+      }
+    },
+    "api_endpoints": {
+      "base_url": "http://localhost:11434",
+      "chat_completion": "/api/chat",
+      "generate": "/api/generate",
+      "models": "/api/tags",
+      "show_model": "/api/show",
+      "pull_model": "/api/pull",
+      "push_model": "/api/push",
+      "delete_model": "/api/delete"
+    },
+    "rate_limits": {
+      "requests_per_minute": 1000,
+      "tokens_per_minute": 100000,
+      "concurrent_requests": 10
+    },
+    "security": {
+      "require_api_key": true,
+      "allowed_origins": [
+        "localhost",
+        "127.0.0.1",
+        "192.168.1.*"
+      ],
+      "log_requests": true,
+      "log_responses": false
+    },
+    "performance": {
+      "gpu_acceleration": true,
+      "max_concurrent_requests": 4,
+      "request_timeout": 120,
+      "model_load_timeout": 60,
+      "auto_unload_models": false
+    },
+    "integration": {
+      "openai_compatible": true,
+      "pydantic_ai_compatible": true,
+      "langchain_compatible": true,
+      "custom_eots_integration": true
+    }
+  },
+  "ai_settings": {
+    "enabled": true,
+    "model_config": {
+      "primary_model": "huihui-moe-orchestrator",
+      "fallback_model": "huihui-moe-auto",
+      "temperature": 0.1,
+      "max_tokens": 2000,
+      "timeout_seconds": 30
+    },
+    "agent_settings": {
+      "market_analyst": {
+        "system_prompt_enhancement": "Focus on institutional flow patterns and gamma positioning effects",
+        "confidence_threshold": 0.7,
+        "max_retries": 2,
+        "learning_enabled": true,
+        "pattern_recognition_depth": "advanced"
+      },
+      "regime_analyst": {
+        "system_prompt_enhancement": "Specialize in regime detection and transition prediction with EOTS metrics",
+        "confidence_threshold": 0.75,
+        "max_retries": 2,
+        "transition_sensitivity": 0.8,
+        "regime_validation_enabled": true
+      },
+      "confidence_calculator": {
+        "system_prompt_enhancement": "Focus on confidence calibration and ensemble validation",
+        "confidence_threshold": 0.8,
+        "max_retries": 1,
+        "self_validation_enabled": true,
+        "historical_accuracy_weight": 0.3
+      },
+      "strategy_advisor": {
+        "system_prompt_enhancement": "Emphasize risk management and position sizing guidance",
+        "confidence_threshold": 0.75,
+        "max_retries": 2
+      },
+      "learning_agent": {
+        "system_prompt_enhancement": "Focus on quantifiable pattern recognition and system improvements",
+        "confidence_threshold": 0.8,
+        "learning_retention_days": 90,
+        "recursive_learning_enabled": true,
+        "adaptive_threshold_management": true
+      }
+    },
+    "learning_settings": {
+      "auto_apply_threshold": 0.85,
+      "learning_batch_size": 10,
+      "pattern_confidence_minimum": 0.8,
+      "feedback_loop_enabled": true,
+      "performance_tracking_enabled": true
+    },
+    "safety_settings": {
+      "max_daily_ai_calls": 999999,
+      "rate_limit_per_minute": 999999,
+      "fallback_to_traditional": true,
+      "error_threshold_before_disable": 5
+    },
+    "insight_generation": {
+      "ai_insight_weight": 0.4,
+      "traditional_insight_weight": 0.6,
+      "combine_insights": true,
+      "ai_insight_expiry_hours": 4,
+      "minimum_confidence_for_display": 0.6
+    },
+    "adaptive_thresholds": {
+      "enabled": true,
+      "adjustment_frequency_hours": 24,
+      "max_threshold_change_percent": 0.1,
+      "learning_sample_minimum": 20,
+      "intelligence_engine_thresholds": {
+        "vapi_fa_strong": 2.0,
+        "vapi_fa_moderate": 1.5,
+        "dwfd_strong": 1.5,
+        "dwfd_moderate": 1.0,
+        "tw_laf_strong": 1.5,
+        "tw_laf_moderate": 1.0,
+        "gib_significant": 100000,
+        "vri_high": 5000,
+        "confluence_threshold": 0.7,
+        "confidence_threshold": 0.6,
+        "signal_strength_norm": 3.0
+      }
+    },
+    "intelligence_engine": {
+      "enabled": true,
+      "aggressive_learning": true,
+      "self_improvement_enabled": true,
+      "performance_tracking": {
+        "track_insight_accuracy": true,
+        "track_confidence_calibration": true,
+        "track_regime_predictions": true,
+        "validation_against_outcomes": true,
+        "learning_history_retention_days": 90
+      },
+      "ensemble_methods": {
+        "enabled": true,
+        "cross_validation_agents": true,
+        "confidence_ensemble_weight": 0.4,
+        "primary_agent_weight": 0.6
+      },
+      "adaptive_learning": {
+        "parameter_optimization": true,
+        "threshold_adaptation": true,
+        "pattern_recognition_improvement": true,
+        "recursive_learning_cycles": true
+      }
+    }
+  },
+  "security": {
+    "expert_tokens": {
+      "market_regime": "huihui-regime-dab8c9864f714d2a",
+      "options_flow": "huihui-flow-c0a15825f9d747c2",
+      "sentiment": "huihui-sentiment-f12e1d7e6d90476e",
+      "orchestrator": "huihui-orchestrator-bc7c3bcf5081436b"
+    },
+    "rate_limits": {
+      "market_regime": 100,
+      "options_flow": 100,
+      "sentiment": 150,
+      "orchestrator": 50
+    },
+    "enable_usage_logging": true,
+    "log_file_path": "logs/huihui_usage.jsonl"
+  },
+  "safety": {
+    "wall_clock_timeouts": {
+      "market_regime": 45,
+      "options_flow": 45,
+      "sentiment": 30,
+      "orchestrator": 60
+    },
+    "max_retries": 1,
+    "gpu_memory_threshold": 0.8,
+    "cpu_threshold": 0.9,
+    "context_budget": {
+      "market_regime": 2000,
+      "options_flow": 2000,
+      "sentiment": 1500,
+      "orchestrator": 3000
+    },
+    "enable_health_monitoring": true,
+    "health_check_interval": 60
+  },
+  "feedback": {
+    "enable_feedback_logging": true,
+    "database_path": "data/huihui_feedback.db",
+    "outcome_validation_hours": 24,
+    "min_confidence_for_tracking": 0.5,
+    "roi_calculation_method": "directional",
+    "enable_vector_similarity": true,
+    "similarity_threshold": 0.8
+  },
+  "dashboard": {
+    "enabled": true,
+    "layout_config": {
+      "grid_layout": "7_component_optimized",
+      "responsive_breakpoints": {
+        "lg": 1200,
+        "md": 768,
+        "sm": 576
+      },
+      "component_spacing": "20px",
+      "header_height": "auto"
+    },
+    "component_settings": {
+      "unified_ai_intelligence_hub": {
+        "title": "\u00f0\u0178\u00a7\u00a0 Unified AI Intelligence Hub",
+        "priority": 1,
+        "height": 400,
+        "refresh_interval": 15,
+        "max_insights": 6,
+        "confluence_threshold": 0.7,
+        "signal_strength_threshold": 2.0,
+        "show_confidence_meter": true,
+        "auto_refresh": true
+      },
+      "ai_recommendations_panel": {
+        "title": "\u00f0\u0178\u017d\u00af AI Recommendations",
+        "priority": 2,
+        "height": 350,
+        "max_recommendations": 5,
+        "confidence_threshold": 0.6,
+        "strategy_diversity_weight": 0.3,
+        "conviction_weight": 0.7,
+        "show_rationale": true,
+        "auto_update": true
+      },
+      "ai_regime_context_panel": {
+        "title": "\u00f0\u0178\u0152\u0160 AI Regime Context",
+        "priority": 3,
+        "height": 300,
+        "show_transition_probability": true,
+        "regime_confidence_threshold": 0.65,
+        "transition_alert_threshold": 0.7,
+        "historical_regime_days": 30,
+        "show_regime_insights": true
+      },
+      "ai_performance_tracker": {
+        "title": "\u00f0\u0178\u201c\u02c6 AI Performance Tracker",
+        "priority": 4,
+        "height": 250,
+        "lookback_days": 30,
+        "show_learning_curve": true,
+        "performance_metrics": [
+          "success_rate",
+          "avg_confidence",
+          "total_signals",
+          "learning_score"
+        ],
+        "chart_type": "line_with_metrics",
+        "real_time_updates": true
+      },
+      "apex_predator_brain": {
+        "title": "\u00f0\u0178\u02dc\u02c6 APEX PREDATOR BRAIN",
+        "priority": 5,
+        "height": 350,
+        "mcp_systems_display": 4,
+        "diabolical_insights_max": 3,
+        "alpha_intelligence_enabled": true,
+        "news_sentiment_threshold": 0.3,
+        "intelligence_score_threshold": 0.5,
+        "auto_refresh_mcp": true
+      },
+      "ai_metrics_dashboard": {
+        "title": "\u00f0\u0178\u201d\u00a2 Raw EOTS Metrics",
+        "priority": 6,
+        "height": 400,
+        "show_tier_separators": true,
+        "color_code_values": true,
+        "decimal_precision": 3,
+        "chart_height": 300,
+        "metrics_per_tier": {
+          "tier_3": 6,
+          "tier_2": 5,
+          "tier_1": 5
+        },
+        "validation_enabled": true
+      },
+      "ai_learning_center": {
+        "title": "\u00f0\u0178\u017d\u201c AI Learning Center",
+        "priority": 7,
+        "height": 350,
+        "learning_metrics_format": "comprehensive_6_metric",
+        "pattern_display_limit": 10,
+        "adaptation_score_threshold": 7.0,
+        "learning_velocity_threshold": 0.75,
+        "memory_node_display": true,
+        "show_learning_insights": true
+      },
+      "ai_system_status_bar": {
+        "title": "\u00f0\u0178\u201c\u0160 System Status",
+        "priority": 0,
+        "height": 60,
+        "always_visible": true,
+        "health_check_interval": 10,
+        "component_status_display": true,
+        "alert_threshold": 0.8,
+        "show_latency": true
+      }
+    },
+    "performance_optimization": {
+      "lazy_loading_enabled": true,
+      "component_caching": {
+        "enabled": true,
+        "cache_duration_minutes": 5,
+        "cache_size_limit_mb": 50
+      },
+      "data_streaming": {
+        "enabled": false,
+        "stream_interval_seconds": 2,
+        "buffer_size": 100
+      },
+      "progressive_loading": {
+        "enabled": true,
+        "priority_components_first": true,
+        "loading_animation": true
+      }
+    },
+    "integration_settings": {
+      "pydantic_validation": {
+        "strict_mode": true,
+        "validation_on_update": true,
+        "error_handling": "graceful_fallback"
+      },
+      "external_data_sources": {
+        "alpha_vantage": {
+          "enabled": true,
+          "timeout_seconds": 10,
+          "retry_attempts": 2,
+          "fallback_enabled": true
+        },
+        "mcp_systems": {
+          "enabled": true,
+          "health_check_interval": 30,
+          "auto_reconnect": true
+        },
+        "database_integration": {
+          "primary_db_required": true,
+          "fallback_to_cache": true,
+          "connection_pool_size": 5
+        }
+      },
+      "cross_component_communication": {
+        "shared_data_bus": true,
+        "event_driven_updates": true,
+        "component_dependencies": {
+          "ai_recommendations_panel": [
+            "unified_ai_intelligence_hub",
+            "ai_metrics_dashboard"
+          ],
+          "ai_regime_context_panel": [
+            "unified_ai_intelligence_hub"
+          ],
+          "apex_predator_brain": [
+            "ai_system_status_bar"
+          ]
+        }
+      }
+    },
+    "user_experience": {
+      "theme": {
+        "dark_mode": true,
+        "color_scheme": "ai_optimized",
+        "animation_enabled": true,
+        "transition_duration": "0.3s"
+      },
+      "accessibility": {
+        "high_contrast_mode": false,
+        "screen_reader_support": true,
+        "keyboard_navigation": true
+      },
+      "customization": {
+        "user_layout_preferences": true,
+        "component_reordering": false,
+        "custom_thresholds": true
+      }
+    },
+    "monitoring_and_analytics": {
+      "component_performance_tracking": true,
+      "user_interaction_analytics": true,
+      "error_reporting": {
+        "enabled": true,
+        "detailed_logging": true,
+        "auto_recovery_attempts": 3
+      },
+      "usage_statistics": {
+        "track_component_access": true,
+        "track_feature_utilization": true,
+        "performance_metrics": true
+      }
+    }
+  },
+  "integration": {
+    "multi_database_integration": {
+      "supabase_primary": true,
+      "mcp_ai_learning": true,
+      "sync_frequency_minutes": 15,
+      "cross_database_validation": true,
+      "fallback_to_single_db": true
+    },
+    "monitoring": {
+      "log_ai_interactions": true,
+      "track_performance_metrics": true,
+      "alert_on_ai_failures": true,
+      "dashboard_ai_status_display": true
+    },
+    "unified_ai_orchestrator": {
+      "enabled": true,
+      "component_integration": {
+        "market_intelligence_engine": true,
+        "metrics_calculator": true,
+        "signal_generator": true,
+        "atif_framework": true,
+        "ticker_context_analyzer": true,
+        "key_level_identifier": true,
+        "performance_tracker": true,
+        "multi_database_manager": true
+      },
+      "intelligence_generation": {
+        "auto_generate_on_analysis": true,
+        "store_intelligence_history": true,
+        "intelligence_expiry_hours": 2,
+        "minimum_conviction_threshold": 0.6
+      },
+      "system_optimization": {
+        "auto_optimize_enabled": true,
+        "optimization_frequency_hours": 24,
+        "minimum_trades_for_optimization": 20,
+        "auto_apply_threshold": 0.85,
+        "backup_settings_before_changes": true
+      },
+      "component_weighting": {
+        "flow_metrics_weight": 0.25,
+        "adaptive_metrics_weight": 0.2,
+        "structural_metrics_weight": 0.2,
+        "signals_weight": 0.15,
+        "atif_weight": 0.1,
+        "performance_weight": 0.1
+      }
+    },
+    "adaptive_learning_settings": {
+      "daily_learning_enabled": true,
+      "weekly_deep_learning_enabled": true,
+      "monthly_comprehensive_review_enabled": true,
+      "real_time_adaptation_enabled": true,
+      "min_confidence_for_auto_update": 0.8,
+      "max_parameter_change_per_cycle": 0.15,
+      "learning_history_retention_days": 90,
+      "learning_schedule": {
+        "daily_time": "02:00",
+        "weekly_day": "sunday",
+        "weekly_time": "03:00",
+        "monthly_day": 1
+      },
+      "parameter_constraints": {
+        "ai_confidence_threshold": {
+          "min": 0.3,
+          "max": 0.95,
+          "current": 0.7
+        },
+        "vapi_fa_threshold": {
+          "min": 0.5,
+          "max": 3.0,
+          "current": 1.5
+        },
+        "dwfd_threshold": {
+          "min": 0.5,
+          "max": 3.0,
+          "current": 1.5
+        },
+        "tw_laf_threshold": {
+          "min": 0.5,
+          "max": 3.0,
+          "current": 1.5
+        },
+        "regime_confidence_threshold": {
+          "min": 0.4,
+          "max": 0.9,
+          "current": 0.7
+        },
+        "flow_intensity_threshold": {
+          "min": 0.2,
+          "max": 0.9,
+          "current": 0.6
+        },
+        "volatility_threshold": {
+          "min": 15.0,
+          "max": 50.0,
+          "current": 25.0
+        }
+      },
+      "learning_priorities": {
+        "ai_prediction_accuracy": 1.0,
+        "regime_detection_accuracy": 0.9,
+        "flow_signal_quality": 0.8,
+        "key_level_effectiveness": 0.7,
+        "pattern_recognition": 0.6
+      },
+      "risk_management": {
+        "enable_rollback": true,
+        "rollback_threshold_days": 7,
+        "performance_degradation_threshold": 0.05,
+        "max_consecutive_failures": 3
+      },
+      "notification_settings": {
+        "email_notifications": false,
+        "log_level": "INFO",
+        "alert_on_major_changes": true,
+        "alert_on_performance_improvement": true,
+        "alert_on_parameter_updates": false
+      },
+      "advanced_settings": {
+        "enable_experimental_features": false,
+        "use_ensemble_learning": true,
+        "enable_cross_validation": true,
+        "learning_rate_adaptation": true,
+        "enable_regime_specific_learning": true
+      }
+    }
+  }
+} 
